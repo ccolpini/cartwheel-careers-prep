@@ -89,14 +89,9 @@ const Footer = ({label}) => (
 
 // ── Claude API ────────────────────────────────────────────────
 async function callClaude(system, messages, maxTokens=3000) {
-  const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
-  const res = await fetch("https://api.anthropic.com/v1/messages", {
+  const res = await fetch("/api/chat", {
     method:"POST",
-    headers:{
-      "Content-Type": "application/json",
-      "anthropic-version": "2023-06-01",
-      ...(apiKey ? { "x-api-key": apiKey } : {}),
-    },
+    headers:{"Content-Type":"application/json"},
     body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:maxTokens,system,messages}),
   });
   const d = await res.json();
