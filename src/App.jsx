@@ -9,10 +9,8 @@ const C = {
   orange:"#F0702E", white:"#FFFFFF",
 };
 
-// ── Change this to your real password ────────────────────────
 const ADMIN_PASSWORD = "cartwheel2026";
 
-// ── Shared UI ─────────────────────────────────────────────────
 function WheelMark({ size=28 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 100 100" fill="none">
@@ -27,6 +25,7 @@ function WheelMark({ size=28 }) {
     </svg>
   );
 }
+
 function Wordmark({ light=false }) {
   return (
     <div style={{display:"flex",alignItems:"center",gap:9}}>
@@ -36,6 +35,7 @@ function Wordmark({ light=false }) {
     </div>
   );
 }
+
 function CWBullet({color=C.lavender,size=13}) {
   return (
     <svg width={size} height={size} viewBox="0 0 14 14" fill="none" style={{flexShrink:0,marginTop:2}}>
@@ -44,6 +44,7 @@ function CWBullet({color=C.lavender,size=13}) {
     </svg>
   );
 }
+
 function DiamondShape({color=C.lavender,size=13}) {
   return (
     <svg width={size} height={size} viewBox="0 0 14 14" fill="none" style={{flexShrink:0,marginTop:1}}>
@@ -52,6 +53,7 @@ function DiamondShape({color=C.lavender,size=13}) {
     </svg>
   );
 }
+
 function SectionHead({children}) {
   return (
     <div style={{marginBottom:16}}>
@@ -60,6 +62,7 @@ function SectionHead({children}) {
     </div>
   );
 }
+
 function BulletList({items,color=C.lavender}) {
   return (
     <div style={{display:"flex",flexDirection:"column",gap:6}}>
@@ -72,6 +75,7 @@ function BulletList({items,color=C.lavender}) {
     </div>
   );
 }
+
 function ExtLink({href,children}) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer"
@@ -80,14 +84,16 @@ function ExtLink({href,children}) {
     </a>
   );
 }
-const Footer = ({label}) => (
-  <div style={{borderTop:`1px solid #e2ddd8`,paddingTop:16,display:"flex",justifyContent:"space-between"}}>
-    <div style={{fontSize:12,color:C.taupe}}>Questions? Reach out to your coordinator at any time!</div>
-    <div style={{fontSize:10,fontWeight:700,letterSpacing:"2px",textTransform:"uppercase",color:C.taupe}}>{label}</div>
-  </div>
-);
 
-// ── Claude API ────────────────────────────────────────────────
+function Footer({label}) {
+  return (
+    <div style={{borderTop:`1px solid #e2ddd8`,paddingTop:16,display:"flex",justifyContent:"space-between"}}>
+      <div style={{fontSize:12,color:C.taupe}}>Questions? Reach out to your coordinator at any time!</div>
+      <div style={{fontSize:10,fontWeight:700,letterSpacing:"2px",textTransform:"uppercase",color:C.taupe}}>{label}</div>
+    </div>
+  );
+}
+
 async function callClaude(system, messages, maxTokens=3000) {
   const res = await fetch("/api/chat", {
     method:"POST",
@@ -98,7 +104,6 @@ async function callClaude(system, messages, maxTokens=3000) {
   return d.content?.[0]?.text || "";
 }
 
-// ── Storage ───────────────────────────────────────────────────
 async function saveRole(role) {
   try {
     await window.storage.set(`role:${role.slug}`, JSON.stringify(role));
@@ -108,6 +113,7 @@ async function saveRole(role) {
     await window.storage.set("role-index", JSON.stringify(idx));
   } catch(e) { console.error("Storage error:", e); }
 }
+
 async function loadAllRoles() {
   let idx = [];
   try { const r = await window.storage.get("role-index"); if(r) idx=JSON.parse(r.value); } catch(e){}
@@ -117,6 +123,7 @@ async function loadAllRoles() {
   }
   return roles;
 }
+
 async function deleteRole(slug) {
   try { await window.storage.delete(`role:${slug}`); } catch(e){}
   let idx = [];
@@ -133,74 +140,77 @@ Given raw hiring package text, return ONLY a valid JSON object (no markdown, no 
   "reportsto": "Name and title of hiring manager",
   "location": "Remote or location",
   "employment": "Full-Time, W2",
-  "comp": "$X – $Y",
+  "comp": "$X - $Y",
   "mission": "1-2 sentence mission/purpose for this role",
-  "stats": [{"n":"350+","label":"School Districts","sub":"Serving 2.5% of U.S. districts"},{"n":"$20M","label":"in ARR","sub":"Achieved in just 3 years"},{"n":"300%","label":"YoY Growth","sub":"Capital-efficient scale"},{"n":"1.5M","label":"Students","sub":"Enrolled across districts"}],
-  "team": ["Name — Title (note)", ...],
-  "stages": [{"stage":"Name","time":"30m","who":"Interviewer","focus":"Focus"},...],
-  "contacts": ["Role: Name (email)", ...],
-  "prep": ["tip 1", ...],
-  "thrive": ["item 1", ...],
-  "notfor": ["item 1", ...],
-  "success": [{"period":"First 90 Days","desc":"..."},{"period":"First 6 Months","desc":"..."},{"period":"First 12 Months","desc":"..."}],
-  "mustHave": ["req 1", ...],
-  "niceToHave": ["nice 1", ...],
-  "whatYoullDo": [{"label":"Section","bullets":["bullet",...]}],
+  "stats": [{"n":"350+","label":"School Districts","sub":"Serving 2.5% of U.S. districts"}],
+  "team": ["Name - Title (note)"],
+  "stages": [{"stage":"Name","time":"30m","who":"Interviewer","focus":"Focus"}],
+  "contacts": ["Role: Name (email)"],
+  "prep": ["tip 1"],
+  "thrive": ["item 1"],
+  "notfor": ["item 1"],
+  "success": [{"period":"First 90 Days","desc":"..."}],
+  "mustHave": ["req 1"],
+  "niceToHave": ["nice 1"],
+  "whatYoullDo": [{"label":"Section","bullets":["bullet"]}],
   "aboutRole": "2-3 sentence overview",
-  "compBenefits": "1-2 sentence comp + benefits summary",
-  "stagePrepData": [{"stage":"Stage name","prep":["tip"],"questions":["question"]},...],
-  "checklist": [{"stage":"Before Stage","items":["item",...]},...],
-  "interviewers": [{"label":"Stage label","name":"Full name","title":"title or empty","href":"linkedin or mailto or null","hrefs":null},...],
+  "compBenefits": "comp + benefits summary",
+  "stagePrepData": [{"stage":"Stage name","prep":["tip"],"questions":["question"]}],
+  "checklist": [{"stage":"Before Stage","items":["item"]}],
+  "interviewers": [{"label":"Stage label","name":"Full name","title":"title or empty","href":"linkedin or mailto or null","hrefs":null}],
   "links": {"cartwheel":"https://www.cartwheel.org","wallOfLove":"https://www.cartwheel.org/wall-of-love","glassdoor":null,"linkedin":"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"}
 }
-If missing info, use sensible Cartwheel defaults. Return ONLY valid JSON.`;
+Return ONLY valid JSON.`;
 
-// ── Demo roles ────────────────────────────────────────────────
 const PDA_ROLE = {
   title:"Principal Data Analyst", slug:"principal-data-analyst",
   department:"Data", reportsto:"Jacob Savos, Director of Data",
-  location:"Remote", employment:"Full-Time, W2", comp:"$170,000 – $210,000",
+  location:"Remote", employment:"Full-Time, W2", comp:"$170,000 - $210,000",
   mission:"Shape Cartwheel's analytics foundation — designing scalable data systems that directly improve how we deliver mental health care to students across the country.",
   stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
   team:["Jacob Savos — Director of Data (your hiring manager)","1 Analytics Manager","1 Senior Data Analyst","1 Staff Data Engineer","You — senior IC thought partner to Jacob"],
   stages:[
     {stage:"Recruiter Screen",time:"30m",who:"Caroline Colpini",focus:"Role fit, values, compensation"},
     {stage:"Hiring Manager",time:"30m",who:"Jacob Savos, Director of Data",focus:"Systems thinking, data modeling, strategic partnership"},
-    {stage:"Take-Home Exercise",time:"60–90m",who:"Self-directed",focus:"SQL proficiency + analytical proposal"},
+    {stage:"Take-Home Exercise",time:"60-90m",who:"Self-directed",focus:"SQL proficiency + analytical proposal"},
     {stage:"Technical Panel",time:"60m",who:"Nicholas Franchetti",focus:"Take-home review, data integrity, dashboards"},
     {stage:"Business Acumen",time:"30m",who:"Sam Blumpkin + Sam Bilow",focus:"Structured reasoning, business scenarios"},
     {stage:"Exec Review",time:"30m",who:"Daniel Ilkovich, CTO",focus:"Final alignment"},
   ],
   contacts:["Recruiter: Caroline Colpini — caroline.colpini@cartwheelcare.org","Coordinator: Avery Henry — avery.henry@cartwheelcare.org","Take-home questions: Jacob Savos — jacob.savos@cartwheelcare.org"],
-  prep:["Bring 1–2 examples of analytics systems or metrics frameworks you've designed end-to-end","Walk through: context → approach → tradeoffs → validation → impact","Think about how your work scales — foundations, not one-off outputs","Be your authentic self — this is mutual fit, not a test"],
+  prep:["Bring 1-2 examples of analytics systems or metrics frameworks you've designed end-to-end","Walk through: context, approach, tradeoffs, validation, impact","Think about how your work scales — foundations, not one-off outputs","Be your authentic self — this is mutual fit, not a test"],
   thrive:["Are a systems thinker who cares about foundations, not just outputs","Take ownership from concept through durable implementation","Want to build something that outlasts your tenure","Are genuinely excited by student mental health impact"],
-  notfor:["Get stuck designing the 'perfect' system before shipping","Build technically elegant solutions that miss real business needs","Prefer isolated specialization over cross-team ownership","See governance and documentation as overhead"],
-  success:[{period:"First 90 Days",desc:"Audit data systems, ship one small improvement, build key relationships, and propose 2–3 architecture priorities."},{period:"First 6 Months",desc:"Core analytical models well-designed and trusted. Metrics defined consistently. Self-service analytics enabling Product, Clinical, and Ops teams."},{period:"First 12 Months",desc:"Analytics shifted from reactive reporting to proactive enablement. Executive team uses data confidently. Recognized as the Director of Data's key thought partner on strategy."}],
+  notfor:["Get stuck designing the perfect system before shipping","Build technically elegant solutions that miss real business needs","Prefer isolated specialization over cross-team ownership","See governance and documentation as overhead"],
+  success:[
+    {period:"First 90 Days",desc:"Audit data systems, ship one small improvement, build key relationships, and propose 2-3 architecture priorities."},
+    {period:"First 6 Months",desc:"Core analytical models well-designed and trusted. Metrics defined consistently. Self-service analytics enabling Product, Clinical, and Ops teams."},
+    {period:"First 12 Months",desc:"Analytics shifted from reactive reporting to proactive enablement. Executive team uses data confidently. Recognized as the Director of Data's key thought partner on strategy."},
+  ],
   mustHave:["8+ years in analytics, data, or a related technical role","Advanced SQL proficiency with complex, messy datasets","Strong experience designing analytical data models and defining metrics at scale","Experience with BigQuery, Snowflake, or Redshift","Systems-thinking mindset — foundations, not just outputs","Ownership mentality: concept through durable implementation","Deep alignment with Cartwheel's mission"],
   niceToHave:["Healthcare, mental health, or EdTech domain experience","Early-stage or high-growth startup experience","Experimentation, causal analysis, or statistical tools (Python, R)","Analytics engineering tooling (dbt, data governance frameworks)"],
   whatYoullDo:[
     {label:"Data Architecture & System Design",bullets:["Design and evolve core analytical data models","Establish standards for metrics, transformations, and semantic layers","Define best practices for analytics quality, scalability, and maintainability","Partner with data engineering and product to ensure foundations scale"]},
-    {label:"Technical Leadership & Thought Partnership",bullets:["Serve as senior thought partner to the Director of Data","Provide architectural guidance across the data team","Set the bar for what 'great' analytics work looks like at Cartwheel","Support evolution from ad-hoc analysis to productized solutions"]},
+    {label:"Technical Leadership & Thought Partnership",bullets:["Serve as senior thought partner to the Director of Data","Provide architectural guidance across the data team","Set the bar for great analytics work at Cartwheel","Support evolution from ad-hoc analysis to productized solutions"]},
     {label:"Analytics Enablement & Decision Support",bullets:["Build and support self-service analytics and executive-ready reporting","Ensure new launches are instrumented with clear success metrics from Day 1","Improve measurement of outcomes: access to care, conversion, retention, efficiency","Support experimentation across R&D, Marketing, and Operations"]},
     {label:"Data Governance & Quality",bullets:["Champion data quality through testing, monitoring, and governance","Ensure analytical workflows are reproducible, well-documented, and resilient","Contribute to data dictionaries, metric definitions, and shared documentation"]},
   ],
-  aboutRole:"The Principal Data Analyst is a senior, high-impact individual contributor role responsible for shaping Cartwheel's analytics and data foundation. This role goes beyond traditional analysis and reporting, with a strong emphasis on data system design, analytical architecture, and defining best practices for how data is modeled, measured, and delivered.\n\nYou'll function as a staff-level technical leader on the data team — a close thought partner to the Director of Data — helping define what \"great\" looks like from a technical and analytical foundation perspective.",
-  compBenefits:"$170,000–$210,000 cash compensation plus competitive equity. Full benefits including PPO medical/vision/dental/orthodontia, paid parental leave, 401K with 2% employer match, generous PTO, $500 learning stipend, MacBook, and annual in-person retreat.",
+  aboutRole:"The Principal Data Analyst is a senior, high-impact individual contributor role responsible for shaping Cartwheel's analytics and data foundation. This role goes beyond traditional analysis and reporting, with a strong emphasis on data system design, analytical architecture, and defining best practices for how data is modeled, measured, and delivered.\n\nYou will function as a staff-level technical leader on the data team — a close thought partner to the Director of Data — helping define what great looks like from a technical and analytical foundation perspective.",
+  compBenefits:"$170,000-$210,000 cash compensation plus competitive equity. Full benefits including PPO medical/vision/dental/orthodontia, paid parental leave, 401K with 2% employer match, generous PTO, $500 learning stipend, MacBook, and annual in-person retreat.",
   stagePrepData:[
-    {stage:"Recruiter Screen",prep:["Research Cartwheel's mission and school-based model","Prepare your 2-minute background summary","Know your comp expectations ($170K–$210K range)","Think about why mission-driven work matters to you"],questions:["What does success look like in the first 90 days?","How does the data team collaborate with Product and Clinical?","What's the biggest data challenge Cartwheel is working through?"]},
-    {stage:"Hiring Manager Interview",prep:["Prepare 1–2 analytics framework examples with full context","Walk through: context → approach → tradeoffs → validation → impact","Think about how you've moved teams from ad-hoc to productized solutions","This is NOT a deep technical test — clarity of thinking matters most"],questions:["What are the 2–3 most important things to accomplish in year one?","How do you see the analytics team evolving over the next 12–18 months?","What does great thought partnership look like day-to-day?"]},
+    {stage:"Recruiter Screen",prep:["Research Cartwheel's mission and school-based model","Prepare your 2-minute background summary","Know your comp expectations ($170K-$210K range)","Think about why mission-driven work matters to you"],questions:["What does success look like in the first 90 days?","How does the data team collaborate with Product and Clinical?","What is the biggest data challenge Cartwheel is working through?"]},
+    {stage:"Hiring Manager Interview",prep:["Prepare 1-2 analytics framework examples with full context","Walk through: context, approach, tradeoffs, validation, impact","Think about how you have moved teams from ad-hoc to productized solutions","This is NOT a deep technical test — clarity of thinking matters most"],questions:["What are the 2-3 most important things to accomplish in year one?","How do you see the analytics team evolving over the next 12-18 months?","What does great thought partnership look like day-to-day?"]},
     {stage:"Take-Home Exercise",prep:["Block 90 uninterrupted minutes","Read all questions before starting","Write clean SQL with comments to show your thinking","Lead the proposal with metrics that matter most"],questions:["Who should I email with questions? (jacob.savos@cartwheelcare.org)","Is there a preferred format — memo or slides?"]},
-    {stage:"Technical Panel",prep:["Prepare a tight 3-minute take-home recap","Be ready to discuss SQL efficiency and alternatives","Think through how you'd catch data quality issues","Prepare dashboard design thinking for a new service line"],questions:["What does the current data quality monitoring process look like?","How does the team handle discrepancies between data sources?","What does the analytics tooling stack look like end-to-end?"]},
+    {stage:"Technical Panel",prep:["Prepare a tight 3-minute take-home recap","Be ready to discuss SQL efficiency and alternatives","Think through how you would catch data quality issues","Prepare dashboard design thinking for a new service line"],questions:["What does the current data quality monitoring process look like?","How does the team handle discrepancies between data sources?","What does the analytics tooling stack look like end-to-end?"]},
     {stage:"Business Acumen",prep:["Practice walking through problems out loud","Brush up on metric decomposition","Ask clarifying questions before jumping to answers","Propose next steps, not just diagnoses"],questions:["What business problems is the data team most focused on?","How does data inform go-to-market or expansion decisions?","What does the relationship between data and clinical look like?"]},
-    {stage:"Exec Review",prep:["Prepare your long-term vision for data at Cartwheel","Know why Cartwheel specifically — mission alignment will come up","Have a thoughtful answer for 'where do you want to be in 3 years?'","Prepare 2–3 strong strategic questions"],questions:["How does the exec team use data today, and how would you like that to evolve?","What's Cartwheel's biggest strategic bet over the next 2 years?","How does data infrastructure factor into the growth roadmap?"]},
+    {stage:"Exec Review",prep:["Prepare your long-term vision for data at Cartwheel","Know why Cartwheel specifically — mission alignment will come up","Have a thoughtful answer for where do you want to be in 3 years","Prepare 2-3 strong strategic questions"],questions:["How does the exec team use data today, and how would you like that to evolve?","What is Cartwheel's biggest strategic bet over the next 2 years?","How does data infrastructure factor into the growth roadmap?"]},
   ],
   checklist:[
     {stage:"Before Recruiter Screen",items:["Research Cartwheel's mission and school-based model","Prepare your 2-minute background summary","Know your comp expectations","Review the job description"]},
-    {stage:"Before HM Interview",items:["Prepare 2 analytics framework examples","Practice walking through tradeoffs out loud","Review Cartwheel's clinical model","Prepare 3–4 thoughtful questions for Jacob"]},
+    {stage:"Before HM Interview",items:["Prepare 2 analytics framework examples","Practice walking through tradeoffs out loud","Review Cartwheel's clinical model","Prepare 3-4 thoughtful questions for Jacob"]},
     {stage:"Before Take-Home",items:["Block 90 uninterrupted minutes","Re-read all questions before starting","Prepare a clean memo or slide deck template","Plan to submit within one week"]},
     {stage:"Before Technical Panel",items:["Prepare a 3-min take-home recap","Review your SQL for efficiency improvements","Think through your data integrity approach","Prepare dashboard design thinking"]},
     {stage:"Before Business Acumen",items:["Practice metric decomposition out loud","Prepare to ask clarifying questions","Review Cartwheel's business model","Think about how data enables go-to-market decisions"]},
-    {stage:"Before Exec Review",items:["Prepare your long-term vision for data at Cartwheel","Sharpen your 'why Cartwheel' answer","Prepare 2–3 strategic questions for Daniel","Reflect on what excites you most about the mission"]},
+    {stage:"Before Exec Review",items:["Prepare your long-term vision for data at Cartwheel","Sharpen your why Cartwheel answer","Prepare 2-3 strategic questions for Daniel","Reflect on what excites you most about the mission"]},
   ],
   interviewers:[
     {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
@@ -215,48 +225,52 @@ const PDA_ROLE = {
 const SPM_ROLE = {
   title:"Senior Product Manager, AI Products", slug:"senior-product-manager-ai",
   department:"R&D", reportsto:"Sarah Turrin, Chief Product Officer",
-  location:"Boston or Chicago preferred · Remote-friendly", employment:"Full-Time, W2", comp:"$120,000 – $170,000",
+  location:"Boston or Chicago preferred, Remote-friendly", employment:"Full-Time, W2", comp:"$120,000 - $170,000",
   mission:"Build the AI-enabled tools that transform how schools and clinicians deliver mental health care — translating messy, real-world workflows into software that actually works for the people using it every day.",
   stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
   team:["Sarah Turrin — Chief Product Officer (your hiring manager)","Product Design (workflow design, prototyping)","Engineering (system behaviors, edge cases, scalability)","School staff and end users (direct user research and validation)","Executive leadership (product direction and tradeoffs)"],
   stages:[
     {stage:"Recruiter Screen",time:"30m",who:"Caroline Colpini",focus:"Role fit, values, compensation alignment"},
-    {stage:"Product Judgment & 0→1 Execution",time:"60m",who:"Sarah Turrin, CPO",focus:"Ambiguous problem-solving, 0→1 ownership, AI product perspective"},
-    {stage:"Technical Design & Collaboration",time:"60m",who:"Danielle Hawthorne, Henry Lyford, Sandip Subedi",focus:"Workflow translation, cross-functional tradeoffs, AI trust and safety"},
+    {stage:"Product Judgment",time:"60m",who:"Sarah Turrin, CPO",focus:"Ambiguous problem-solving, 0 to 1 ownership, AI product perspective"},
+    {stage:"Technical Design",time:"60m",who:"Danielle Hawthorne, Henry Lyford, Sandip Subedi",focus:"Workflow translation, cross-functional tradeoffs, AI trust and safety"},
     {stage:"User-Centered Discovery",time:"60m",who:"Julie Jungman, Allie Pashi, Sarah Shoff, GG Guitart, Rebecca Rae Allen",focus:"User research approach, synthesizing feedback, building trust with users"},
     {stage:"Live Product Case",time:"60m",who:"Sarah Turrin, Daniel Ilkovich, Dan Tartakovsky, Sam Bilow",focus:"Problem framing, MVP definition, structured reasoning under ambiguity"},
     {stage:"Executive Review",time:"30m",who:"Joe English, CEO",focus:"Mission alignment, growth mindset, long-term values fit"},
   ],
   contacts:["Recruiter: Caroline Colpini — caroline.colpini@cartwheelcare.org","Coordinator: Avery Henry — avery.henry@cartwheelcare.org"],
-  prep:["Bring 1–2 examples of products you've personally owned end-to-end","Focus on how you think, not just what shipped — tradeoffs, decisions, learnings","Be ready to discuss your honest perspective on AI's real-world usefulness and limits","Be your authentic self — this is a working session, not a test"],
+  prep:["Bring 1-2 examples of products you have personally owned end-to-end","Focus on how you think, not just what shipped — tradeoffs, decisions, learnings","Be ready to discuss your honest perspective on AI's real-world usefulness and limits","Be your authentic self — this is a working session, not a test"],
   thrive:["Enjoy ambiguity and shaping problems from scratch","Are comfortable balancing speed, quality, and scalability","Like spending time with real users in real environments","Prefer influence and ownership over formal authority","Build and use AI tools as part of your everyday workflow"],
   notfor:["Require highly defined requirements or rigid processes","Avoid direct customer interaction or rely on secondhand insights","Are uncomfortable making tradeoffs with incomplete data","Over-index on strategy decks without shipping or validating quickly","Add heavyweight process instead of enabling fast learning"],
-  success:[{period:"First 90 Days",desc:"Deeply understand school and care team workflows; conduct in-person user research; define problem statements and MVP scopes; ship at least one validated prototype."},{period:"First 6 Months",desc:"Launch initial AI-enabled product capability with active customer usage; establish clear success metrics; iterate based on qualitative and quantitative feedback."},{period:"First 12 Months",desc:"Own a portfolio of 0→1 initiatives with sustained adoption; demonstrate measurable workflow efficiency gains; help establish lightweight product practices across the org."}],
-  mustHave:["7+ years of Product Management experience with clear 0→1 ownership","Demonstrated experience building or prototyping AI-enabled products","Comfort with workflow-heavy, operational tools (healthcare, education, GovTech)","Strong product judgment under ambiguity and incomplete data","Proven ability to work directly with customers and conduct user research","Ability to operate as a senior IC who influences direction","Strong written and verbal communication skills"],
-  niceToHave:["Experience with AI-native patterns (copilots, workflow automation, decision support)","Background in regulated domains (healthcare, education)","Familiarity with low-code / no-code or design-to-code tools","Experience building internal tools that later became customer-facing","Startup or early-stage company experience"],
+  success:[
+    {period:"First 90 Days",desc:"Deeply understand school and care team workflows; conduct in-person user research; define problem statements and MVP scopes; ship at least one validated prototype."},
+    {period:"First 6 Months",desc:"Launch initial AI-enabled product capability with active customer usage; establish clear success metrics; iterate based on qualitative and quantitative feedback."},
+    {period:"First 12 Months",desc:"Own a portfolio of 0 to 1 initiatives with sustained adoption; demonstrate measurable workflow efficiency gains; help establish lightweight product practices across the org."},
+  ],
+  mustHave:["7+ years of Product Management experience with clear 0 to 1 ownership","Demonstrated experience building or prototyping AI-enabled products","Comfort with workflow-heavy, operational tools (healthcare, education, GovTech)","Strong product judgment under ambiguity and incomplete data","Proven ability to work directly with customers and conduct user research","Ability to operate as a senior IC who influences direction","Strong written and verbal communication skills"],
+  niceToHave:["Experience with AI-native patterns (copilots, workflow automation, decision support)","Background in regulated domains (healthcare, education)","Familiarity with low-code or no-code tools","Experience building internal tools that later became customer-facing","Startup or early-stage company experience"],
   whatYoullDo:[
-    {label:"0→1 AI Product Development",bullets:["Lead development of new AI-enabled SaaS tools from early concept through initial adoption","Partner with Design and Engineering to shape workflows, MVPs, and system behaviors","Use AI prototyping tools to accelerate discovery, experimentation, and iteration","Make pragmatic tradeoffs between speed, quality, and scalability"]},
-    {label:"Workflow Translation & Product Design",bullets:["Spend time directly with school staff to understand real-world workflows","Translate messy, real-world problems into clear product abstractions","Design products focused on workflow automation and decision-support","Build products that balance speed with safety, trust, and usability"]},
-    {label:"Discovery, Metrics & Iteration",bullets:["Define success metrics and use qualitative and quantitative feedback to guide iteration","Conduct sustained, in-person user research with school staff and care teams","Navigate conflicting signals between what users say vs. do","Know when you've learned enough to move forward"]},
-    {label:"Team & Org Contribution",bullets:["Help establish lightweight product practices that enable fast learning","Collaborate with GTM teams on marketing, messaging, and how product lands in market","Operate as a senior IC who shapes direction and raises the bar for early-stage products"]},
+    {label:"0 to 1 AI Product Development",bullets:["Lead development of new AI-enabled SaaS tools from early concept through initial adoption","Partner with Design and Engineering to shape workflows, MVPs, and system behaviors","Use AI prototyping tools to accelerate discovery, experimentation, and iteration","Make pragmatic tradeoffs between speed, quality, and scalability"]},
+    {label:"Workflow Translation and Product Design",bullets:["Spend time directly with school staff to understand real-world workflows","Translate messy, real-world problems into clear product abstractions","Design products focused on workflow automation and decision-support","Build products that balance speed with safety, trust, and usability"]},
+    {label:"Discovery, Metrics and Iteration",bullets:["Define success metrics and use qualitative and quantitative feedback to guide iteration","Conduct sustained, in-person user research with school staff and care teams","Navigate conflicting signals between what users say vs. do","Know when you have learned enough to move forward"]},
+    {label:"Team and Org Contribution",bullets:["Help establish lightweight product practices that enable fast learning","Collaborate with GTM teams on marketing, messaging, and how product lands in market","Operate as a senior IC who shapes direction and raises the bar for early-stage products"]},
   ],
   aboutRole:"Cartwheel is building technology that supports how mental health care is delivered, coordinated, and sustained in school settings. We are looking for a Senior Product Manager, AI Products to work on early-stage product initiatives focused on improving how complex work gets done.\n\nThis is a senior individual contributor role for someone who thrives in ambiguity, is comfortable partnering closely with customers, and enjoys shaping products from the earliest stages.",
-  compBenefits:"$120,000–$170,000 base compensation plus meaningful equity. Level and comp may flex for exceptional candidates. Full benefits including PPO medical/vision/dental, paid parental leave, 401K with employer match, generous PTO, annual learning stipend, MacBook, and annual in-person retreat.",
+  compBenefits:"$120,000-$170,000 base compensation plus meaningful equity. Level and comp may flex for exceptional candidates. Full benefits including PPO medical/vision/dental, paid parental leave, 401K with employer match, generous PTO, annual learning stipend, MacBook, and annual in-person retreat.",
   stagePrepData:[
-    {stage:"Recruiter Screen",prep:["Research Cartwheel's mission and school-based model","Prepare your 2-minute background summary focused on 0→1 product work","Know your comp expectations within the $120K–$170K range","Think about why AI + mental health + education resonates with you personally"],questions:["What does success look like in the first 90 days?","How does the PM team collaborate with Engineering and Design?","What AI initiatives is Cartwheel most focused on right now?"]},
-    {stage:"Product Judgment & 0→1 Execution",prep:["Prepare 1–2 examples of products you've personally owned end-to-end","Focus on how you think, not just what shipped — tradeoffs, decisions, learnings","Be ready to discuss your honest perspective on AI's real-world usefulness and limits","This is a working session — think out loud, ask questions, collaborate"],questions:["What's the most important problem to solve in year one?","How does Cartwheel think about AI safety and trust in product?","What does the product development process look like today?"]},
-    {stage:"Technical Design & Collaboration",prep:["Prepare examples of how you've handled cross-functional tension","Practice translating a messy workflow into a product concept out loud","Think through how you'd handle an AI edge case involving student data","There may be a lightweight live exercise — focus on clarity over perfection"],questions:["How do Engineering and Design collaborate on early-stage initiatives?","What's the biggest technical constraint on AI product development right now?","How do you handle edge cases in workflows involving sensitive student data?"]},
-    {stage:"User-Centered Discovery",prep:["Prepare 2 examples where user research changed your direction","Think through your approach to building trust with overwhelmed users","Review Cartwheel's school and clinical user types","Prepare questions about the current user research process"],questions:["How do school staff currently experience the Cartwheel product?","What's the hardest user research challenge in school-based mental health?","How do care teams and school staff interact differently with the product?"]},
-    {stage:"Live Product Case",prep:["No slides needed — practice structured thinking out loud","Focus on: framing the problem, identifying constraints, defining a reasonable MVP","Practice staying calm and collaborative when working through ambiguity","Prepare 1–2 clarifying questions to ask before diving in"],questions:["What's the most important constraint I should keep in mind?","How would you want this type of thinking applied on the job?"]},
-    {stage:"Executive Review",prep:["Prepare your 'why Cartwheel' — mission alignment will be central","Have a thoughtful answer for how you reflect on mistakes and growth","Prepare 2–3 strategic questions about where Cartwheel is headed","This is a two-way conversation — Joe expects you to interview him too"],questions:["What's the biggest strategic bet Cartwheel is making over the next 2 years?","How do you think about AI's role in Cartwheel's long-term competitive position?","What does the culture look like as the company scales past 200 people?"]},
+    {stage:"Recruiter Screen",prep:["Research Cartwheel's mission and school-based model","Prepare your 2-minute background summary focused on 0 to 1 product work","Know your comp expectations within the $120K-$170K range","Think about why AI and mental health and education resonates with you personally"],questions:["What does success look like in the first 90 days?","How does the PM team collaborate with Engineering and Design?","What AI initiatives is Cartwheel most focused on right now?"]},
+    {stage:"Product Judgment",prep:["Prepare 1-2 examples of products you have personally owned end-to-end","Focus on how you think, not just what shipped — tradeoffs, decisions, learnings","Be ready to discuss your honest perspective on AI's real-world usefulness and limits","This is a working session — think out loud, ask questions, collaborate"],questions:["What is the most important problem to solve in year one?","How does Cartwheel think about AI safety and trust in product?","What does the product development process look like today?"]},
+    {stage:"Technical Design",prep:["Prepare examples of how you have handled cross-functional tension","Practice translating a messy workflow into a product concept out loud","Think through how you would handle an AI edge case involving student data","There may be a lightweight live exercise — focus on clarity over perfection"],questions:["How do Engineering and Design collaborate on early-stage initiatives?","What is the biggest technical constraint on AI product development right now?","How do you handle edge cases in workflows involving sensitive student data?"]},
+    {stage:"User-Centered Discovery",prep:["Prepare 2 examples where user research changed your direction","Think through your approach to building trust with overwhelmed users","Review Cartwheel's school and clinical user types","Prepare questions about the current user research process"],questions:["How do school staff currently experience the Cartwheel product?","What is the hardest user research challenge in school-based mental health?","How do care teams and school staff interact differently with the product?"]},
+    {stage:"Live Product Case",prep:["No slides needed — practice structured thinking out loud","Focus on framing the problem, identifying constraints, defining a reasonable MVP","Practice staying calm and collaborative when working through ambiguity","Prepare 1-2 clarifying questions to ask before diving in"],questions:["What is the most important constraint I should keep in mind?","How would you want this type of thinking applied on the job?"]},
+    {stage:"Executive Review",prep:["Prepare your why Cartwheel answer — mission alignment will be central","Have a thoughtful answer for how you reflect on mistakes and growth","Prepare 2-3 strategic questions about where Cartwheel is headed","This is a two-way conversation — Joe expects you to interview him too"],questions:["What is the biggest strategic bet Cartwheel is making over the next 2 years?","How do you think about AI's role in Cartwheel's long-term competitive position?","What does the culture look like as the company scales past 200 people?"]},
   ],
   checklist:[
     {stage:"Before Recruiter Screen",items:["Research Cartwheel's mission and school-based model","Prepare your 2-minute background summary","Know your comp expectations","Review the job description"]},
     {stage:"Before Product Judgment Round",items:["Prepare 2 end-to-end product examples with full context","Articulate the tradeoffs you made and what you learned","Prepare your honest perspective on AI's real-world usefulness","Review Cartwheel's product and clinical model"]},
-    {stage:"Before Technical Design Round",items:["Prepare cross-functional collaboration examples","Practice translating a messy workflow into a product concept out loud","Think through how you'd handle an AI edge case involving student data","Prepare for a possible lightweight live exercise"]},
+    {stage:"Before Technical Design Round",items:["Prepare cross-functional collaboration examples","Practice translating a messy workflow into a product concept out loud","Think through how you would handle an AI edge case involving student data","Prepare for a possible lightweight live exercise"]},
     {stage:"Before User-Centered Discovery",items:["Prepare 2 examples where user research changed your direction","Think through your approach to building trust with overwhelmed users","Review Cartwheel's school and clinical user types","Prepare questions about the current user research process"]},
-    {stage:"Before Live Product Case",items:["No slides needed — practice structured thinking out loud","Review basic product framing: problem → constraints → MVP → metrics","Practice staying calm and collaborative under ambiguity","Prepare 1–2 clarifying questions to ask before diving in"]},
-    {stage:"Before Executive Review",items:["Sharpen your 'why Cartwheel' answer","Prepare how you reflect on a past mistake and what you learned","Prepare 2–3 strategic questions for Joe","Reflect on your long-term motivations and values alignment"]},
+    {stage:"Before Live Product Case",items:["No slides needed — practice structured thinking out loud","Review basic product framing: problem, constraints, MVP, metrics","Practice staying calm and collaborative under ambiguity","Prepare 1-2 clarifying questions to ask before diving in"]},
+    {stage:"Before Executive Review",items:["Sharpen your why Cartwheel answer","Prepare how you reflect on a past mistake and what you learned","Prepare 2-3 strategic questions for Joe","Reflect on your long-term motivations and values alignment"]},
   ],
   interviewers:[
     {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
@@ -285,6 +299,7 @@ const SPM_ROLE = {
 };
 
 const BUILT_IN_ROLES = [PDA_ROLE, SPM_ROLE];
+
 const QUALITIES = [
   {label:"Human",desc:"Bringing warmth + compassion"},
   {label:"Humble",desc:"Preferring learning to being right"},
@@ -293,7 +308,6 @@ const QUALITIES = [
   {label:"Resilient",desc:"Supporting each other through challenges"},
 ];
 
-// ── Candidate components ──────────────────────────────────────
 function InterviewerList({role}) {
   return (
     <div style={{display:"flex",flexDirection:"column",gap:8}}>
@@ -317,13 +331,12 @@ function InterviewerList({role}) {
 }
 
 function ContactList({role}) {
-  const contacts = [
-    {label:"Recruiter",name:"Caroline Colpini",href:"mailto:caroline.colpini@cartwheelcare.org"},
-    {label:"Coordinator",name:"Avery Henry",href:"mailto:avery.henry@cartwheelcare.org"},
-  ];
   return (
     <div style={{display:"flex",flexDirection:"column",gap:10}}>
-      {contacts.map(({label,name,href})=>(
+      {[
+        {label:"Recruiter",name:"Caroline Colpini",href:"mailto:caroline.colpini@cartwheelcare.org"},
+        {label:"Coordinator",name:"Avery Henry",href:"mailto:avery.henry@cartwheelcare.org"},
+      ].map(({label,name,href})=>(
         <div key={label} style={{display:"flex",gap:9,alignItems:"flex-start"}}>
           <CWBullet color={C.forest} size={12}/>
           <span style={{fontSize:13,color:C.charcoal,lineHeight:1.6}}>
@@ -459,13 +472,10 @@ function StagePrep({role}) {
   );
 }
 
-// ══════════════════════════════════════════════════════════════
-// CANDIDATE VIEW
-// ══════════════════════════════════════════════════════════════
 function CandidateView({role,onBack}) {
   const [tab,setTab]=useState("guide");
   const [open,setOpen]=useState(null);
-  const [msgs,setMsgs]=useState([{role:"assistant",content:`Hi! I'm here to help you navigate your interview for ${role.title} at Cartwheel. Ask me anything about the role, the process, or how to prepare.`}]);
+  const [msgs,setMsgs]=useState([{role:"assistant",content:`Hi! I am here to help you navigate your interview for ${role.title} at Cartwheel. Ask me anything about the role, the process, or how to prepare.`}]);
   const [input,setInput]=useState("");
   const [loading,setLoading]=useState(false);
   const endRef=useRef(null);
@@ -473,8 +483,8 @@ function CandidateView({role,onBack}) {
 
   const CHAT_SYSTEM=`You are a warm, helpful candidate experience assistant for Cartwheel. Help candidates interviewing for ${role.title} understand the process and what to expect. Be friendly, concise, and encouraging. Cartwheel values: Human, Humble, Accountable, Innovative, Resilient.
 ROLE: ${role.title} | Reports to ${role.reportsto} | ${role.location} | ${role.comp} | Senior IC, no direct reports.
-STAGES: ${(role.stages||[]).map(s=>`${s.stage} (${s.time}) with ${s.who} — ${s.focus}`).join("; ")}
-CONTACTS: Caroline Colpini (caroline.colpini@cartwheelcare.org) — recruiter. Avery Henry (avery.henry@cartwheelcare.org) — coordinator.
+STAGES: ${(role.stages||[]).map(s=>`${s.stage} (${s.time}) with ${s.who} - ${s.focus}`).join("; ")}
+CONTACTS: Caroline Colpini (caroline.colpini@cartwheelcare.org) - recruiter. Avery Henry (avery.henry@cartwheelcare.org) - coordinator.
 PREP: ${(role.prep||[]).join("; ")}
 COMPANY: Series B, Menlo/Reach/General Catalyst. Largest K-12 mental health telehealth provider in US. 58% full remission; 3x depression reduction; 92% families recommend.
 BENEFITS: PPO medical/vision/dental, paid parental leave, 401K+2% match, $500 stipend, MacBook, equity, remote + annual retreat.
@@ -487,17 +497,20 @@ Only answer from this info. If unsure, direct to Avery Henry (avery.henry@cartwh
     setMsgs(updated);setLoading(true);
     try{
       const reply=await callClaude(CHAT_SYSTEM,updated.slice(1).map(m=>({role:m.role,content:m.content})),800);
-      setMsgs(p=>[...p,{role:"assistant",content:reply}]);
-    }catch{setMsgs(p=>[...p,{role:"assistant",content:"Something went wrong — please reach out to Avery at avery.henry@cartwheelcare.org."}]);}
+      setMsgs(p=>[...p,{role:"assistant",content:reply||"Something went wrong — please reach out to Avery at avery.henry@cartwheelcare.org."}]);
+    }catch(e){
+      setMsgs(p=>[...p,{role:"assistant",content:"Something went wrong — please reach out to Avery at avery.henry@cartwheelcare.org."}]);
+    }
     setLoading(false);
   };
 
   const TABS=[["guide","FAQ"],["chat","Ask a Question"],["roadmap","Roadmap"],["prep","Interview Prep"],["checklist","Checklist"],["jd","Job Description"]];
   const toggle=(k)=>setOpen(open===k?null:k);
+  const links=role.links||{};
 
   const FAQ_SECTIONS=[
     {title:"The Interview Process",items:[
-      {q:"How many rounds are there?",type:"text",a:`${(role.stages||[]).length} stages: ${(role.stages||[]).map(s=>s.stage).join(" → ")}. Not every candidate moves through every stage — we'll always share next steps transparently.`},
+      {q:"How many rounds are there?",type:"text",a:`${(role.stages||[]).length} stages: ${(role.stages||[]).map(s=>s.stage).join(", ")}. Not every candidate moves through every stage — we will always share next steps transparently.`},
       {q:"How long does the full process take?",type:"text",a:"We move as quickly as mutual fit and scheduling allow. If you have a competing offer or timeline, let your recruiter know."},
     ]},
     {title:"Who You'll Meet",items:[
@@ -505,16 +518,14 @@ Only answer from this info. If unsure, direct to Avery Henry (avery.henry@cartwh
       {q:"Who should I contact with questions?",type:"custom",render:()=><ContactList role={role}/>},
     ]},
     {title:"The Role",items:[
-      {q:"What's the compensation?",type:"text",a:`${role.comp} plus competitive equity. You'll discuss where you see yourself in that range during your recruiter screen.`},
+      {q:"What's the compensation?",type:"text",a:`${role.comp} plus competitive equity. You will discuss where you see yourself in that range during your recruiter screen.`},
       {q:"What does success look like?",type:"bullets",items:(role.success||[]).map(s=>`${s.period}: ${s.desc}`)},
     ]},
     {title:"Life at Cartwheel",items:[
       {q:"What is Cartwheel's mission?",type:"text",a:"We partner with K-12 schools to provide accessible mental health care to students — enabling earlier intervention, higher engagement, and better-coordinated care. 58% of students achieve full remission of anxiety; 92% of families recommend us to a peer."},
-      {q:"What are the benefits?",type:"bullets",items:["PPO medical, vision, dental, and orthodontia","Paid parental leave","401K with 2% employer match","Generous PTO + company closure Dec 25–Jan 1","$500 annual learning stipend","MacBook provided","Meaningful equity","Remote-friendly with annual in-person retreat"]},
+      {q:"What are the benefits?",type:"bullets",items:["PPO medical, vision, dental, and orthodontia","Paid parental leave","401K with 2% employer match","Generous PTO + company closure Dec 25-Jan 1","$500 annual learning stipend","MacBook provided","Meaningful equity","Remote-friendly with annual in-person retreat"]},
     ]},
   ];
-
-  const links=role.links||{};
 
   return(
     <div style={{fontFamily:"'Inter',sans-serif",minHeight:"100vh",background:C.white,color:C.charcoal}}>
@@ -605,7 +616,7 @@ Only answer from this info. If unsure, direct to Avery Henry (avery.henry@cartwh
               <div style={{background:C.sand,borderRadius:12,padding:"20px 24px",marginBottom:28}}>
                 <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.charcoal,marginBottom:14}}>Learn more about Cartwheel</div>
                 <div style={{display:"flex",flexWrap:"wrap",gap:10}}>
-                  {[["🌐 Cartwheel.org",links.cartwheel],["💙 Wall of Love",links.wallOfLove],["⭐ Glassdoor",links.glassdoor],["💼 LinkedIn",links.linkedin]].filter(([,h])=>h).map(([label,href])=>(
+                  {[["Cartwheel.org",links.cartwheel],["Wall of Love",links.wallOfLove],["Glassdoor",links.glassdoor],["LinkedIn",links.linkedin]].filter(([,h])=>h).map(([label,href])=>(
                     <a key={label} href={href} target="_blank" rel="noopener noreferrer" style={{display:"inline-flex",alignItems:"center",gap:6,background:C.white,border:`1px solid #e2ddd8`,borderRadius:20,padding:"8px 16px",fontSize:13,color:C.charcoal,textDecoration:"none",fontWeight:500}}>{label}</a>
                   ))}
                 </div>
@@ -647,7 +658,7 @@ Only answer from this info. If unsure, direct to Avery Henry (avery.henry@cartwh
               </div>
             )}
             <div style={{display:"flex",gap:10,background:C.white,borderRadius:10,border:`1px solid #e2ddd8`,padding:"10px 12px"}}>
-              <input value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&!e.shiftKey&&send()} placeholder="Ask anything about the interview process…" style={{flex:1,border:"none",outline:"none",fontSize:14,color:C.charcoal,background:"transparent",fontFamily:"inherit"}}/>
+              <input value={input} onChange={e=>setInput(e.target.value)} onKeyDown={e=>e.key==="Enter"&&!e.shiftKey&&send()} placeholder="Ask anything about the interview process..." style={{flex:1,border:"none",outline:"none",fontSize:14,color:C.charcoal,background:"transparent",fontFamily:"inherit"}}/>
               <button onClick={()=>send()} disabled={!input.trim()||loading} style={{background:input.trim()&&!loading?C.indigo:"#e2ddd8",color:C.white,border:"none",borderRadius:7,padding:"9px 18px",fontSize:12,fontFamily:"'Montserrat',sans-serif",fontWeight:700,cursor:input.trim()&&!loading?"pointer":"default",transition:"background 0.2s"}}>Send</button>
             </div>
           </div>
@@ -732,7 +743,7 @@ Only answer from this info. If unsure, direct to Avery Henry (avery.henry@cartwh
               {heading:"What You'll Do",subsections:role.whatYoullDo},
               {heading:"Must Have",bullets:role.mustHave},
               {heading:"Nice to Have",bullets:role.niceToHave},
-              {heading:"Compensation & Benefits",content:role.compBenefits},
+              {heading:"Compensation and Benefits",content:role.compBenefits},
             ].map((sec,i)=>(
               <div key={i} style={{marginBottom:28}}>
                 <h3 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:15,color:C.charcoal,margin:"0 0 10px",paddingBottom:6,borderBottom:`1px solid #e2ddd8`}}>{sec.heading}</h3>
@@ -747,7 +758,7 @@ Only answer from this info. If unsure, direct to Avery Henry (avery.henry@cartwh
               </div>
             ))}
             <div style={{background:C.lightMint,borderRadius:10,padding:"16px 18px",marginBottom:28}}>
-              <p style={{fontSize:14,color:C.charcoal,lineHeight:1.7,margin:0}}><strong>Please apply even if you don't meet all criteria.</strong> If your experience doesn't perfectly match but you bring other relevant skills, we'd still love to hear from you.</p>
+              <p style={{fontSize:14,color:C.charcoal,lineHeight:1.7,margin:0}}><strong>Please apply even if you do not meet all criteria.</strong> If your experience does not perfectly match but you bring other relevant skills, we would still love to hear from you.</p>
             </div>
             <Footer label="Job Description"/>
           </>
@@ -757,44 +768,24 @@ Only answer from this info. If unsure, direct to Avery Henry (avery.henry@cartwh
   );
 }
 
-// ══════════════════════════════════════════════════════════════
-// ADMIN LOGIN
-// ══════════════════════════════════════════════════════════════
 function AdminLogin({onSuccess}) {
   const [pw,setPw]=useState("");
   const [error,setError]=useState(false);
-
-  const attempt=()=>{
-    if(pw===ADMIN_PASSWORD){onSuccess();}
-    else{setError(true);setPw("");}
-  };
-
+  const attempt=()=>{if(pw===ADMIN_PASSWORD){onSuccess();}else{setError(true);setPw("");}};
   return(
     <div style={{fontFamily:"'Inter',sans-serif",minHeight:"100vh",background:C.sand,display:"flex",alignItems:"center",justifyContent:"center"}}>
       <div style={{background:C.white,borderRadius:16,border:`1px solid #e2ddd8`,padding:"40px 36px",width:"100%",maxWidth:380,textAlign:"center"}}>
         <div style={{marginBottom:20}}><WheelMark size={44}/></div>
         <h1 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:20,color:C.charcoal,margin:"0 0 6px"}}>Admin Access</h1>
         <p style={{fontSize:13,color:C.taupe,margin:"0 0 24px"}}>Candidate Experience Platform</p>
-        <input
-          type="password"
-          value={pw}
-          onChange={e=>{setPw(e.target.value);setError(false);}}
-          onKeyDown={e=>e.key==="Enter"&&attempt()}
-          placeholder="Enter password"
-          style={{width:"100%",padding:"11px 14px",border:`1px solid ${error?C.peach:"#e2ddd8"}`,borderRadius:8,fontSize:14,color:C.charcoal,fontFamily:"inherit",outline:"none",boxSizing:"border-box",marginBottom:8}}
-        />
+        <input type="password" value={pw} onChange={e=>{setPw(e.target.value);setError(false);}} onKeyDown={e=>e.key==="Enter"&&attempt()} placeholder="Enter password" style={{width:"100%",padding:"11px 14px",border:`1px solid ${error?C.peach:"#e2ddd8"}`,borderRadius:8,fontSize:14,color:C.charcoal,fontFamily:"inherit",outline:"none",boxSizing:"border-box",marginBottom:8}}/>
         {error&&<p style={{fontSize:12,color:C.brick,margin:"0 0 12px"}}>Incorrect password. Please try again.</p>}
-        <button onClick={attempt} style={{width:"100%",background:C.indigo,color:C.white,border:"none",borderRadius:8,padding:"11px",fontSize:13,fontFamily:"'Montserrat',sans-serif",fontWeight:700,cursor:"pointer",marginTop:error?0:8}}>
-          Sign In
-        </button>
+        <button onClick={attempt} style={{width:"100%",background:C.indigo,color:C.white,border:"none",borderRadius:8,padding:"11px",fontSize:13,fontFamily:"'Montserrat',sans-serif",fontWeight:700,cursor:"pointer",marginTop:error?0:8}}>Sign In</button>
       </div>
     </div>
   );
 }
 
-// ══════════════════════════════════════════════════════════════
-// ADMIN DASHBOARD
-// ══════════════════════════════════════════════════════════════
 function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
   const [step,setStep]=useState("list");
   const [pasteText,setPasteText]=useState("");
@@ -831,11 +822,10 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
       <div style={{background:C.charcoal,padding:"14px 28px",display:"flex",justifyContent:"space-between",alignItems:"center"}}>
         <Wordmark light/>
         <div style={{display:"flex",alignItems:"center",gap:16}}>
-          <div style={{fontSize:12,color:"#8a9ba8",fontStyle:"italic"}}>Admin · Candidate Experience Platform</div>
+          <div style={{fontSize:12,color:"#8a9ba8",fontStyle:"italic"}}>Admin - Candidate Experience Platform</div>
           <button onClick={onLogout} style={{fontSize:11,color:"#8a9ba8",background:"none",border:`1px solid #3a4a52`,borderRadius:6,padding:"4px 10px",cursor:"pointer"}}>Log out</button>
         </div>
       </div>
-
       <div style={{maxWidth:860,margin:"0 auto",padding:"32px 24px"}}>
         {step==="list"&&(
           <>
@@ -851,7 +841,7 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
                 <div key={role.slug} style={{background:C.white,borderRadius:12,border:`1px solid #e2ddd8`,padding:"18px 20px",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:12}}>
                   <div>
                     <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:16,color:C.charcoal,marginBottom:3}}>{role.title}</div>
-                    <div style={{fontSize:13,color:C.taupe}}>{role.department} · {role.location} · {role.comp}</div>
+                    <div style={{fontSize:13,color:C.taupe}}>{role.department} - {role.location} - {role.comp}</div>
                     <div style={{fontSize:12,color:C.indigo,marginTop:6,fontFamily:"monospace",background:C.lightLavender,padding:"2px 8px",borderRadius:4,display:"inline-block"}}>?role={role.slug}</div>
                   </div>
                   <div style={{display:"flex",gap:8}}>
@@ -864,28 +854,24 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
             </div>
           </>
         )}
-
         {step==="paste"&&(
           <>
-            <button onClick={()=>setStep("list")} style={{background:"none",border:"none",color:C.indigo,fontSize:13,fontWeight:700,cursor:"pointer",padding:"0 0 20px",fontFamily:"'Montserrat',sans-serif"}}>← Back to roles</button>
+            <button onClick={()=>setStep("list")} style={{background:"none",border:"none",color:C.indigo,fontSize:13,fontWeight:700,cursor:"pointer",padding:"0 0 20px",fontFamily:"'Montserrat',sans-serif"}}>Back to roles</button>
             <h1 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:22,color:C.charcoal,margin:"0 0 8px"}}>Add New Role</h1>
             <p style={{fontSize:14,color:C.taupe,margin:"0 0 24px",lineHeight:1.6}}>Paste your hiring package below. Claude will extract all structured data and populate the candidate experience page automatically.</p>
             <div style={{background:C.white,borderRadius:12,border:`1px solid #e2ddd8`,overflow:"hidden",marginBottom:16}}>
               <div style={{padding:"12px 16px",background:C.sand,borderBottom:`1px solid #e2ddd8`,fontSize:12,fontWeight:700,color:C.taupe,letterSpacing:"1px",textTransform:"uppercase"}}>Hiring Package Content</div>
-              <textarea value={pasteText} onChange={e=>setPasteText(e.target.value)}
-                placeholder="Paste your full hiring package here — job description, success profile, interview plan, interviewer details, compensation, 30/60/90 day plan..."
-                style={{width:"100%",minHeight:320,padding:"16px",border:"none",outline:"none",fontSize:14,lineHeight:1.7,color:C.charcoal,fontFamily:"inherit",resize:"vertical",boxSizing:"border-box"}}/>
+              <textarea value={pasteText} onChange={e=>setPasteText(e.target.value)} placeholder="Paste your full hiring package here..." style={{width:"100%",minHeight:320,padding:"16px",border:"none",outline:"none",fontSize:14,lineHeight:1.7,color:C.charcoal,fontFamily:"inherit",resize:"vertical",boxSizing:"border-box"}}/>
             </div>
             {parseError&&<div style={{background:C.lightPeach,borderRadius:8,padding:"12px 16px",fontSize:13,color:C.brick,marginBottom:16}}>{parseError}</div>}
             <button onClick={handleParse} disabled={!pasteText.trim()||parsing} style={{background:pasteText.trim()&&!parsing?C.indigo:"#ccc",color:C.white,border:"none",borderRadius:8,padding:"12px 24px",fontSize:13,fontFamily:"'Montserrat',sans-serif",fontWeight:700,cursor:pasteText.trim()&&!parsing?"pointer":"default"}}>
-              {parsing?"Parsing with Claude…":"Parse Hiring Package →"}
+              {parsing?"Parsing with Claude...":"Parse Hiring Package"}
             </button>
           </>
         )}
-
         {step==="review"&&parsed&&(
           <>
-            <button onClick={()=>setStep("paste")} style={{background:"none",border:"none",color:C.indigo,fontSize:13,fontWeight:700,cursor:"pointer",padding:"0 0 20px",fontFamily:"'Montserrat',sans-serif"}}>← Back to paste</button>
+            <button onClick={()=>setStep("paste")} style={{background:"none",border:"none",color:C.indigo,fontSize:13,fontWeight:700,cursor:"pointer",padding:"0 0 20px",fontFamily:"'Montserrat',sans-serif"}}>Back to paste</button>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:24,flexWrap:"wrap",gap:12}}>
               <div>
                 <h1 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:22,color:C.charcoal,margin:"0 0 4px"}}>Review Parsed Data</h1>
@@ -894,12 +880,12 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
               <div style={{display:"flex",gap:8}}>
                 <button onClick={()=>onPreview(parsed)} style={{background:C.lightLavender,color:C.indigo,border:"none",borderRadius:8,padding:"10px 18px",fontSize:13,fontFamily:"'Montserrat',sans-serif",fontWeight:700,cursor:"pointer"}}>Preview</button>
                 <button onClick={handlePublish} disabled={saving} style={{background:C.forest,color:C.white,border:"none",borderRadius:8,padding:"10px 18px",fontSize:13,fontFamily:"'Montserrat',sans-serif",fontWeight:700,cursor:"pointer"}}>
-                  {saving?"Publishing…":"✓ Publish Role"}
+                  {saving?"Publishing...":"Publish Role"}
                 </button>
               </div>
             </div>
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:12,marginBottom:20}}>
-              {[["Title",parsed.title,"title"],["Slug (URL)",parsed.slug,"slug"],["Department",parsed.department,"department"],["Reports To",parsed.reportsto,"reportsto"],["Location",parsed.location,"location"],["Compensation",parsed.comp,"comp"]].map(([label,val,key])=>(
+              {[["Title",parsed.title,"title"],["Slug",parsed.slug,"slug"],["Department",parsed.department,"department"],["Reports To",parsed.reportsto,"reportsto"],["Location",parsed.location,"location"],["Compensation",parsed.comp,"comp"]].map(([label,val,key])=>(
                 <div key={key} style={{background:C.white,borderRadius:8,border:`1px solid #e2ddd8`,padding:"12px 14px"}}>
                   <div style={{fontSize:11,fontWeight:700,letterSpacing:"0.8px",textTransform:"uppercase",color:C.taupe,marginBottom:6}}>{label}</div>
                   {editField===key?(
@@ -913,24 +899,8 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
                 </div>
               ))}
             </div>
-            <div style={{background:C.white,borderRadius:8,border:`1px solid #e2ddd8`,padding:"14px",marginBottom:12}}>
-              <div style={{fontSize:11,fontWeight:700,letterSpacing:"0.8px",textTransform:"uppercase",color:C.taupe,marginBottom:8}}>Mission Statement</div>
-              <p style={{fontSize:14,color:C.charcoal,lineHeight:1.7,margin:0,fontStyle:"italic"}}>{parsed.mission}</p>
-            </div>
-            <div style={{background:C.white,borderRadius:8,border:`1px solid #e2ddd8`,padding:"14px",marginBottom:16}}>
-              <div style={{fontSize:11,fontWeight:700,letterSpacing:"0.8px",textTransform:"uppercase",color:C.taupe,marginBottom:12}}>Interview Stages ({parsed.stages?.length})</div>
-              {(parsed.stages||[]).map((s,i)=>(
-                <div key={i} style={{display:"flex",gap:12,padding:"8px 0",borderBottom:i<(parsed.stages.length-1)?`1px solid #f0ece9`:"none",alignItems:"flex-start"}}>
-                  <div style={{background:C.lightLavender,borderRadius:5,padding:"3px 8px",fontSize:11,fontWeight:700,color:C.indigo,whiteSpace:"nowrap"}}>{s.time}</div>
-                  <div>
-                    <div style={{fontSize:13,fontWeight:700,color:C.charcoal}}>{s.stage}</div>
-                    <div style={{fontSize:12,color:C.taupe}}>{s.who} · {s.focus}</div>
-                  </div>
-                </div>
-              ))}
-            </div>
             <div style={{background:C.lightMint,borderRadius:8,padding:"12px 16px",fontSize:13,color:C.forest,lineHeight:1.6}}>
-              <strong>Looks good?</strong> Hit "Preview" to see the full candidate view, or "Publish Role" to make it live.
+              <strong>Looks good?</strong> Hit Preview to see the full candidate view, or Publish Role to make it live.
             </div>
           </>
         )}
@@ -939,9 +909,6 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
   );
 }
 
-// ══════════════════════════════════════════════════════════════
-// ROOT
-// ══════════════════════════════════════════════════════════════
 export default function App() {
   const [allRoles,setAllRoles]=useState([...BUILT_IN_ROLES]);
   const [view,setView]=useState("loading");
@@ -977,13 +944,12 @@ export default function App() {
 
   if(!loaded) return(
     <div style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",background:C.sand,fontFamily:"'Inter',sans-serif"}}>
-      <div style={{textAlign:"center"}}><WheelMark size={48}/><div style={{marginTop:16,fontSize:14,color:C.taupe}}>Loading…</div></div>
+      <div style={{textAlign:"center"}}><WheelMark size={48}/><div style={{marginTop:16,fontSize:14,color:C.taupe}}>Loading...</div></div>
     </div>
   );
 
   if(view==="candidate"&&activeRole) return <CandidateView role={activeRole} onBack={adminAuthed?handleBack:null}/>;
   if(view==="admin"&&!adminAuthed) return <AdminLogin onSuccess={()=>setAdminAuthed(true)}/>;
   if(view==="admin"&&adminAuthed) return <AdminDashboard allRoles={allRoles} onPublish={handlePublish} onPreview={handlePreview} onDelete={handleDelete} onLogout={handleLogout}/>;
-
   return null;
 }
