@@ -695,7 +695,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                 }}>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:24,color:C.mint,lineHeight:1}}>{n}</div>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:11,color:C.mint,marginTop:6,letterSpacing:"0.3px"}}>{label}</div>
-                  <div style={{fontSize:11,color:mint,marginTop:3,lineHeight:1.4}}>{sub}</div>
+                  <div style={{fontSize:11,color:C.mint,marginTop:3,lineHeight:1.4}}>{sub}</div>
                 </div>
               ))}
             </div>
