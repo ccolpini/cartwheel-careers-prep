@@ -670,7 +670,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
               Reports to <span style={{color:C.charcoal,fontWeight:600}}>{role.reportsto}</span>
             </p>
             <p style={{fontSize:15,color:C.taupe,margin:"0 0 28px"}}>
-              <span style={{color:C.forest,fontWeight:700}}>{role.comp}</span> + equity
+              <span style={{color:C.peach,fontWeight:700}}>{role.comp}</span> + equity
             </p>
           </FadeIn>
 
@@ -1059,7 +1059,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
           <div style={{display:"flex",flexDirection:"column",gap:24}}>
             <FadeIn delay={0}>
               <div style={{
-                background:`linear-gradient(135deg, ${C.charcoal} 0%, #1a2f35 100%)`,
+                background:`linear-gradient(135deg, ${C.indigo} 0%, #2d3d7a 100%)`,
                 borderRadius:16,padding:"32px",
                 boxShadow:"0 8px 32px rgba(15,27,31,0.15)",
               }}>
