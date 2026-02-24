@@ -1006,10 +1006,11 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                         <span style={{background:"rgba(57,75,153,0.08)",color:C.indigo,borderRadius:6,padding:"2px 8px",fontSize:11,fontWeight:700,fontFamily:"'Montserrat',sans-serif"}}>{r.time}</span>
                       </div>
                       <div style={{padding:"14px 16px",fontSize:13,color:C.charcoal}}>
-                        {interviewer&&interviewer.name
+                        {interviewer
                           ? <InterviewerDisplay interviewer={interviewer}/>
                           : <span style={{color:C.taupe,fontSize:12}}>—</span>
                         }
+                      </div>
                       </div>
                       <div style={{padding:"14px 16px",fontSize:13,color:"#4a5568",lineHeight:1.5}}>{r.focus}</div>
                     </div>
