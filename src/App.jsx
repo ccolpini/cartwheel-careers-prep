@@ -746,7 +746,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     <div key={label} style={{display:"flex",gap:12,alignItems:"flex-start",marginBottom:14}}>
                       <div style={{color:C.indigo,marginTop:1,flexShrink:0}}>{icon}</div>
                       <div>
-                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.charcoal}}>{label} </span>
+                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.indigo}}>{label} </span>
                         <span style={{fontSize:13,color:"rgba(15,27,31,0.55)",lineHeight:1.5}}>{desc}</span>
                       </div>
                     </div>
@@ -766,12 +766,12 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                       : []),
                   ].map(({label,name,href})=>(
                     <div key={label} style={{marginBottom:14}}>
-                      <div style={{fontSize:11,fontWeight:600,color:C.charcoal,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:3}}>{label}</div>
-                      {href ? <a href={href} style={{fontSize:14,color:C.orange,textDecoration:"none",fontWeight:600}}>{name}</a> : <span style={{fontSize:14,color:C.charcoal,fontWeight:600}}>{name}</span>}
+                      <div style={{fontSize:11,fontWeight:600,color:C.forest,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:3}}>{label}</div>
+                      {href ? <a href={href} style={{fontSize:14,color:C.indigo,textDecoration:"none",fontWeight:600}}>{name}</a> : <span style={{fontSize:14,color:C.forest,fontWeight:600}}>{name}</span>}
                     </div>
                   ))}
                   <div style={{marginTop:16,paddingTop:16,borderTop:"1px solid rgba(15,27,31,0.06)"}}>
-                    <div style={{fontSize:12,color:C.taupe,lineHeight:1.6}}>Questions at any stage? Reach out to your coordinator — we want this process to feel clear.</div>
+                    <div style={{fontSize:12,color:C.lightMint,lineHeight:1.6}}>Questions at any stage? Reach out to your coordinator — we want this process to feel clear.</div>
                   </div>
                 </div>
               </div>
@@ -1015,8 +1015,8 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     </div>
                   ))}
                 </div>
-                <div style={{background:C.lightPeach,borderRadius:14,padding:"22px",border:"1px solid rgba(15,27,31,0.07)"}}>
-                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:11,color:C.brick,marginBottom:14,letterSpacing:"1px",textTransform:"uppercase"}}>This may not be right if you</div>
+                <div style={{background:C.brick,borderRadius:14,padding:"22px",border:"1px solid rgba(15,27,31,0.07)"}}>
+                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:11,color:C.lightPeach,marginBottom:14,letterSpacing:"1px",textTransform:"uppercase"}}>This may not be right if you</div>
                   {(role.notfor||[]).map((t,i)=>(
                     <div key={i} style={{display:"flex",gap:10,alignItems:"flex-start",marginBottom:10}}>
                       <X size={13} color={C.peach} style={{flexShrink:0,marginTop:2}}/>
