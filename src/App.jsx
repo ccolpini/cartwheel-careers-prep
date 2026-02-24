@@ -693,9 +693,9 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   background:i===0?"rgba(255,255,255,0.08)":"transparent",
                   borderRight:i<3?"1px solid rgba(255,255,255,0.1)":"none",
                 }}>
-                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:24,color:C.white,lineHeight:1}}>{n}</div>
+                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:24,color:C.mint,lineHeight:1}}>{n}</div>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:11,color:C.mint,marginTop:6,letterSpacing:"0.3px"}}>{label}</div>
-                  <div style={{fontSize:11,color:"rgba(255,255,255,0.4)",marginTop:3,lineHeight:1.4}}>{sub}</div>
+                  <div style={{fontSize:11,color:mint,marginTop:3,lineHeight:1.4}}>{sub}</div>
                 </div>
               ))}
             </div>
@@ -715,7 +715,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                 padding:"13px 16px",border:"none",background:"none",cursor:"pointer",
                 whiteSpace:"nowrap",display:"flex",alignItems:"center",gap:6,
                 fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:12,
-                color:tab===id?C.forest:C.taupe,
+                color:tab===id?C.forest:C.charcoal,
                 borderBottom:tab===id?`2px solid ${C.forest}`:"2px solid transparent",
                 transition:"all 0.15s",
               }}>
@@ -738,9 +738,9 @@ Only answer from this information. If unsure, direct to the coordinator listed i
             <FadeIn delay={0}>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
                 <div style={{
-                  background:C.lightLavender,borderRadius:16,padding:"24px",
+                  background:C.white,borderRadius:16,padding:"24px",
                   boxShadow:"0 4px 24px rgba(57,75,153,0.08)",
-                  border:"1px solid rgba(177,165,247,0.25)",
+                  borderLeft:`3px solid ${C.indigo}`,
                 }}>
                   <SectionLabel>What we look for</SectionLabel>
                   {[
