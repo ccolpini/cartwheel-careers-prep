@@ -727,7 +727,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
         {tab==="guide"&&(
           <div style={{display:"flex",flexDirection:"column",gap:24}}>
 
-            {/* Qualities + Contacts */}
+{/* Qualities + Contacts */}
             <FadeIn delay={0}>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
                 <div style={{
@@ -736,8 +736,6 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   border:"1px solid rgba(156,146,131,0.15)",
                 }}>
                   <SectionLabel>What we look for</SectionLabel>
-                }}>
-                  <SectionLabel light>What we look for</SectionLabel>
                   {[
                     {icon:<Users size={14}/>,label:"Human",desc:"Warmth and compassion in how you work"},
                     {icon:<BookOpen size={14}/>,label:"Humble",desc:"Preferring learning to being right"},
@@ -746,7 +744,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     {icon:<Heart size={14}/>,label:"Resilient",desc:"Supporting each other through challenges"},
                   ].map(({icon,label,desc})=>(
                     <div key={label} style={{display:"flex",gap:12,alignItems:"flex-start",marginBottom:14}}>
-                     <div style={{color:C.indigo,marginTop:1,flexShrink:0}}>{icon}</div>
+                      <div style={{color:C.indigo,marginTop:1,flexShrink:0}}>{icon}</div>
                       <div>
                         <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.charcoal}}>{label} </span>
                         <span style={{fontSize:13,color:"rgba(15,27,31,0.55)",lineHeight:1.5}}>{desc}</span>
@@ -763,13 +761,14 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   {[
                     {label:"Recruiter",name:"Caroline Colpini",href:"mailto:caroline.colpini@cartwheelcare.org"},
                     {label:"Coordinator",name:"Avery Henry",href:"mailto:avery.henry@cartwheelcare.org"},
-                  ...(role.contacts?.find(c=>c.includes("Take-home"))
+                    ...(role.contacts?.find(c=>c.includes("Take-home"))
                       ? [{label:"Take-home Qs",name:"Jacob Savos"}]
                       : []),
-                              ].map(({label,name,href})=>(
+                  ].map(({label,name,href})=>(
                     <div key={label} style={{marginBottom:14}}>
                       <div style={{fontSize:11,fontWeight:600,color:C.taupe,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:3}}>{label}</div>
-                     {href ? <a href={href} style={{fontSize:14,color:C.indigo,textDecoration:"none",fontWeight:600}}>{name}</a> : <span style={{fontSize:14,color:C.charcoal,fontWeight:600}}>{name}</span>}
+                      {href ? <a href={href} style={{fontSize:14,color:C.indigo,textDecoration:"none",fontWeight:600}}>{name}</a> : <span style={{fontSize:14,color:C.charcoal,fontWeight:600}}>{name}</span>}
+                    </div>
                   ))}
                   <div style={{marginTop:16,paddingTop:16,borderTop:"1px solid rgba(15,27,31,0.06)"}}>
                     <div style={{fontSize:12,color:C.taupe,lineHeight:1.6}}>Questions at any stage? Reach out to your coordinator — we want this process to feel clear.</div>
