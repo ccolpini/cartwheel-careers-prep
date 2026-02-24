@@ -626,7 +626,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
 
       {/* Hero — dark panel */}
       <div style={{
-        background:`linear-gradient(145deg, #2d3d7a 0%, ${C.indigo} 40%, #4a5daa 100%)`,
+        background:`linear-gradient(135deg, ${C.charcoal} 0%, #1a2f35 100%)`,
         padding:"48px 28px 0",
         position:"relative",overflow:"hidden",
       }}>
@@ -673,7 +673,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
             <p style={{
               fontSize:14,color:"rgba(255,255,255,0.6)",lineHeight:1.75,
               maxWidth:560,margin:"0 0 32px",
-              borderLeft:`3px solid ${C.brick}`,paddingLeft:16,
+              borderLeft:`3px solid ${C.lavendar}`,paddingLeft:16,
             }}>
               {role.mission}
             </p>
