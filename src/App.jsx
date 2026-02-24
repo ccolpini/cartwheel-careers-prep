@@ -262,11 +262,24 @@ function ExtLink({href,children,style={}}) {
 
 function InterviewerDisplay({interviewer}) {
   if(!interviewer) return null;
-  // Handle multiHrefs (multiple people in same stage)
-  if(interviewer.multiHrefs && interviewer.multiHrefs.length > 0) return (
-    <span>{interviewer.multiHrefs.map((m,j)=>(
-      <span key={j}>{j>0?", ":""}<ExtLink href={m.href}>{m.name}</ExtLink></span>
-    ))}</span>
+  
+  // Priority 1: Check if we have an array of multiple interviewers
+  if(Array.isArray(interviewer.multiHrefs) && interviewer.multiHrefs.length > 0) {
+    return (
+      <span>{interviewer.multiHrefs.map((m,j)=>(
+        <span key={j}>{j>0?", ":""}<ExtLink href={m.href}>{m.name}</ExtLink></span>
+      ))}</span>
+    );
+  }
+  
+  // Priority 2: Check if we have a single person with an href
+  if(interviewer.href) {
+    return <ExtLink href={interviewer.href}>{interviewer.name}</ExtLink>;
+  }
+  
+  // Priority 3: Fallback to dash
+  return <span style={{color:C.taupe,fontStyle:"italic"}}>—</span>;
+}
   );
   // Handle single person with href
   if(interviewer.href) return <ExtLink href={interviewer.href}>{interviewer.name}</ExtLink>;
