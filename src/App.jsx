@@ -1019,7 +1019,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   {(role.notfor||[]).map((t,i)=>(
                     <div key={i} style={{display:"flex",gap:10,alignItems:"flex-start",marginBottom:10}}>
                       <X size={13} color={"rgba(255,255,255,0.8)"} style={{flexShrink:0,marginTop:2}}/>
-                      <span style={{fontSize:13,color:C."rgba(255,255,255,0.8)",lineHeight:1.55}}>{t}</span>
+                      <span style={{fontSize:13,color:"rgba(255,255,255,0.8)",lineHeight:1.55}}>{t}</span>
                     </div>
                   ))}
                 </div>
