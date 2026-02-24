@@ -260,15 +260,16 @@ function ExtLink({href,children,style={}}) {
 
 function InterviewerDisplay({interviewer}) {
   if(!interviewer) return null;
-  if(interviewer.multiHrefs) return (
+  // Handle multiHrefs (multiple people in same stage)
+  if(interviewer.multiHrefs && interviewer.multiHrefs.length > 0) return (
     <span>{interviewer.multiHrefs.map((m,j)=>(
       <span key={j}>{j>0?", ":""}<ExtLink href={m.href}>{m.name}</ExtLink></span>
     ))}</span>
   );
-  if(interviewer.hrefs) return (
-    <><ExtLink href={interviewer.hrefs[0]}>Sam Blumpkin</ExtLink> + <ExtLink href={interviewer.hrefs[1]}>Sam Bilow</ExtLink></>
-  );
-  return interviewer.href ? <ExtLink href={interviewer.href}>{interviewer.name}</ExtLink> : <span style={{color:C.taupe,fontStyle:"italic"}}>—</span>;
+  // Handle single person with href
+  if(interviewer.href) return <ExtLink href={interviewer.href}>{interviewer.name}</ExtLink>;
+  // Fallback for empty/null
+  return <span style={{color:C.taupe,fontStyle:"italic"}}>—</span>;
 }
 
 // ── Animated entry wrapper ────────────────────────────────────
