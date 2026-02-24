@@ -684,18 +684,18 @@ Only answer from this information. If unsure, direct to the coordinator listed i
             </p>
           </FadeIn>
 
-          {/* Stats — bold forest bar */}
+          {/* Stats — bold lightLavender bar */}
           <FadeIn delay={260}>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:1,background:C.forest,borderRadius:14,overflow:"hidden",marginBottom:0,boxShadow:"0 4px 20px rgba(38,84,79,0.2)"}}>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:1,background:C.lavender,borderRadius:14,overflow:"hidden",marginBottom:0,boxShadow:"0 4px 20px rgba(38,84,79,0.2)"}}>
               {(role.stats||[]).map(({n,label,sub},i)=>(
                 <div key={n} style={{
                   padding:"22px 18px",
                   background:i===0?"rgba(255,255,255,0.08)":"transparent",
                   borderRight:i<3?"1px solid rgba(255,255,255,0.1)":"none",
                 }}>
-                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:24,color:C.mint,lineHeight:1}}>{n}</div>
-                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:11,color:C.mint,marginTop:6,letterSpacing:"0.3px"}}>{label}</div>
-                  <div style={{fontSize:11,color:C.mint,marginTop:3,lineHeight:1.4}}>{sub}</div>
+                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:24,color:C.lightLavender,lineHeight:1}}>{n}</div>
+                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:11,color:C.lightLavender,marginTop:6,letterSpacing:"0.3px"}}>{label}</div>
+                  <div style={{fontSize:11,color:C.lightLavender,marginTop:3,lineHeight:1.4}}>{sub}</div>
                 </div>
               ))}
             </div>
