@@ -44,7 +44,7 @@ function Wordmark({ light=false, size="md" }) {
 }
 
 // ── API ───────────────────────────────────────────────────────
-async function callClaude(system, messages, maxTokens=3000) {
+async function callClaude(system, messages, maxTokens=8000) {
   const res = await fetch("/api/chat", {
     method:"POST", headers:{"Content-Type":"application/json"},
     body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:maxTokens,system,messages}),
@@ -95,17 +95,19 @@ const PARSE_SYSTEM = `Extract structured data from a Cartwheel hiring package. R
   "checklist":[{"stage":"Before Stage","items":["item"]}],
   "interviewers":[{
     "label":"Stage Name",
-    "name":"Single person name or empty string if using multiHrefs",
-    "title":"Title",
+    "name":"Single person name (empty string \"\" if multiple people)",
+    "title":"Person's title",
     "href":"LinkedIn URL or null",
     "multiHrefs":[{"name":"Person Name","href":"LinkedIn URL"}]
   }],
   "links":{"cartwheel":"https://www.cartwheel.org","wallOfLove":"https://www.cartwheel.org/wall-of-love","glassdoor":null,"linkedin":"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"}
 }
-RULES FOR INTERVIEWERS:
-- If ONE person: use "name", "title", "href" fields. Leave "multiHrefs" null/undefined.
-- If MULTIPLE people in same stage: use "multiHrefs" array with {name, href} objects. Set "name" to empty string, "href" to null.
+
+INTERVIEWER STRUCTURE RULES:
+- For a single interviewer: include "name", "title", and "href". Set "multiHrefs" to null or omit it.
+- For multiple interviewers in the same stage: set "name" to empty string "", set "href" to null, and use "multiHrefs" array with {name, href} objects.
 - Always extract LinkedIn URLs when available.
+
 Return ONLY valid JSON, no markdown.`;
 
 // ── Demo Roles ────────────────────────────────────────────────
