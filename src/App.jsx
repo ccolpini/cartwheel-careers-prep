@@ -695,7 +695,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                 }}>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:24,color:C.mint,lineHeight:1}}>{n}</div>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:11,color:C.mint,marginTop:6,letterSpacing:"0.3px"}}>{label}</div>
-                  <div style={{fontSize:11,color:C.lightMint,marginTop:3,lineHeight:1.4}}>{sub}</div>
+                  <div style={{fontSize:11,color:C.forest,marginTop:3,lineHeight:1.4}}>{sub}</div>
                 </div>
               ))}
             </div>
@@ -774,7 +774,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                       : []),
                   ].map(({label,name,href})=>(
                     <div key={label} style={{marginBottom:14}}>
-                      <div style={{fontSize:11,fontWeight:600,color:C.taupe,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:3}}>{label}</div>
+                      <div style={{fontSize:11,fontWeight:600,color:C.charcoal,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:3}}>{label}</div>
                       {href ? <a href={href} style={{fontSize:14,color:C.indigo,textDecoration:"none",fontWeight:600}}>{name}</a> : <span style={{fontSize:14,color:C.charcoal,fontWeight:600}}>{name}</span>}
                     </div>
                   ))}
