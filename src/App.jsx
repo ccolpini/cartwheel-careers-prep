@@ -731,8 +731,11 @@ Only answer from this information. If unsure, direct to the coordinator listed i
             <FadeIn delay={0}>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
                 <div style={{
-                  background:C.charcoal,borderRadius:16,padding:"24px",
-                  boxShadow:"0 4px 24px rgba(15,27,31,0.12)",
+                  background:"#D4CBC2",borderRadius:16,padding:"24px",
+                  boxShadow:"0 4px 24px rgba(15,27,31,0.08)",
+                  border:"1px solid rgba(156,146,131,0.15)",
+                }}>
+                  <SectionLabel>What we look for</SectionLabel>
                 }}>
                   <SectionLabel light>What we look for</SectionLabel>
                   {[
