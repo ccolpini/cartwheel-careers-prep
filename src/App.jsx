@@ -732,9 +732,10 @@ Only answer from this information. If unsure, direct to the coordinator listed i
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
                 <div style={{
                   background:C.lightLavender,borderRadius:16,padding:"24px",
-                  boxShadow:"0 4px 24px rgba(15,27,31,0.12)",
+                  boxShadow:"0 4px 24px rgba(57,75,153,0.1)",
+                  border:"1px solid rgba(177,165,247,0.3)",
                 }}>
-                  <SectionLabel light>What we look for</SectionLabel>
+                  <SectionLabel>What we look for</SectionLabel>
                   {[
                     {icon:<Users size={14}/>,label:"Human",desc:"Warmth and compassion in how you work"},
                     {icon:<BookOpen size={14}/>,label:"Humble",desc:"Preferring learning to being right"},
@@ -745,8 +746,8 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     <div key={label} style={{display:"flex",gap:12,alignItems:"flex-start",marginBottom:14}}>
                       <div style={{color:C.indigo,marginTop:1,flexShrink:0}}>{icon}</div>
                       <div>
-                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.lavender}}>{label} </span>
-                        <span style={{fontSize:13,color:lavender,lineHeight:1.5}}>{desc}</span>
+                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.charcoal}}>{label} </span>
+                        <span style={{fontSize:13,color:"rgba(15,27,31,0.55)",lineHeight:1.5}}>{desc}</span>
                       </div>
                     </div>
                   ))}
