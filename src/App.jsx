@@ -673,7 +673,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
             <p style={{
               fontSize:14,color:"rgba(255,255,255,0.6)",lineHeight:1.75,
               maxWidth:560,margin:"0 0 32px",
-              borderLeft:`3px solid ${C.lavendar}`,paddingLeft:16,
+              borderLeft:`3px solid ${C.lavender}`,paddingLeft:16,
             }}>
               {role.mission}
             </p>
@@ -1019,7 +1019,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   {(role.notfor||[]).map((t,i)=>(
                     <div key={i} style={{display:"flex",gap:10,alignItems:"flex-start",marginBottom:10}}>
                       <X size={13} color={C.taupe} style={{flexShrink:0,marginTop:2}}/>
-                      <span style={{fontSize:13,color:C.taupe,lineHeight:1.55}}>{t}</span>
+                      <span style={{fontSize:13,color:C."rgba(255,255,255,0.8)",lineHeight:1.55}}>{t}</span>
                     </div>
                   ))}
                 </div>
