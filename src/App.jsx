@@ -673,7 +673,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
             <p style={{
               fontSize:14,color:"rgba(255,255,255,0.6)",lineHeight:1.75,
               maxWidth:560,margin:"0 0 32px",
-              borderLeft:`3px solid ${C.lavender}`,paddingLeft:16,
+              borderLeft:`3px solid ${C.brick}`,paddingLeft:16,
             }}>
               {role.mission}
             </p>
