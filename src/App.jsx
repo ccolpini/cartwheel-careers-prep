@@ -753,7 +753,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   ))}
                 </div>
                 <div style={{
-                  background:C.white,borderRadius:16,padding:"24px",
+                  background:C.sand,borderRadius:16,padding:"24px",
                   border:"1px solid rgba(15,27,31,0.07)",
                   boxShadow:"0 2px 8px rgba(15,27,31,0.05)",
                 }}>
@@ -766,8 +766,8 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                       : []),
                   ].map(({label,name,href})=>(
                     <div key={label} style={{marginBottom:14}}>
-                      <div style={{fontSize:11,fontWeight:600,color:C.taupe,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:3}}>{label}</div>
-                      {href ? <a href={href} style={{fontSize:14,color:C.indigo,textDecoration:"none",fontWeight:600}}>{name}</a> : <span style={{fontSize:14,color:C.charcoal,fontWeight:600}}>{name}</span>}
+                      <div style={{fontSize:11,fontWeight:600,color:C.charcoal,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:3}}>{label}</div>
+                      {href ? <a href={href} style={{fontSize:14,color:C.orange,textDecoration:"none",fontWeight:600}}>{name}</a> : <span style={{fontSize:14,color:C.charcoal,fontWeight:600}}>{name}</span>}
                     </div>
                   ))}
                   <div style={{marginTop:16,paddingTop:16,borderTop:"1px solid rgba(15,27,31,0.06)"}}>
