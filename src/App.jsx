@@ -745,8 +745,8 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     <div key={label} style={{display:"flex",gap:12,alignItems:"flex-start",marginBottom:14}}>
                       <div style={{color:C.indigo,marginTop:1,flexShrink:0}}>{icon}</div>
                       <div>
-                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.white}}>{label} </span>
-                        <span style={{fontSize:13,color:"rgba(255,255,255,0.45)",lineHeight:1.5}}>{desc}</span>
+                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.lavender}}>{label} </span>
+                        <span style={{fontSize:13,color:lavender,lineHeight:1.5}}>{desc}</span>
                       </div>
                     </div>
                   ))}
