@@ -731,7 +731,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
             <FadeIn delay={0}>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
                 <div style={{
-                  background:C.lightLavendar,borderRadius:16,padding:"24px",
+                  background:C.lightLavender,borderRadius:16,padding:"24px",
                   boxShadow:"0 4px 24px rgba(15,27,31,0.12)",
                 }}>
                   <SectionLabel light>What we look for</SectionLabel>
@@ -745,8 +745,8 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     <div key={label} style={{display:"flex",gap:12,alignItems:"flex-start",marginBottom:14}}>
                       <div style={{color:C.indigo,marginTop:1,flexShrink:0}}>{icon}</div>
                       <div>
-                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.white}}>{label} </span>
-                        <span style={{fontSize:13,color:"rgba(255,255,255,0.45)",lineHeight:1.5}}>{desc}</span>
+                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.lavender}}>{label} </span>
+                        <span style={{fontSize:13,color:lavender,lineHeight:1.5}}>{desc}</span>
                       </div>
                     </div>
                   ))}
@@ -1020,6 +1020,8 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     <div key={i} style={{display:"flex",gap:10,alignItems:"flex-start",marginBottom:10}}>
                       <X size={13} color={"rgba(255,255,255,0.8)"} style={{flexShrink:0,marginTop:2}}/>
                       <span style={{fontSize:13,color:"rgba(255,255,255,0.8)",lineHeight:1.55}}>{t}</span>
+                      <X size={13} color={C.taupe} style={{flexShrink:0,marginTop:2}}/>
+                      <span style={{fontSize:13,color:C."rgba(255,255,255,0.8)",lineHeight:1.55}}>{t}</span>
                     </div>
                   ))}
                 </div>
