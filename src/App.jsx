@@ -1018,7 +1018,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:11,color:C.brick,marginBottom:14,letterSpacing:"1px",textTransform:"uppercase"}}>This may not be right if you</div>
                   {(role.notfor||[]).map((t,i)=>(
                     <div key={i} style={{display:"flex",gap:10,alignItems:"flex-start",marginBottom:10}}>
-                      <X size={13} color={"rgba(255,255,255,0.8)"} style={{flexShrink:0,marginTop:2}}/>
+                      <X size={13} color={C.taupe} style={{flexShrink:0,marginTop:2}}/>
                       <span style={{fontSize:13,color:C."rgba(255,255,255,0.8)",lineHeight:1.55}}>{t}</span>
                     </div>
                   ))}
