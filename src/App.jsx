@@ -670,7 +670,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
               Reports to <span style={{color:C.charcoal,fontWeight:600}}>{role.reportsto}</span>
             </p>
             <p style={{fontSize:15,color:C.taupe,margin:"0 0 28px"}}>
-              <span style={{color:C.peach,fontWeight:700}}>{role.comp}</span> + equity
+              <span style={{color:C.mint,fontWeight:700}}>{role.comp}</span> + equity
             </p>
           </FadeIn>
 
@@ -678,7 +678,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
             <p style={{
               fontSize:14,color:"#4a5568",lineHeight:1.75,
               maxWidth:560,margin:"0 0 32px",
-              borderLeft:`3px solid ${C.brick}`,paddingLeft:16,
+              borderLeft:`3px solid ${C.orange}`,paddingLeft:16,
             }}>
               {role.mission}
             </p>
@@ -738,9 +738,9 @@ Only answer from this information. If unsure, direct to the coordinator listed i
             <FadeIn delay={0}>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
                 <div style={{
-                  background:C.white,borderRadius:16,padding:"24px",
+                  background:C.indigo,borderRadius:16,padding:"24px",
                   boxShadow:"0 4px 24px rgba(57,75,153,0.08)",
-                  borderLeft:`3px solid ${C.indigo}`,
+                  borderLeft:`3px solid ${C.white}`,
                 }}>
                   <SectionLabel>What we look for</SectionLabel>
                   {[
@@ -751,9 +751,9 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     {icon:<Heart size={14}/>,label:"Resilient",desc:"Supporting each other through challenges"},
                   ].map(({icon,label,desc})=>(
                     <div key={label} style={{display:"flex",gap:12,alignItems:"flex-start",marginBottom:14}}>
-                      <div style={{color:C.indigo,marginTop:1,flexShrink:0}}>{icon}</div>
+                      <div style={{color:C.lightLavender,marginTop:1,flexShrink:0}}>{icon}</div>
                       <div>
-                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.indigo}}>{label} </span>
+                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.lightLavender}}>{label} </span>
                         <span style={{fontSize:13,color:"rgba(15,27,31,0.55)",lineHeight:1.5}}>{desc}</span>
                       </div>
                     </div>
