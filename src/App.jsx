@@ -763,12 +763,13 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   {[
                     {label:"Recruiter",name:"Caroline Colpini",href:"mailto:caroline.colpini@cartwheelcare.org"},
                     {label:"Coordinator",name:"Avery Henry",href:"mailto:avery.henry@cartwheelcare.org"},
-                    ...(role.contacts?.find(c=>c.includes("Take-home")),
-                  ].map(({label,name,href})=>(
+                  ...(role.contacts?.find(c=>c.includes("Take-home"))
+                      ? [{label:"Take-home Qs",name:"Jacob Savos"}]
+                      : []),
+                              ].map(({label,name,href})=>(
                     <div key={label} style={{marginBottom:14}}>
                       <div style={{fontSize:11,fontWeight:600,color:C.taupe,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:3}}>{label}</div>
-                      <a href={href} style={{fontSize:14,color:C.indigo,textDecoration:"none",fontWeight:600}}>{name}</a>
-                    </div>
+                     {href ? <a href={href} style={{fontSize:14,color:C.indigo,textDecoration:"none",fontWeight:600}}>{name}</a> : <span style={{fontSize:14,color:C.charcoal,fontWeight:600}}>{name}</span>}
                   ))}
                   <div style={{marginTop:16,paddingTop:16,borderTop:"1px solid rgba(15,27,31,0.06)"}}>
                     <div style={{fontSize:12,color:C.taupe,lineHeight:1.6}}>Questions at any stage? Reach out to your coordinator — we want this process to feel clear.</div>
