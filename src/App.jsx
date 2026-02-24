@@ -932,7 +932,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     border:m.role==="assistant"?"1px solid rgba(15,27,31,0.08)":"none",
                     boxShadow:m.role==="user"?"0 2px 12px rgba(57,75,153,0.25)":"0 1px 4px rgba(15,27,31,0.06)",
                     whiteSpace:"pre-wrap",
-                  }}>{m.content}</div>
+                  }}>{m.content.replace(/\*\*/g, "")}</div>
                 </div>
               ))}
               {loading&&(
