@@ -492,8 +492,7 @@ function StagePrep({role}) {
                 <div>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:C.charcoal}}>{stage.stage}</div>
                   <div style={{fontSize:12,color:C.taupe,marginTop:2}}>
-                    {interviewer&&interviewer.name ? <InterviewerDisplay interviewer={interviewer}/> : <span style={{color:C.taupe,fontStyle:"italic"}}>Self-directed</span>}
-                  </div>
+                      {interviewer ? <InterviewerDisplay interviewer={interviewer}/> : <span style={{color:C.taupe,fontStyle:"italic"}}>—</span>}
                 </div>
               </div>
               <ChevronDown size={16} color={C.indigo} style={{flexShrink:0,transform:isOpen?"rotate(180deg)":"none",transition:"0.2s"}}/>
@@ -517,13 +516,13 @@ function StagePrep({role}) {
                     </div>
                   </div>
                   {!isTakeHome&&pd.questions.length>0&&(
-                    <div style={{background:"rgba(240,236,233,0.6)",borderRadius:10,padding:"16px"}}>
+                    <div style={{background:C.lightMint,borderRadius:10,padding:"16px"}}>
                       <SectionLabel>Questions to ask</SectionLabel>
                       <div style={{display:"flex",flexDirection:"column",gap:8}}>
                         {pd.questions.map((q,j)=>(
                           <div key={j} style={{display:"flex",gap:10,alignItems:"flex-start"}}>
                             <MessageCircle size={12} color={C.forest} style={{flexShrink:0,marginTop:3}}/>
-                            <span style={{fontSize:13,color:C.charcoal,lineHeight:1.55,fontStyle:"italic"}}>"{q}"</span>
+                            <span style={{fontSize:13,color:C.forest,lineHeight:1.55,fontStyle:"italic"}}>"{q}"</span>
                           </div>
                         ))}
                       </div>
