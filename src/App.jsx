@@ -731,7 +731,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
             <FadeIn delay={0}>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
                 <div style={{
-                  background:C.lightlavendar,borderRadius:16,padding:"24px",
+                  background:C.lightLavendar,borderRadius:16,padding:"24px",
                   boxShadow:"0 4px 24px rgba(15,27,31,0.12)",
                 }}>
                   <SectionLabel light>What we look for</SectionLabel>
@@ -1088,7 +1088,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   {icon:<Calendar size={14}/>,title:"Generous PTO",sub:"Including company closure 12/25-1/1"},
                 ].map(({icon,title,sub})=>(
                   <div key={title} style={{
-                    background:C.mint,borderRadius:12,padding:"18px 16px",
+                    background:C.lightMint,borderRadius:12,padding:"18px 16px",
                     border:"1px solid rgba(15,27,31,0.08)",
                     boxShadow:"0 1px 4px rgba(15,27,31,0.04)",
                     transition:"all 0.2s",
