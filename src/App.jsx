@@ -670,7 +670,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
               Reports to <span style={{color:C.charcoal,fontWeight:600}}>{role.reportsto}</span>
             </p>
             <p style={{fontSize:15,color:C.taupe,margin:"0 0 28px"}}>
-              <span style={{color:C.mint,fontWeight:700}}>{role.comp}</span> + equity
+              <span style={{color:C.forest,fontWeight:700}}>{role.comp}</span> + equity
             </p>
           </FadeIn>
 
@@ -695,7 +695,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                 }}>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:24,color:C.mint,lineHeight:1}}>{n}</div>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:11,color:C.mint,marginTop:6,letterSpacing:"0.3px"}}>{label}</div>
-                  <div style={{fontSize:11,color:C.forest,marginTop:3,lineHeight:1.4}}>{sub}</div>
+                  <div style={{fontSize:11,color:C.mint,marginTop:3,lineHeight:1.4}}>{sub}</div>
                 </div>
               ))}
             </div>
@@ -754,7 +754,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                       <div style={{color:C.lightLavender,marginTop:1,flexShrink:0}}>{icon}</div>
                       <div>
                         <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.lightLavender}}>{label} </span>
-                        <span style={{fontSize:13,color:"rgba(15,27,31,0.55)",lineHeight:1.5}}>{desc}</span>
+                        <span style={{fontSize:13,color:C.lightLavender,lineHeight:1.5}}>{desc}</span>
                       </div>
                     </div>
                   ))}
