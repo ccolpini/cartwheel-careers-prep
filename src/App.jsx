@@ -753,7 +753,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   ))}
                 </div>
                 <div style={{
-                  background:C.sand,borderRadius:16,padding:"24px",
+                  background:C.lightMint,borderRadius:16,padding:"24px",
                   border:"1px solid rgba(15,27,31,0.07)",
                   boxShadow:"0 2px 8px rgba(15,27,31,0.05)",
                 }}>
@@ -771,7 +771,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     </div>
                   ))}
                   <div style={{marginTop:16,paddingTop:16,borderTop:"1px solid rgba(15,27,31,0.06)"}}>
-                    <div style={{fontSize:12,color:C.lightMint,lineHeight:1.6}}>Questions at any stage? Reach out to your coordinator — we want this process to feel clear.</div>
+                    <div style={{fontSize:12,color:C.forest,lineHeight:1.6}}>Questions at any stage? Reach out to your coordinator — we want this process to feel clear.</div>
                   </div>
                 </div>
               </div>
