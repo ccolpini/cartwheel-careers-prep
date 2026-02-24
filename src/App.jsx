@@ -93,9 +93,19 @@ const PARSE_SYSTEM = `Extract structured data from a Cartwheel hiring package. R
   "aboutRole":"overview","compBenefits":"comp summary",
   "stagePrepData":[{"stage":"Stage","prep":["tip"],"questions":["q"]}],
   "checklist":[{"stage":"Before Stage","items":["item"]}],
-  "interviewers":[{"label":"Stage","name":"Name","title":"Title","href":"linkedin or null","hrefs":null}],
+  "interviewers":[{
+    "label":"Stage Name",
+    "name":"Single person name or empty string if using multiHrefs",
+    "title":"Title",
+    "href":"LinkedIn URL or null",
+    "multiHrefs":[{"name":"Person Name","href":"LinkedIn URL"}]
+  }],
   "links":{"cartwheel":"https://www.cartwheel.org","wallOfLove":"https://www.cartwheel.org/wall-of-love","glassdoor":null,"linkedin":"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"}
 }
+RULES FOR INTERVIEWERS:
+- If ONE person: use "name", "title", "href" fields. Leave "multiHrefs" null/undefined.
+- If MULTIPLE people in same stage: use "multiHrefs" array with {name, href} objects. Set "name" to empty string, "href" to null.
+- Always extract LinkedIn URLs when available.
 Return ONLY valid JSON, no markdown.`;
 
 // ── Demo Roles ────────────────────────────────────────────────
@@ -214,25 +224,25 @@ const SPM_ROLE = {
     {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
     {label:"Product Judgment",name:"Sarah Turrin",title:"CPO",href:"https://www.linkedin.com/in/sarahturrin/"},
     {label:"Technical Design",name:"",title:"",href:null,multiHrefs:[
-      {name:"Danielle Hawthorne",href:"https://www.linkedin.com/in/daniellemhawthorne/"},
-      {name:"Henry Lyford",href:"https://www.linkedin.com/in/hlyford/"},
-      {name:"Sandip Subedi",href:"https://www.linkedin.com/in/sandipsubedi/"},
-    ]},
-    {label:"User-Centered Discovery",name:"",title:"",href:null,multiHrefs:[
-      {name:"Julie Jungman",href:"https://www.linkedin.com/in/julie-jungman-lcsw/"},
-      {name:"Allie Pashi",href:"https://www.linkedin.com/in/allie-pashi/"},
-      {name:"Sarah Shoff",href:"https://www.linkedin.com/in/sarah-shoff-she-her-1330a54/"},
-      {name:"GG Guitart",href:"https://www.linkedin.com/in/gg-guitart/"},
-      {name:"Rebecca Rae Allen",href:"https://www.linkedin.com/in/rebecca-rae-allen/"},
-    ]},
-    {label:"Live Product Case",name:"",title:"",href:null,multiHrefs:[
-      {name:"Sarah Turrin",href:"https://www.linkedin.com/in/sarahturrin/"},
-      {name:"Daniel Ilkovich",href:"https://www.linkedin.com/in/ilkovich/"},
-      {name:"Dan Tartakovsky",href:"https://www.linkedin.com/in/tartakovsky/"},
-      {name:"Sam Bilow",href:"https://www.linkedin.com/in/sam-bilow-59434150/"},
-    ]},
-    {label:"Executive Review",name:"Joe English",title:"CEO",href:"https://www.linkedin.com/in/joe-m-english/"},
-  ],
+    {name:"Danielle Hawthorne",href:"https://www.linkedin.com/in/daniellemhawthorne/"},
+    {name:"Henry Lyford",href:"https://www.linkedin.com/in/hlyford/"},
+    {name:"Sandip Subedi",href:"https://www.linkedin.com/in/sandipsubedi/"},
+  ]},
+  {label:"User-Centered Discovery",name:"",title:"",href:null,multiHrefs:[
+    {name:"Julie Jungman",href:"https://www.linkedin.com/in/julie-jungman-lcsw/"},
+    {name:"Allie Pashi",href:"https://www.linkedin.com/in/allie-pashi/"},
+    {name:"Sarah Shoff",href:"https://www.linkedin.com/in/sarah-shoff-she-her-1330a54/"},
+    {name:"GG Guitart",href:"https://www.linkedin.com/in/gg-guitart/"},
+    {name:"Rebecca Rae Allen",href:"https://www.linkedin.com/in/rebecca-rae-allen/"},
+  ]},
+  {label:"Live Product Case",name:"",title:"",href:null,multiHrefs:[
+    {name:"Sarah Turrin",href:"https://www.linkedin.com/in/sarahturrin/"},
+    {name:"Daniel Ilkovich",href:"https://www.linkedin.com/in/ilkovich/"},
+    {name:"Dan Tartakovsky",href:"https://www.linkedin.com/in/tartakovsky/"},
+    {name:"Sam Bilow",href:"https://www.linkedin.com/in/sam-bilow-59434150/"},
+  ]},
+  {label:"Executive Review",name:"Joe English",title:"CEO",href:"https://www.linkedin.com/in/joe-m-english/"},
+],
   links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
 };
 
