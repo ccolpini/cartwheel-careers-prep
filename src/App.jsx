@@ -506,8 +506,8 @@ function StagePrep({role}) {
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:C.charcoal}}>{stage.stage}</div>
                   <div style={{fontSize:12,color:C.taupe,marginTop:2}}>
                       {interviewer ? <InterviewerDisplay interviewer={interviewer}/> : <span style={{color:C.taupe,fontStyle:"italic"}}>—</span>}
+                  </div>
                 </div>
-              </div>
               <ChevronDown size={16} color={C.indigo} style={{flexShrink:0,transform:isOpen?"rotate(180deg)":"none",transition:"0.2s"}}/>
             </button>
             {isOpen&&(
