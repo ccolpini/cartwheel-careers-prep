@@ -746,10 +746,10 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     {icon:<Heart size={14}/>,label:"Resilient",desc:"Supporting each other through challenges"},
                   ].map(({icon,label,desc})=>(
                     <div key={label} style={{display:"flex",gap:12,alignItems:"flex-start",marginBottom:14}}>
-                      <div style={{color:C.lavender,marginTop:1,flexShrink:0}}>{icon}</div>
+                     <div style={{color:C.indigo,marginTop:1,flexShrink:0}}>{icon}</div>
                       <div>
-                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.white}}>{label} </span>
-                        <span style={{fontSize:13,color:"rgba(255,255,255,0.45)",lineHeight:1.5}}>{desc}</span>
+                        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.charcoal}}>{label} </span>
+                        <span style={{fontSize:13,color:"rgba(15,27,31,0.55)",lineHeight:1.5}}>{desc}</span>
                       </div>
                     </div>
                   ))}
@@ -763,9 +763,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   {[
                     {label:"Recruiter",name:"Caroline Colpini",href:"mailto:caroline.colpini@cartwheelcare.org"},
                     {label:"Coordinator",name:"Avery Henry",href:"mailto:avery.henry@cartwheelcare.org"},
-                    ...(role.contacts?.find(c=>c.includes("Take-home"))
-                      ? [{label:"Take-home Qs",name:"Jacob Savos",href:"mailto:jacob.savos@cartwheelcare.org"}]
-                      : []),
+                    ...(role.contacts?.find(c=>c.includes("Take-home")),
                   ].map(({label,name,href})=>(
                     <div key={label} style={{marginBottom:14}}>
                       <div style={{fontSize:11,fontWeight:600,color:C.taupe,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:3}}>{label}</div>
