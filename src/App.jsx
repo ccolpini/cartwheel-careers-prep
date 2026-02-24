@@ -731,7 +731,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
             <FadeIn delay={0}>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
                 <div style={{
-                  background:C.charcoal,borderRadius:16,padding:"24px",
+                  background:C.lightlavendar,borderRadius:16,padding:"24px",
                   boxShadow:"0 4px 24px rgba(15,27,31,0.12)",
                 }}>
                   <SectionLabel light>What we look for</SectionLabel>
@@ -743,7 +743,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     {icon:<Heart size={14}/>,label:"Resilient",desc:"Supporting each other through challenges"},
                   ].map(({icon,label,desc})=>(
                     <div key={label} style={{display:"flex",gap:12,alignItems:"flex-start",marginBottom:14}}>
-                      <div style={{color:C.lavender,marginTop:1,flexShrink:0}}>{icon}</div>
+                      <div style={{color:C.indigo,marginTop:1,flexShrink:0}}>{icon}</div>
                       <div>
                         <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.white}}>{label} </span>
                         <span style={{fontSize:13,color:"rgba(255,255,255,0.45)",lineHeight:1.5}}>{desc}</span>
@@ -1014,8 +1014,8 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     </div>
                   ))}
                 </div>
-                <div style={{background:"rgba(240,236,233,0.8)",borderRadius:14,padding:"22px",border:"1px solid rgba(15,27,31,0.07)"}}>
-                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:11,color:C.taupe,marginBottom:14,letterSpacing:"1px",textTransform:"uppercase"}}>This may not be right if you</div>
+                <div style={{background:C.lightPeach,borderRadius:14,padding:"22px",border:"1px solid rgba(15,27,31,0.07)"}}>
+                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:11,color:C.brick,marginBottom:14,letterSpacing:"1px",textTransform:"uppercase"}}>This may not be right if you</div>
                   {(role.notfor||[]).map((t,i)=>(
                     <div key={i} style={{display:"flex",gap:10,alignItems:"flex-start",marginBottom:10}}>
                       <X size={13} color={C.taupe} style={{flexShrink:0,marginTop:2}}/>
@@ -1088,14 +1088,14 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   {icon:<Calendar size={14}/>,title:"Generous PTO",sub:"Including company closure 12/25-1/1"},
                 ].map(({icon,title,sub})=>(
                   <div key={title} style={{
-                    background:C.white,borderRadius:12,padding:"18px 16px",
+                    background:C.mint,borderRadius:12,padding:"18px 16px",
                     border:"1px solid rgba(15,27,31,0.08)",
                     boxShadow:"0 1px 4px rgba(15,27,31,0.04)",
                     transition:"all 0.2s",
                   }}>
                     <div style={{color:C.forest,marginBottom:8}}>{icon}</div>
-                    <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.charcoal,marginBottom:4}}>{title}</div>
-                    <div style={{fontSize:12,color:C.taupe,lineHeight:1.5}}>{sub}</div>
+                    <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.forest,marginBottom:4}}>{title}</div>
+                    <div style={{fontSize:12,color:C.forest,lineHeight:1.5}}>{sub}</div>
                   </div>
                 ))}
               </div>
