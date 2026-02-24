@@ -584,7 +584,7 @@ Only answer from this information. If unsure, direct to the coordinator listed i
     setLoading(false);
   };
 
-  const TABS=[
+    const TABS=[
     {id:"guide",label:"Overview",icon:<BookOpen size={14}/>},
     {id:"chat",label:"Ask",icon:<MessageCircle size={14}/>},
     {id:"roadmap",label:"Roadmap",icon:<Map size={14}/>},
@@ -624,95 +624,102 @@ Only answer from this information. If unsure, direct to the coordinator listed i
         </div>
       </div>
 
-      {/* Hero — dark panel */}
+      {/* Hero — warm sand with forest stats accent */}
       <div style={{
-        background:`linear-gradient(135deg, ${C.charcoal} 0%, #1a2f35 100%)`,
+        background:C.sand,
         padding:"48px 28px 0",
         position:"relative",overflow:"hidden",
       }}>
-        {/* Decorative background circle */}
+        {/* Decorative brand accents */}
         <div style={{
-          position:"absolute",right:-80,top:-80,width:400,height:400,
-          borderRadius:"50%",background:"rgba(57,75,153,0.08)",pointerEvents:"none",
+          position:"absolute",right:60,top:30,width:12,height:12,
+          borderRadius:"50%",background:C.lavender,opacity:0.4,pointerEvents:"none",
         }}/>
         <div style={{
-          position:"absolute",left:-60,bottom:0,width:300,height:300,
-          borderRadius:"50%",background:"rgba(177,165,247,0.05)",pointerEvents:"none",
+          position:"absolute",right:100,top:70,width:8,height:8,
+          borderRadius:"50%",background:C.lavender,opacity:0.25,pointerEvents:"none",
+        }}/>
+        <div style={{
+          position:"absolute",left:40,bottom:120,width:10,height:10,
+          borderRadius:"50%",background:C.peach,opacity:0.3,pointerEvents:"none",
         }}/>
 
         <div style={{maxWidth:820,margin:"0 auto",position:"relative"}}>
           <FadeIn delay={0}>
             <div style={{
               display:"inline-flex",alignItems:"center",gap:8,
-              background:"rgba(177,165,247,0.12)",borderRadius:99,
-              padding:"5px 12px",marginBottom:16,
-              border:"1px solid rgba(177,165,247,0.2)",
+              background:C.white,borderRadius:99,
+              padding:"5px 14px",marginBottom:16,
+              border:"1px solid rgba(15,27,31,0.08)",
+              boxShadow:"0 1px 3px rgba(15,27,31,0.04)",
             }}>
-              <div style={{width:6,height:6,borderRadius:"50%",background:C.mint,animation:"pulse 2s infinite"}}/>
-              <span style={{fontSize:11,fontWeight:600,color:C.lavender,fontFamily:"'Montserrat',sans-serif",letterSpacing:"0.5px"}}>{role.department} · {role.location}</span>
+              <div style={{width:6,height:6,borderRadius:"50%",background:C.forest,animation:"pulse 2s infinite"}}/>
+              <span style={{fontSize:11,fontWeight:600,color:C.charcoal,fontFamily:"'Montserrat',sans-serif",letterSpacing:"0.5px"}}>{role.department} · {role.location}</span>
             </div>
           </FadeIn>
 
           <FadeIn delay={80}>
             <h1 style={{
-              fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:32,
-              color:C.white,margin:"0 0 8px",letterSpacing:"-0.5px",lineHeight:1.2,
+              fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:34,
+              color:C.charcoal,margin:"0 0 10px",letterSpacing:"-0.5px",lineHeight:1.15,
             }}>{role.title}</h1>
           </FadeIn>
 
           <FadeIn delay={140}>
-            <p style={{fontSize:15,color:"rgba(255,255,255,0.55)",margin:"0 0 6px"}}>
-              Reports to <span style={{color:"rgba(255,255,255,0.8)",fontWeight:500}}>{role.reportsto}</span>
+            <p style={{fontSize:15,color:C.taupe,margin:"0 0 4px"}}>
+              Reports to <span style={{color:C.charcoal,fontWeight:600}}>{role.reportsto}</span>
             </p>
-            <p style={{fontSize:15,color:"rgba(255,255,255,0.55)",margin:"0 0 28px"}}>
-              <span style={{color:C.mint,fontWeight:600}}>{role.comp}</span> + equity
+            <p style={{fontSize:15,color:C.taupe,margin:"0 0 28px"}}>
+              <span style={{color:C.forest,fontWeight:700}}>{role.comp}</span> + equity
             </p>
           </FadeIn>
 
           <FadeIn delay={200}>
             <p style={{
-              fontSize:14,color:"rgba(255,255,255,0.6)",lineHeight:1.75,
+              fontSize:14,color:"#4a5568",lineHeight:1.75,
               maxWidth:560,margin:"0 0 32px",
-              borderLeft:`3px solid ${C.lavender}`,paddingLeft:16,
+              borderLeft:`3px solid ${C.brick}`,paddingLeft:16,
             }}>
               {role.mission}
             </p>
           </FadeIn>
 
-          {/* Stats */}
+          {/* Stats — bold forest bar */}
           <FadeIn delay={260}>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:1,background:"rgba(255,255,255,0.06)",borderRadius:14,overflow:"hidden",marginBottom:0}}>
+            <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:1,background:C.forest,borderRadius:14,overflow:"hidden",marginBottom:0,boxShadow:"0 4px 20px rgba(38,84,79,0.2)"}}>
               {(role.stats||[]).map(({n,label,sub},i)=>(
                 <div key={n} style={{
-                  padding:"20px 16px",
-                  background:i===0?"rgba(57,75,153,0.15)":"transparent",
-                  borderRight:i<3?"1px solid rgba(255,255,255,0.06)":"none",
+                  padding:"22px 18px",
+                  background:i===0?"rgba(255,255,255,0.08)":"transparent",
+                  borderRight:i<3?"1px solid rgba(255,255,255,0.1)":"none",
                 }}>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:24,color:C.white,lineHeight:1}}>{n}</div>
-                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:11,color:C.lavender,marginTop:5,letterSpacing:"0.3px"}}>{label}</div>
-                  <div style={{fontSize:11,color:"rgba(255,255,255,0.35)",marginTop:3,lineHeight:1.4}}>{sub}</div>
+                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:11,color:C.mint,marginTop:6,letterSpacing:"0.3px"}}>{label}</div>
+                  <div style={{fontSize:11,color:"rgba(255,255,255,0.4)",marginTop:3,lineHeight:1.4}}>{sub}</div>
                 </div>
               ))}
             </div>
           </FadeIn>
 
-          {/* Tabs */}
+          {/* Tabs — clean white bar */}
           <div style={{
-            display:"flex",gap:2,marginTop:28,
-            borderBottom:"1px solid rgba(255,255,255,0.08)",
+            display:"flex",gap:2,marginTop:0,
+            background:C.white,
+            borderRadius:"0 0 12px 12px",
+            padding:"0 8px",
+            boxShadow:"0 2px 8px rgba(15,27,31,0.05)",
             overflowX:"auto",
           }}>
             {TABS.map(({id,label,icon})=>(
               <button key={id} onClick={()=>setTab(id)} style={{
-                padding:"11px 16px",border:"none",background:"none",cursor:"pointer",
+                padding:"13px 16px",border:"none",background:"none",cursor:"pointer",
                 whiteSpace:"nowrap",display:"flex",alignItems:"center",gap:6,
                 fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:12,
-                color:tab===id?C.white:"rgba(255,255,255,0.35)",
-                borderBottom:tab===id?`2px solid ${C.lavender}`:"2px solid transparent",
+                color:tab===id?C.forest:C.taupe,
+                borderBottom:tab===id?`2px solid ${C.forest}`:"2px solid transparent",
                 transition:"all 0.15s",
-                opacity:tab===id?1:0.7,
               }}>
-                <span style={{opacity:tab===id?1:0.6}}>{icon}</span>
+                <span style={{opacity:tab===id?1:0.5}}>{icon}</span>
                 {label}
               </button>
             ))}
@@ -727,13 +734,13 @@ Only answer from this information. If unsure, direct to the coordinator listed i
         {tab==="guide"&&(
           <div style={{display:"flex",flexDirection:"column",gap:24}}>
 
-{/* Qualities + Contacts */}
+            {/* Qualities + Contacts */}
             <FadeIn delay={0}>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
                 <div style={{
                   background:C.lightLavender,borderRadius:16,padding:"24px",
-                  boxShadow:"0 4px 24px rgba(57,75,153,0.1)",
-                  border:"1px solid rgba(177,165,247,0.3)",
+                  boxShadow:"0 4px 24px rgba(57,75,153,0.08)",
+                  border:"1px solid rgba(177,165,247,0.25)",
                 }}>
                   <SectionLabel>What we look for</SectionLabel>
                   {[
@@ -753,9 +760,10 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                   ))}
                 </div>
                 <div style={{
-                  background:C.lightMint,borderRadius:16,padding:"24px",
+                  background:C.white,borderRadius:16,padding:"24px",
                   border:"1px solid rgba(15,27,31,0.07)",
                   boxShadow:"0 2px 8px rgba(15,27,31,0.05)",
+                  borderLeft:`3px solid ${C.forest}`,
                 }}>
                   <SectionLabel>Your contacts</SectionLabel>
                   {[
@@ -766,12 +774,12 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                       : []),
                   ].map(({label,name,href})=>(
                     <div key={label} style={{marginBottom:14}}>
-                      <div style={{fontSize:11,fontWeight:600,color:C.forest,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:3}}>{label}</div>
-                      {href ? <a href={href} style={{fontSize:14,color:C.indigo,textDecoration:"none",fontWeight:600}}>{name}</a> : <span style={{fontSize:14,color:C.forest,fontWeight:600}}>{name}</span>}
+                      <div style={{fontSize:11,fontWeight:600,color:C.taupe,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:3}}>{label}</div>
+                      {href ? <a href={href} style={{fontSize:14,color:C.indigo,textDecoration:"none",fontWeight:600}}>{name}</a> : <span style={{fontSize:14,color:C.charcoal,fontWeight:600}}>{name}</span>}
                     </div>
                   ))}
                   <div style={{marginTop:16,paddingTop:16,borderTop:"1px solid rgba(15,27,31,0.06)"}}>
-                    <div style={{fontSize:12,color:C.forest,lineHeight:1.6}}>Questions at any stage? Reach out to your coordinator — we want this process to feel clear.</div>
+                    <div style={{fontSize:12,color:C.taupe,lineHeight:1.6}}>Questions at any stage? Reach out to your coordinator — we want this process to feel clear.</div>
                   </div>
                 </div>
               </div>
