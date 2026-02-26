@@ -150,7 +150,7 @@ export const CCM_ROLE = {
     {stage:"Systems & Infrastructure Deep Dive",time:"30m",who:"Julie Jungman",focus:"Systems thinking, process design, automation"},
     {stage:"Exec Review",time:"30m",who:"Dan Tartakovsky, COO",focus:"Strategic thinking, growth potential, culture fit"},
   ],
-  contacts:["Recruiter: Caroline Colpini - caroline.colpini@cartwheelcare.org","Coordinator: Avery Henry - avery.henry@cartwheelcare.org","Take-home questions: Caroline Colpini"],
+  contacts:["Recruiter: Caroline Colpini - caroline.colpini@cartwheelcare.org","Coordinator: Avery Henry - avery.henry@cartwheelcare.org"],
   prep:["Bring 1-2 examples of operational systems you have built or improved end-to-end","Walk through context, decisions, tradeoffs, and measurable outcomes","Think about how you lead teams through ambiguity and hold standards without micromanaging","Demonstrate data literacy — be ready to talk through metrics and how you use them to drive decisions"],
   thrive:["Care deeply about the families and children this work serves","Love operational precision and find energy in building systems that scale","Are naturally data-driven and use metrics to drive decisions and accountability","Thrive as a people leader who develops team members and removes blockers"],
   notfor:["Prefer strategy over day-to-day operational ownership","Are uncomfortable with close metrics management and SLA accountability","Prefer working independently rather than deeply cross-functionally","Need highly structured processes before taking initiative"],
