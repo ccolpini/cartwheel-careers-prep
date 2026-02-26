@@ -715,6 +715,40 @@ function renderMarkdown(text) {
   return result;
 }
 
+// ── Why Cartwheel reveal card ─────────────────────────────────
+function WhyCartwheel() {
+  const [open,setOpen]=useState(false);
+  return (
+    <button onClick={()=>setOpen(o=>!o)} style={{width:"100%",background:"none",border:"none",padding:0,cursor:"pointer",textAlign:"left"}}>
+      <div style={{
+        background:open?"rgba(216,210,251,0.15)":C.white,
+        border:"1px solid rgba(57,75,153,0.1)",
+        borderRadius:16,padding:"24px",
+        transition:"background 0.4s ease, box-shadow 0.3s ease",
+        boxShadow:open?"0 4px 20px rgba(57,75,153,0.08)":"0 1px 4px rgba(15,27,31,0.05)",
+        textAlign:"center",
+      }}>
+        <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:18,color:C.indigo,marginBottom:10}}>
+          Why Cartwheel?
+        </div>
+        <div style={{display:"flex",justifyContent:"center",animation:open?"none":"chevronPulse 2s ease infinite"}}>
+          <ChevronDown size={18} color={C.lavender} style={{transform:open?"rotate(180deg)":"rotate(0deg)",transition:"transform 0.4s ease"}}/>
+        </div>
+        <div style={{maxHeight:open?"220px":"0",overflow:"hidden",transition:"max-height 0.4s ease"}}>
+          <div style={{paddingTop:20}}>
+            <p style={{fontFamily:"'Montserrat',sans-serif",fontSize:15,fontWeight:500,color:C.charcoal,lineHeight:1.8,margin:"0 auto 10px",maxWidth:520}}>
+              If you're looking for work that matters, a team that uplifts you, and a company positioned to scale impact at unprecedented speed —
+            </p>
+            <p style={{fontFamily:"'Montserrat',sans-serif",fontSize:20,fontWeight:700,color:C.lavender,lineHeight:1.4,margin:"0 auto",maxWidth:520}}>
+              you're in the right place.
+            </p>
+          </div>
+        </div>
+      </div>
+    </button>
+  );
+}
+
 // ── HoverDiv utility ─────────────────────────────────────────
 function HoverDiv({baseStyle,hoverStyle,children,...rest}) {
   const [hov,setHov]=useState(false);
@@ -1240,33 +1274,8 @@ HANDLING DIFFICULT SITUATIONS:
         {tab==="culture"&&(
           <div style={{display:"flex",flexDirection:"column",gap:36}}>
 
-            {/* Quote banner — editorial pull-quote */}
             <FadeIn delay={0}>
-              <div style={{textAlign:"center",padding:"48px 16px"}}>
-                <div style={{display:"flex",justifyContent:"center",marginBottom:24,opacity:0.3}}>
-                  <WheelMark size={48}/>
-                </div>
-                <div style={{display:"flex",justifyContent:"center",marginBottom:28}}>
-                  <div style={{width:60,height:1,background:C.lavender}}/>
-                </div>
-                <p style={{
-                  fontFamily:"'Montserrat',sans-serif",fontSize:20,fontWeight:500,
-                  color:C.charcoal,lineHeight:1.8,margin:"0 auto 12px",maxWidth:580,
-                  letterSpacing:"0.3px",
-                }}>
-                  If you're looking for work that matters, a team that uplifts you, and a company positioned to scale impact at unprecedented speed —
-                </p>
-                <p style={{
-                  fontFamily:"'Montserrat',sans-serif",fontSize:24,fontWeight:700,
-                  color:C.lavender,lineHeight:1.4,margin:"0 auto",maxWidth:580,
-                  letterSpacing:"0.3px",
-                }}>
-                  you're in the right place.
-                </p>
-                <div style={{display:"flex",justifyContent:"center",marginTop:28}}>
-                  <div style={{width:60,height:1,background:C.lavender}}/>
-                </div>
-              </div>
+              <WhyCartwheel/>
             </FadeIn>
 
             {/* What sets us apart */}
@@ -1474,6 +1483,7 @@ HANDLING DIFFICULT SITUATIONS:
         @keyframes tooltipIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
         @keyframes timelinePulse { 0%,100%{transform:scale(1);opacity:0.35} 50%{transform:scale(1.6);opacity:0} }
         @keyframes ringPulse { 0%{stroke:#394B99} 40%{stroke:#A7CF99} 100%{stroke:#394B99} }
+        @keyframes chevronPulse { 0%,100%{transform:translateY(0)} 50%{transform:translateY(3px)} }
       `}</style>
     </div>
   );
