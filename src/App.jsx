@@ -437,13 +437,13 @@ function InterviewTimeline({role}) {
                         </div>
                       )}
                       {!isTH&&pd.questions.length>0&&(
-                        <div>
-                          <div style={{fontSize:10,fontWeight:700,color:"#9C9283",letterSpacing:"1px",textTransform:"uppercase",marginBottom:8,fontFamily:"'Montserrat',sans-serif"}}>Questions to ask</div>
-                          <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                        <div style={{background:"#D3E7CC",borderRadius:10,padding:"16px",marginTop:pd.prep.length>0?0:0}}>
+                          <div style={{fontSize:10,fontWeight:700,color:"#26544F",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10,fontFamily:"'Montserrat',sans-serif"}}>Questions to ask</div>
+                          <div style={{display:"flex",flexDirection:"column",gap:8}}>
                             {pd.questions.map((q,j)=>(
-                              <div key={j} style={{display:"flex",gap:8,alignItems:"flex-start"}}>
-                                <MessageCircle size={10} color="#26544F" style={{flexShrink:0,marginTop:3}}/>
-                                <span style={{fontSize:13,color:"#26544F",fontStyle:"italic",lineHeight:1.55}}>"{q}"</span>
+                              <div key={j} style={{display:"flex",gap:10,alignItems:"flex-start"}}>
+                                <MessageCircle size={12} color="#26544F" style={{flexShrink:0,marginTop:2}}/>
+                                <span style={{fontSize:13,color:"#0F1B1F",fontStyle:"italic",lineHeight:1.6}}>"{q}"</span>
                               </div>
                             ))}
                           </div>
@@ -1193,12 +1193,6 @@ HANDLING DIFFICULT SITUATIONS:
               <InterviewTimeline role={role}/>
             </FadeIn>
 
-            <FadeIn delay={100}>
-              <SectionHead>Stage-by-Stage Prep</SectionHead>
-              <p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 16px"}}>Each stage has a different focus. Use the notes area to capture your thoughts.</p>
-              <StagePrep role={role}/>
-            </FadeIn>
-
             <FadeIn delay={160}>
               <SectionHead>Is This Role a Fit?</SectionHead>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
@@ -1246,19 +1240,32 @@ HANDLING DIFFICULT SITUATIONS:
         {tab==="culture"&&(
           <div style={{display:"flex",flexDirection:"column",gap:36}}>
 
-            {/* Quote banner — clean typography on sand */}
+            {/* Quote banner — editorial pull-quote */}
             <FadeIn delay={0}>
-              <div style={{textAlign:"center",padding:"8px 16px"}}>
-                <div style={{display:"flex",justifyContent:"center",marginBottom:18,opacity:0.3}}>
-                  <WheelMark size={40}/>
+              <div style={{textAlign:"center",padding:"48px 16px"}}>
+                <div style={{display:"flex",justifyContent:"center",marginBottom:24,opacity:0.3}}>
+                  <WheelMark size={48}/>
+                </div>
+                <div style={{display:"flex",justifyContent:"center",marginBottom:28}}>
+                  <div style={{width:60,height:1,background:C.lavender}}/>
                 </div>
                 <p style={{
-                  fontFamily:"'Montserrat',sans-serif",fontSize:17,fontWeight:500,
-                  color:C.charcoal,lineHeight:1.8,margin:"0 auto",maxWidth:560,
+                  fontFamily:"'Montserrat',sans-serif",fontSize:20,fontWeight:500,
+                  color:C.charcoal,lineHeight:1.8,margin:"0 auto 12px",maxWidth:580,
+                  letterSpacing:"0.3px",
                 }}>
-                  If you're looking for work that matters, a team that uplifts you, and a company positioned to scale impact at unprecedented speed —{" "}
-                  <strong style={{fontWeight:700,color:C.lavender}}>you're in the right place.</strong>
+                  If you're looking for work that matters, a team that uplifts you, and a company positioned to scale impact at unprecedented speed —
                 </p>
+                <p style={{
+                  fontFamily:"'Montserrat',sans-serif",fontSize:24,fontWeight:700,
+                  color:C.lavender,lineHeight:1.4,margin:"0 auto",maxWidth:580,
+                  letterSpacing:"0.3px",
+                }}>
+                  you're in the right place.
+                </p>
+                <div style={{display:"flex",justifyContent:"center",marginTop:28}}>
+                  <div style={{width:60,height:1,background:C.lavender}}/>
+                </div>
               </div>
             </FadeIn>
 
