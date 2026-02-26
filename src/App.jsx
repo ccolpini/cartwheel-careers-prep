@@ -715,6 +715,16 @@ function renderMarkdown(text) {
   return result;
 }
 
+// ── HoverDiv utility ─────────────────────────────────────────
+function HoverDiv({baseStyle,hoverStyle,children,...rest}) {
+  const [hov,setHov]=useState(false);
+  return (
+    <div style={{...baseStyle,...(hov?hoverStyle:{})}}
+      onMouseEnter={()=>setHov(true)} onMouseLeave={()=>setHov(false)}
+      {...rest}>{children}</div>
+  );
+}
+
 // ══════════════════════════════════════════════════════════════
 // CANDIDATE VIEW
 // ══════════════════════════════════════════════════════════════
@@ -1234,7 +1244,9 @@ HANDLING DIFFICULT SITUATIONS:
 
         {/* ── CULTURE ── */}
         {tab==="culture"&&(
-          <div style={{display:"flex",flexDirection:"column",gap:24}}>
+          <div style={{display:"flex",flexDirection:"column",gap:36}}>
+
+            {/* What sets us apart */}
             <FadeIn delay={0}>
               <div style={{
                 background:`linear-gradient(135deg, ${C.indigo} 0%, #2d3d7a 100%)`,
@@ -1242,7 +1254,7 @@ HANDLING DIFFICULT SITUATIONS:
                 boxShadow:"0 8px 32px rgba(15,27,31,0.15)",
               }}>
                 <SectionLabel light>What sets us apart</SectionLabel>
-                <p style={{fontSize:16,color:"rgba(255,255,255,0.75)",lineHeight:1.75,margin:"0 0 24px",fontStyle:"normal"}}>
+                <p style={{fontSize:15,color:"rgba(255,255,255,0.75)",lineHeight:1.75,margin:"0 0 24px"}}>
                   It's not just the impact we deliver in schools — it's also how we work. Fully remote, transparent, and human-first, with leaders who model vulnerability and a team that celebrates connection.
                 </p>
                 <div style={{display:"flex",flexDirection:"column",gap:12}}>
@@ -1251,38 +1263,42 @@ HANDLING DIFFICULT SITUATIONS:
                     {icon:<Shield size={16}/>,title:"Transparency is the norm",desc:"Leadership shares financials and strategic debates openly — including mistakes and uncertainties — because that's how we all get better."},
                     {icon:<Heart size={16}/>,title:"Vulnerability is strength",desc:"Founders model it first: admitting when they're wrong, asking for feedback, showing up as whole humans. That permission creates space for everyone."},
                   ].map(({icon,title,desc})=>(
-                    <div key={title} style={{display:"flex",gap:14,alignItems:"flex-start",background:"rgba(255,255,255,0.05)",borderRadius:12,padding:"18px 20px",border:"1px solid rgba(255,255,255,0.08)"}}>
-                      <div style={{color:C.lavender,flexShrink:0,marginTop:1}}>{icon}</div>
+                    <HoverDiv key={title}
+                      baseStyle={{display:"flex",gap:14,alignItems:"flex-start",background:"rgba(255,255,255,0.07)",borderRadius:12,padding:"18px 20px",border:"1px solid rgba(255,255,255,0.1)",transition:"all 0.22s ease",cursor:"default"}}
+                      hoverStyle={{background:"rgba(255,255,255,0.13)",transform:"translateY(-2px)",boxShadow:"0 8px 24px rgba(0,0,0,0.18)"}}>
+                      <div style={{color:C.lightLavender,flexShrink:0,marginTop:1}}>{icon}</div>
                       <div>
                         <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:C.white,marginBottom:5}}>{title}</div>
-                        <div style={{fontSize:13,color:"rgba(255,255,255,0.55)",lineHeight:1.7}}>{desc}</div>
+                        <div style={{fontSize:13,color:"rgba(255,255,255,0.6)",lineHeight:1.7}}>{desc}</div>
                       </div>
-                    </div>
+                    </HoverDiv>
                   ))}
                 </div>
               </div>
             </FadeIn>
 
+            {/* Quote banner — clean typography on sand */}
             <FadeIn delay={60}>
-              <div style={{
-                background:C.forest,borderRadius:14,padding:"32px 36px",
-                borderLeft:`4px solid ${C.brick}`,
-                boxShadow:"0 4px 20px rgba(38,84,79,0.18)",
-              }}>
+              <div style={{textAlign:"center",padding:"8px 16px"}}>
+                <div style={{display:"flex",justifyContent:"center",marginBottom:18,opacity:0.3}}>
+                  <WheelMark size={40}/>
+                </div>
                 <p style={{
-                  fontFamily:"'Montserrat',sans-serif",fontSize:16,fontWeight:500,
-                  color:C.white,lineHeight:1.75,margin:0,textAlign:"center",
+                  fontFamily:"'Montserrat',sans-serif",fontSize:17,fontWeight:500,
+                  color:C.charcoal,lineHeight:1.8,margin:"0 auto",maxWidth:560,
                 }}>
-                  "If you're looking for work that matters, a team that uplifts you, and a company positioned to scale impact at unprecedented speed — you're in the right place."
+                  If you're looking for work that matters, a team that uplifts you, and a company positioned to scale impact at unprecedented speed —{" "}
+                  <strong style={{fontWeight:700,color:C.lavender}}>you're in the right place.</strong>
                 </p>
               </div>
             </FadeIn>
 
+            {/* What type of person thrives here */}
             <FadeIn delay={80}>
               <div>
-                <h2 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:20,color:C.charcoal,margin:"0 0 16px",letterSpacing:"-0.3px"}}>What Type of Person Thrives Here?</h2>
+                <h2 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:20,color:C.charcoal,margin:"0 0 20px",letterSpacing:"-0.3px"}}>What Type of Person Thrives Here?</h2>
                 <div style={{
-                  background:C.white,borderRadius:14,padding:"24px 28px",
+                  background:C.white,borderRadius:14,overflow:"hidden",
                   border:"1px solid rgba(15,27,31,0.07)",
                   boxShadow:"0 2px 12px rgba(15,27,31,0.06)",
                 }}>
@@ -1295,25 +1311,24 @@ HANDLING DIFFICULT SITUATIONS:
                   ].map(([bold,text],i)=>{
                     const parts=text.split(bold);
                     return (
-                      <div key={i} style={{
-                        display:"flex",alignItems:"flex-start",gap:12,
-                        padding:"12px 0",
-                        borderBottom:i<4?"1px solid rgba(15,27,31,0.05)":"none",
-                      }}>
-                        <ChevronRight size={16} color={C.indigo} style={{flexShrink:0,marginTop:2}}/>
-                        <span style={{fontSize:14,color:C.charcoal,lineHeight:1.65}}>
+                      <HoverDiv key={i}
+                        baseStyle={{display:"flex",alignItems:"flex-start",gap:14,padding:"18px 24px",borderLeft:"3px solid transparent",transition:"all 0.2s ease",cursor:"default"}}
+                        hoverStyle={{transform:"scale(1.015)",borderLeftColor:C.lavender,background:"rgba(177,165,247,0.05)"}}>
+                        <ChevronRight size={15} color={C.lavender} style={{flexShrink:0,marginTop:3}}/>
+                        <span style={{fontSize:14,color:C.charcoal,lineHeight:1.7}}>
                           {parts[0]}<strong style={{color:C.indigo,fontWeight:700}}>{bold}</strong>{parts[1]}
                         </span>
-                      </div>
+                      </HoverDiv>
                     );
                   })}
                 </div>
               </div>
             </FadeIn>
 
+            {/* Comp + Benefits */}
             <FadeIn delay={100}>
               <SectionHead>Compensation + Benefits</SectionHead>
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10,marginBottom:12}}>
+              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:12,marginBottom:14}}>
                 {[
                   {icon:<Coffee size={14}/>,title:"401(k) Match",sub:"2% employer contribution"},
                   {icon:<Heart size={14}/>,title:"Premium Health",sub:"Medical, dental, orthodontia, vision"},
@@ -1322,22 +1337,20 @@ HANDLING DIFFICULT SITUATIONS:
                   {icon:<BookMarked size={14}/>,title:"Prof. Development",sub:"$500 annual stipend"},
                   {icon:<Calendar size={14}/>,title:"Generous PTO",sub:"Including company closure 12/25-1/1"},
                 ].map(({icon,title,sub})=>(
-                  <div key={title} style={{
-                    background:C.lightMint,borderRadius:12,padding:"18px 16px",
-                    border:"1px solid rgba(15,27,31,0.08)",
-                    boxShadow:"0 1px 4px rgba(15,27,31,0.04)",
-                    transition:"all 0.2s",
-                  }}>
-                    <div style={{color:C.forest,marginBottom:8}}>{icon}</div>
+                  <HoverDiv key={title}
+                    baseStyle={{background:C.lightMint,borderRadius:12,padding:"20px 16px",border:"1px solid rgba(38,84,79,0.1)",boxShadow:"0 1px 4px rgba(15,27,31,0.04)",transition:"all 0.22s ease",cursor:"default"}}
+                    hoverStyle={{transform:"translateY(-2px)",boxShadow:"0 8px 24px rgba(38,84,79,0.13)"}}>
+                    <div style={{color:C.forest,marginBottom:10}}>{icon}</div>
                     <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.forest,marginBottom:4}}>{title}</div>
-                    <div style={{fontSize:12,color:C.forest,lineHeight:1.5}}>{sub}</div>
-                  </div>
+                    <div style={{fontSize:12,color:C.forest,lineHeight:1.5,opacity:0.8}}>{sub}</div>
+                  </HoverDiv>
                 ))}
               </div>
               <div style={{fontSize:13,color:C.taupe,paddingLeft:4}}>MacBook provided &bull; Flexible remote-first</div>
             </FadeIn>
 
-            <FadeIn delay={160}>
+            {/* Get to Know Us Better */}
+            <FadeIn delay={120}>
               <SectionHead>Get to Know Us Better</SectionHead>
               <MissionDropdown/>
               <div style={{display:"flex",flexWrap:"wrap",gap:10,marginTop:14}}>
@@ -1351,7 +1364,7 @@ HANDLING DIFFICULT SITUATIONS:
                     display:"inline-flex",alignItems:"center",gap:7,
                     background:C.white,border:"1px solid rgba(15,27,31,0.1)",borderRadius:99,
                     padding:"8px 16px",fontSize:13,color:C.charcoal,textDecoration:"none",fontWeight:500,
-                    boxShadow:"0 1px 3px rgba(15,27,31,0.05)",
+                    boxShadow:"0 1px 3px rgba(15,27,31,0.05)",transition:"all 0.15s ease",
                   }}>
                     <span style={{color:C.indigo}}>{icon}</span>{label}
                   </a>
