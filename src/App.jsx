@@ -1246,8 +1246,24 @@ HANDLING DIFFICULT SITUATIONS:
         {tab==="culture"&&(
           <div style={{display:"flex",flexDirection:"column",gap:36}}>
 
-            {/* What sets us apart */}
+            {/* Quote banner — clean typography on sand */}
             <FadeIn delay={0}>
+              <div style={{textAlign:"center",padding:"8px 16px"}}>
+                <div style={{display:"flex",justifyContent:"center",marginBottom:18,opacity:0.3}}>
+                  <WheelMark size={40}/>
+                </div>
+                <p style={{
+                  fontFamily:"'Montserrat',sans-serif",fontSize:17,fontWeight:500,
+                  color:C.charcoal,lineHeight:1.8,margin:"0 auto",maxWidth:560,
+                }}>
+                  If you're looking for work that matters, a team that uplifts you, and a company positioned to scale impact at unprecedented speed —{" "}
+                  <strong style={{fontWeight:700,color:C.lavender}}>you're in the right place.</strong>
+                </p>
+              </div>
+            </FadeIn>
+
+            {/* What sets us apart */}
+            <FadeIn delay={60}>
               <div style={{
                 background:`linear-gradient(135deg, ${C.indigo} 0%, #2d3d7a 100%)`,
                 borderRadius:16,padding:"32px",
@@ -1274,22 +1290,6 @@ HANDLING DIFFICULT SITUATIONS:
                     </HoverDiv>
                   ))}
                 </div>
-              </div>
-            </FadeIn>
-
-            {/* Quote banner — clean typography on sand */}
-            <FadeIn delay={60}>
-              <div style={{textAlign:"center",padding:"8px 16px"}}>
-                <div style={{display:"flex",justifyContent:"center",marginBottom:18,opacity:0.3}}>
-                  <WheelMark size={40}/>
-                </div>
-                <p style={{
-                  fontFamily:"'Montserrat',sans-serif",fontSize:17,fontWeight:500,
-                  color:C.charcoal,lineHeight:1.8,margin:"0 auto",maxWidth:560,
-                }}>
-                  If you're looking for work that matters, a team that uplifts you, and a company positioned to scale impact at unprecedented speed —{" "}
-                  <strong style={{fontWeight:700,color:C.lavender}}>you're in the right place.</strong>
-                </p>
               </div>
             </FadeIn>
 
