@@ -143,16 +143,23 @@ function InterviewerDisplay({interviewer}) {
   return <span style={{color:C.taupe,fontStyle:"italic"}}>—</span>;
 }
 
-// ── Animated entry wrapper ────────────────────────────────────
+// ── Animated entry wrapper (IntersectionObserver) ─────────────
 function FadeIn({children, delay=0, style={}}) {
+  const ref=useRef(null);
+  const [vis,setVis]=useState(false);
+  useEffect(()=>{
+    const el=ref.current; if(!el) return;
+    const obs=new IntersectionObserver(([e])=>{if(e.isIntersecting){setVis(true);obs.disconnect();}},{threshold:0.08});
+    obs.observe(el);
+    return ()=>obs.disconnect();
+  },[]);
   return (
-    <div style={{
-      animation:`fadeUp 0.5s ease both`,
-      animationDelay:`${delay}ms`,
+    <div ref={ref} style={{
+      opacity:vis?1:0,
+      transform:vis?"translateY(0)":"translateY(20px)",
+      transition:`opacity 0.55s ease ${delay}ms, transform 0.55s ease ${delay}ms`,
       ...style
-    }}>
-      {children}
-    </div>
+    }}>{children}</div>
   );
 }
 
@@ -221,39 +228,279 @@ function SectionHead({children, light=false}) {
   );
 }
 
+// ── Confetti canvas ───────────────────────────────────────────
+function Confetti({trigger}) {
+  const canvasRef=useRef(null);
+  useEffect(()=>{
+    if(!trigger) return;
+    const canvas=canvasRef.current; if(!canvas) return;
+    const ctx=canvas.getContext("2d");
+    const W=canvas.offsetWidth, H=canvas.offsetHeight;
+    canvas.width=W; canvas.height=H;
+    const COLS=["#B1A5F7","#A7CF99","#EBA89B","#F0702E","#394B99","#D8D2FB"];
+    let pts=Array.from({length:72},()=>({
+      x:W*0.5, y:H*0.18,
+      vx:(Math.random()-0.5)*15, vy:Math.random()*-12-2,
+      color:COLS[Math.floor(Math.random()*COLS.length)],
+      w:Math.random()*8+3, h:Math.random()*4+2,
+      rot:Math.random()*360, rs:(Math.random()-0.5)*14,
+      a:1,
+    }));
+    let raf;
+    const draw=()=>{
+      ctx.clearRect(0,0,W,H);
+      pts=pts.filter(p=>p.a>0.02);
+      pts.forEach(p=>{
+        p.x+=p.vx; p.y+=p.vy; p.vy+=0.3;
+        p.rot+=p.rs; p.a-=0.013;
+        ctx.save();
+        ctx.translate(p.x,p.y); ctx.rotate(p.rot*Math.PI/180);
+        ctx.globalAlpha=Math.max(0,p.a);
+        ctx.fillStyle=p.color;
+        ctx.fillRect(-p.w/2,-p.h/2,p.w,p.h);
+        ctx.restore();
+      });
+      if(pts.length>0) raf=requestAnimationFrame(draw);
+    };
+    raf=requestAnimationFrame(draw);
+    return()=>cancelAnimationFrame(raf);
+  },[trigger]);
+  return <canvas ref={canvasRef} style={{position:"absolute",inset:0,width:"100%",height:"100%",pointerEvents:"none",zIndex:5}}/>;
+}
+
+// ── Progress Ring ─────────────────────────────────────────────
+function ProgressRing({pct}) {
+  const r=28,size=72,circ=2*Math.PI*r;
+  const offset=circ-(pct/100)*circ;
+  const [pulse,setPulse]=useState(false);
+  const prev=useRef(0);
+  useEffect(()=>{
+    if(pct===100&&prev.current<100){setPulse(true);setTimeout(()=>setPulse(false),800);}
+    prev.current=pct;
+  },[pct]);
+  return (
+    <div style={{position:"relative",width:size,height:size,flexShrink:0}}>
+      <svg width={size} height={size} style={{transform:"rotate(-90deg)"}}>
+        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="rgba(177,165,247,0.25)" strokeWidth={5}/>
+        <circle cx={size/2} cy={size/2} r={r} fill="none"
+          stroke={pulse?"#A7CF99":"#394B99"} strokeWidth={5}
+          strokeDasharray={circ} strokeDashoffset={offset} strokeLinecap="round"
+          style={{transition:"stroke-dashoffset 0.6s ease, stroke 0.3s ease",
+            animation:pulse?"ringPulse 0.8s ease":"none"}}/>
+      </svg>
+      <div style={{position:"absolute",inset:0,display:"flex",alignItems:"center",justifyContent:"center"}}>
+        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,
+          color:pct===100?"#A7CF99":"#B1A5F7",transition:"color 0.3s"}}>{pct}%</span>
+      </div>
+    </div>
+  );
+}
+
+// ── Focus tooltip wrapper ──────────────────────────────────────
+function FocusTip({focus,children}) {
+  const [show,setShow]=useState(false);
+  if(!focus) return children;
+  return (
+    <span style={{position:"relative",display:"inline-block"}}
+      onMouseEnter={()=>setShow(true)} onMouseLeave={()=>setShow(false)}>
+      {children}
+      {show&&(
+        <span style={{
+          position:"absolute",bottom:"calc(100% + 7px)",left:0,
+          background:"#0F1B1F",color:"#FFFFFF",fontSize:11,lineHeight:1.55,
+          padding:"7px 11px",borderRadius:8,zIndex:30,
+          boxShadow:"0 4px 16px rgba(15,27,31,0.25)",
+          maxWidth:240,whiteSpace:"normal",display:"block",
+          animation:"tooltipIn 0.15s ease both",
+        }}>
+          <span style={{color:"#B1A5F7",fontWeight:600}}>Focus: </span>{focus}
+          <span style={{position:"absolute",bottom:-4,left:10,width:8,height:8,
+            background:"#0F1B1F",transform:"rotate(45deg)"}}/>
+        </span>
+      )}
+    </span>
+  );
+}
+
+// ── Prep Notes (localStorage) ─────────────────────────────────
+function PrepNotes({slug,stageIndex}) {
+  const key=`notes-${slug}-${stageIndex}`;
+  const [text,setText]=useState(()=>{try{return localStorage.getItem(key)||"";}catch{return "";}});
+  const [saved,setSaved]=useState(false);
+  const timer=useRef(null);
+  const onChange=(e)=>{
+    const v=e.target.value; setText(v);
+    try{localStorage.setItem(key,v);}catch{}
+    setSaved(true); clearTimeout(timer.current);
+    timer.current=setTimeout(()=>setSaved(false),2000);
+  };
+  return (
+    <div style={{marginTop:16,paddingTop:16,borderTop:"1px solid rgba(15,27,31,0.07)"}}>
+      <div style={{display:"flex",alignItems:"center",gap:6,marginBottom:8}}>
+        <BookMarked size={12} color="#9C9283"/>
+        <span style={{fontSize:11,fontWeight:600,color:"#9C9283",letterSpacing:"0.5px",textTransform:"uppercase",fontFamily:"'Montserrat',sans-serif"}}>My Notes</span>
+        {saved&&<span style={{fontSize:10,color:"#26544F",marginLeft:"auto",display:"flex",alignItems:"center",gap:3,animation:"fadeUp 0.2s ease both"}}><Check size={9}/>Saved</span>}
+      </div>
+      <textarea value={text} onChange={onChange}
+        placeholder="Jot down your thoughts, examples to use, things to remember..."
+        style={{width:"100%",minHeight:72,padding:"10px 12px",
+          border:"1px solid rgba(15,27,31,0.12)",borderRadius:8,
+          fontSize:13,color:"#0F1B1F",background:"#F0ECE9",
+          fontFamily:"'Inter',sans-serif",resize:"vertical",
+          outline:"none",boxSizing:"border-box",lineHeight:1.6,
+          transition:"border-color 0.2s"}}
+        onFocus={e=>e.target.style.borderColor="rgba(57,75,153,0.4)"}
+        onBlur={e=>e.target.style.borderColor="rgba(15,27,31,0.12)"}
+      />
+    </div>
+  );
+}
+
+// ── Interview Timeline ────────────────────────────────────────
+function InterviewTimeline({role}) {
+  const [exp,setExp]=useState(null);
+  const stages=role.stages||[];
+  const prepData=role.stagePrepData||[];
+  const ivs=role.interviewers||[];
+  return (
+    <div style={{position:"relative",paddingLeft:40}}>
+      <div style={{position:"absolute",left:18,top:16,bottom:16,width:2,
+        background:`linear-gradient(to bottom, #26544F, rgba(38,84,79,0.12))`,borderRadius:2}}/>
+      {stages.map((stage,i)=>{
+        const isExp=exp===i;
+        const iv=ivs[i];
+        const pd=prepData[i]||{prep:[],questions:[]};
+        const isTH=stage.stage.toLowerCase().includes("take-home")||stage.stage.toLowerCase().includes("take home");
+        return (
+          <div key={i} style={{position:"relative",marginBottom:i<stages.length-1?12:0}}>
+            <div style={{
+              position:"absolute",left:-30,top:16,
+              width:18,height:18,borderRadius:"50%",
+              background:isExp?"#394B99":"#26544F",
+              border:`3px solid ${isExp?"rgba(57,75,153,0.3)":"rgba(38,84,79,0.2)"}`,
+              boxShadow:isExp?"0 0 0 4px rgba(57,75,153,0.15)":"0 0 0 3px rgba(38,84,79,0.08)",
+              transition:"all 0.25s ease",cursor:"pointer",zIndex:2,
+            }} onClick={()=>setExp(isExp?null:i)}/>
+            {isExp&&<div style={{position:"absolute",left:-36,top:10,
+              width:30,height:30,borderRadius:"50%",
+              border:`1.5px solid #394B99`,opacity:0.35,
+              animation:"timelinePulse 1.8s ease infinite",zIndex:1}}/>}
+            <div style={{marginLeft:6,marginBottom:i<stages.length-1?0:0}}>
+              <button onClick={()=>setExp(isExp?null:i)} style={{
+                width:"100%",background:"none",border:"none",cursor:"pointer",textAlign:"left",padding:0,
+              }}>
+                <div style={{
+                  background:isExp?"#FFFFFF":"#F0ECE9",borderRadius:12,
+                  border:`1px solid ${isExp?"rgba(57,75,153,0.2)":"rgba(15,27,31,0.08)"}`,
+                  padding:"14px 16px",transition:"all 0.2s ease",
+                  boxShadow:isExp?"0 4px 20px rgba(57,75,153,0.08)":"0 1px 3px rgba(15,27,31,0.04)",
+                }}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10}}>
+                    <div style={{flex:1}}>
+                      <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:4}}>
+                        <span style={{
+                          background:isExp?"#394B99":"rgba(57,75,153,0.08)",
+                          color:isExp?"#FFFFFF":"#394B99",
+                          borderRadius:6,padding:"2px 8px",fontSize:10,fontWeight:700,
+                          fontFamily:"'Montserrat',sans-serif",transition:"all 0.2s",
+                        }}>{stage.time}</span>
+                        <span style={{fontSize:10,color:"#9C9283",fontFamily:"'Montserrat',sans-serif"}}>Stage {i+1}</span>
+                      </div>
+                      <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:"#0F1B1F",marginBottom:3}}>{stage.stage}</div>
+                      <div style={{fontSize:12,color:"#9C9283"}}>
+                        {iv?<FocusTip focus={stage.focus}><InterviewerDisplay interviewer={iv}/></FocusTip>:<span style={{fontStyle:"italic"}}>Self-directed</span>}
+                      </div>
+                    </div>
+                    <ChevronDown size={14} color="#394B99" style={{flexShrink:0,marginTop:3,transform:isExp?"rotate(180deg)":"none",transition:"0.2s"}}/>
+                  </div>
+                  {isExp&&(
+                    <div style={{marginTop:14,paddingTop:14,borderTop:"1px solid rgba(57,75,153,0.08)"}}>
+                      <div style={{
+                        background:"linear-gradient(135deg, rgba(57,75,153,0.05), rgba(177,165,247,0.08))",
+                        borderRadius:8,padding:"9px 12px",marginBottom:14,
+                        border:"1px solid rgba(57,75,153,0.1)",
+                      }}>
+                        <span style={{fontSize:11,fontWeight:600,color:"#394B99",fontFamily:"'Montserrat',sans-serif"}}>Focus: </span>
+                        <span style={{fontSize:13,color:"#0F1B1F"}}>{stage.focus}</span>
+                      </div>
+                      {pd.prep.length>0&&(
+                        <div style={{marginBottom:isTH||pd.questions.length===0?0:14}}>
+                          <div style={{fontSize:10,fontWeight:700,color:"#9C9283",letterSpacing:"1px",textTransform:"uppercase",marginBottom:8,fontFamily:"'Montserrat',sans-serif"}}>How to prepare</div>
+                          <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                            {pd.prep.map((tip,j)=>(
+                              <div key={j} style={{display:"flex",gap:8,alignItems:"flex-start"}}>
+                                <div style={{width:4,height:4,borderRadius:"50%",background:"#B1A5F7",flexShrink:0,marginTop:7}}/>
+                                <span style={{fontSize:13,color:"#4a5568",lineHeight:1.6}}>{tip}</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      {!isTH&&pd.questions.length>0&&(
+                        <div>
+                          <div style={{fontSize:10,fontWeight:700,color:"#9C9283",letterSpacing:"1px",textTransform:"uppercase",marginBottom:8,fontFamily:"'Montserrat',sans-serif"}}>Questions to ask</div>
+                          <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                            {pd.questions.map((q,j)=>(
+                              <div key={j} style={{display:"flex",gap:8,alignItems:"flex-start"}}>
+                                <MessageCircle size={10} color="#26544F" style={{flexShrink:0,marginTop:3}}/>
+                                <span style={{fontSize:13,color:"#26544F",fontStyle:"italic",lineHeight:1.55}}>"{q}"</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                      <PrepNotes slug={role.slug} stageIndex={i}/>
+                    </div>
+                  )}
+                </div>
+              </button>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 // ── Checklist ─────────────────────────────────────────────────
 function PrepChecklist({role}) {
   const [checked,setChecked]=useState({});
   const [openStage,setOpenStage]=useState(0);
+  const [confetti,setConfetti]=useState(0);
+  const prev=useRef(0);
   const toggle=(si,ii)=>{const k=`${si}-${ii}`;setChecked(p=>({...p,[k]:!p[k]}));};
   const progress=(si)=>{const items=(role.checklist||[])[si]?.items||[];return{done:items.filter((_,i)=>checked[`${si}-${i}`]).length,total:items.length};};
   const totalDone=Object.values(checked).filter(Boolean).length;
   const totalItems=(role.checklist||[]).reduce((a,s)=>a+(s.items?.length||0),0);
   const pct=totalItems?Math.round((totalDone/totalItems)*100):0;
+  useEffect(()=>{
+    if(pct===100&&prev.current<100) setTimeout(()=>setConfetti(c=>c+1),650);
+    prev.current=pct;
+  },[pct]);
 
   return (
     <div>
-      {/* Progress bar */}
+      {/* Progress header */}
       <div style={{
         background:C.charcoal,borderRadius:16,padding:"20px 24px",
         marginBottom:20,display:"flex",alignItems:"center",gap:20,
+        position:"relative",overflow:"hidden",
       }}>
+        <Confetti trigger={confetti}/>
+        <ProgressRing pct={pct}/>
         <div style={{flex:1}}>
           <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.white,marginBottom:8}}>
             Your preparation progress
           </div>
           <div style={{background:"rgba(255,255,255,0.1)",borderRadius:99,height:6,overflow:"hidden"}}>
             <div style={{
-              height:"100%",background:`linear-gradient(90deg, ${C.lavender}, ${C.indigo})`,
-              borderRadius:99,width:`${pct}%`,transition:"width 0.5s ease",
+              height:"100%",
+              background:pct===100?`linear-gradient(90deg,${C.mint},${C.forest})`:`linear-gradient(90deg,${C.lavender},${C.indigo})`,
+              borderRadius:99,width:`${pct}%`,transition:"width 0.5s ease, background 0.5s ease",
             }}/>
           </div>
+          {pct===100&&<div style={{fontSize:12,color:C.mint,marginTop:6,fontWeight:600,animation:"fadeUp 0.4s ease both"}}>You're fully prepared. Go get it.</div>}
         </div>
-        <div style={{
-          fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:28,
-          color:pct===100?C.mint:C.lavender,minWidth:56,textAlign:"right",
-          transition:"color 0.3s",
-        }}>{pct}%</div>
       </div>
 
       <div style={{display:"flex",flexDirection:"column",gap:8}}>
@@ -337,7 +584,7 @@ function StagePrep({role}) {
         const pd=(role.stagePrepData||[])[i]||{prep:[],questions:[]};
         const interviewer=(role.interviewers||[])[i];
         const isOpen=open===i;
-        const isTakeHome=stage.stage==="Take-Home Exercise";
+        const isTakeHome=stage.stage.toLowerCase().includes("take-home")||stage.stage.toLowerCase().includes("take home");
         return (
           <div key={i} style={{
             border:`1px solid ${isOpen?"rgba(57,75,153,0.25)":"rgba(15,27,31,0.08)"}`,
@@ -361,7 +608,9 @@ function StagePrep({role}) {
                 <div>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:C.charcoal}}>{stage.stage}</div>
                   <div style={{fontSize:12,color:C.taupe,marginTop:2}}>
-                      {interviewer ? <InterviewerDisplay interviewer={interviewer}/> : <span style={{color:C.taupe,fontStyle:"italic"}}>—</span>}
+                    {interviewer
+                      ? <FocusTip focus={stage.focus}><InterviewerDisplay interviewer={interviewer}/></FocusTip>
+                      : <span style={{color:C.taupe,fontStyle:"italic"}}>—</span>}
                   </div>
                 </div>
               </div>
@@ -399,6 +648,7 @@ function StagePrep({role}) {
                     </div>
                   )}
                 </div>
+                <PrepNotes slug={role.slug} stageIndex={i}/>
               </div>
             )}
           </div>
@@ -895,41 +1145,13 @@ Only answer from this information. If unsure, direct to the coordinator listed i
           <div style={{display:"flex",flexDirection:"column",gap:28}}>
             <FadeIn delay={0}>
               <SectionHead>Interview Roadmap</SectionHead>
-              <p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 20px"}}>This process is designed to be mutual — you are evaluating us as much as we are evaluating you. We aim to share next steps clearly after each conversation.</p>
-              <div style={{borderRadius:14,overflow:"hidden",border:"1px solid rgba(15,27,31,0.08)",boxShadow:"0 2px 12px rgba(15,27,31,0.06)"}}>
-                <div style={{display:"grid",gridTemplateColumns:"2fr 0.6fr 2fr 2.5fr",background:C.charcoal}}>
-                  {["STAGE","TIME","INTERVIEWERS","FOCUS"].map(h=>(
-                    <div key={h} style={{padding:"12px 16px",fontSize:10,fontWeight:700,color:"rgba(255,255,255,0.4)",letterSpacing:"1.5px",fontFamily:"'Montserrat',sans-serif"}}>{h}</div>
-                  ))}
-                </div>
-                {(role.stages||[]).map((r,i)=>{
-                  const interviewer=(role.interviewers||[])[i];
-                  return (
-                    <div key={i} style={{
-                      display:"grid",gridTemplateColumns:"2fr 0.6fr 2fr 2.5fr",
-                      background:i%2===0?C.white:"rgba(240,236,233,0.4)",
-                      borderTop:"1px solid rgba(15,27,31,0.05)",
-                    }}>
-                      <div style={{padding:"14px 16px",fontSize:13,color:C.charcoal,fontFamily:"'Montserrat',sans-serif",fontWeight:600}}>{r.stage}</div>
-                      <div style={{padding:"14px 16px",fontSize:13}}>
-                        <span style={{background:"rgba(57,75,153,0.08)",color:C.indigo,borderRadius:6,padding:"2px 8px",fontSize:11,fontWeight:700,fontFamily:"'Montserrat',sans-serif"}}>{r.time}</span>
-                      </div>
-                      <div style={{padding:"14px 16px",fontSize:13,color:C.charcoal}}>
-                        {interviewer
-                          ? <InterviewerDisplay interviewer={interviewer}/>
-                          : <span style={{color:C.taupe,fontSize:12}}>—</span>
-                        }
-                      </div>
-                      <div style={{padding:"14px 16px",fontSize:13,color:"#4a5568",lineHeight:1.5}}>{r.focus}</div>
-                    </div>
-                  );
-                })}
-              </div>
+              <p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 24px"}}>This process is designed to be mutual — you are evaluating us as much as we are evaluating you. Click any stage to see prep tips and questions to ask. Hover over an interviewer name for their focus area.</p>
+              <InterviewTimeline role={role}/>
             </FadeIn>
 
             <FadeIn delay={100}>
               <SectionHead>Stage-by-Stage Prep</SectionHead>
-              <p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 16px"}}>Each stage has a different focus. These notes will help you prepare without over-preparing.</p>
+              <p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 16px"}}>Each stage has a different focus. Use the notes area to capture your thoughts.</p>
               <StagePrep role={role}/>
             </FadeIn>
 
@@ -1147,6 +1369,9 @@ Only answer from this information. If unsure, direct to the coordinator listed i
         @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
         @keyframes blink { 0%,100%{opacity:0.2} 50%{opacity:1} }
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+        @keyframes tooltipIn { from{opacity:0;transform:translateY(4px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes timelinePulse { 0%,100%{transform:scale(1);opacity:0.35} 50%{transform:scale(1.6);opacity:0} }
+        @keyframes ringPulse { 0%{stroke:#394B99} 40%{stroke:#A7CF99} 100%{stroke:#394B99} }
       `}</style>
     </div>
   );
