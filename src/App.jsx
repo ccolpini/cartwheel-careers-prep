@@ -427,6 +427,44 @@ function MissionDropdown() {
   );
 }
 
+// ── Markdown renderer for chat responses ──────────────────────
+function renderInline(str) {
+  const parts = str.split(/(\*\*[^*]+?\*\*)/g);
+  return parts.map((part,j)=>{
+    if(part.startsWith("**")&&part.endsWith("**"))
+      return <strong key={j} style={{fontWeight:600}}>{part.slice(2,-2)}</strong>;
+    return part;
+  });
+}
+function renderMarkdown(text) {
+  const lines=text.split("\n");
+  const result=[];
+  let i=0,k=0;
+  while(i<lines.length){
+    const line=lines[i].trim();
+    if(line===""){i++;continue;}
+    if(line.startsWith("- ")||line.startsWith("• ")){
+      const items=[];
+      while(i<lines.length&&(lines[i].trim().startsWith("- ")||lines[i].trim().startsWith("• "))){
+        items.push(lines[i].trim().replace(/^[-•]\s+/,""));i++;
+      }
+      result.push(<ul key={k++} style={{margin:"4px 0 10px",paddingLeft:18}}>{items.map((it,j)=><li key={j} style={{marginBottom:4,lineHeight:1.65}}>{renderInline(it)}</li>)}</ul>);
+      continue;
+    }
+    if(/^\d+\.\s/.test(line)){
+      const items=[];
+      while(i<lines.length&&/^\d+\.\s/.test(lines[i].trim())){
+        items.push(lines[i].trim().replace(/^\d+\.\s+/,""));i++;
+      }
+      result.push(<ol key={k++} style={{margin:"4px 0 10px",paddingLeft:18}}>{items.map((it,j)=><li key={j} style={{marginBottom:4,lineHeight:1.65}}>{renderInline(it)}</li>)}</ol>);
+      continue;
+    }
+    result.push(<p key={k++} style={{margin:"0 0 8px",lineHeight:1.7}}>{renderInline(line)}</p>);
+    i++;
+  }
+  return result;
+}
+
 // ══════════════════════════════════════════════════════════════
 // CANDIDATE VIEW
 // ══════════════════════════════════════════════════════════════
@@ -799,10 +837,12 @@ Only answer from this information. If unsure, direct to the coordinator listed i
                     background:m.role==="user"?`linear-gradient(135deg, ${C.indigo}, #2d3d85)`:C.white,
                     color:m.role==="user"?C.white:C.charcoal,
                     fontSize:14,lineHeight:1.7,
+                    fontFamily:"'Inter', sans-serif",
                     border:m.role==="assistant"?"1px solid rgba(15,27,31,0.08)":"none",
                     boxShadow:m.role==="user"?"0 2px 12px rgba(57,75,153,0.25)":"0 1px 4px rgba(15,27,31,0.06)",
-                    whiteSpace:"pre-wrap",
-                  }}>{m.content.replace(/\*\*/g, "")}</div>
+                  }}>
+                    {m.role==="assistant" ? renderMarkdown(m.content) : m.content}
+                  </div>
                 </div>
               ))}
               {loading&&(
