@@ -142,12 +142,6 @@ function InterviewerDisplay({interviewer}) {
   // Priority 3: Fallback to dash
   return <span style={{color:C.taupe,fontStyle:"italic"}}>—</span>;
 }
-  );
-  // Handle single person with href
-  if(interviewer.href) return <ExtLink href={interviewer.href}>{interviewer.name}</ExtLink>;
-  // Fallback for empty/null
-  return <span style={{color:C.taupe,fontStyle:"italic"}}>—</span>;
-}
 
 // ── Animated entry wrapper ────────────────────────────────────
 function FadeIn({children, delay=0, style={}}) {
