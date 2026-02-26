@@ -364,6 +364,7 @@ function StagePrep({role}) {
                       {interviewer ? <InterviewerDisplay interviewer={interviewer}/> : <span style={{color:C.taupe,fontStyle:"italic"}}>—</span>}
                   </div>
                 </div>
+              </div>
               <ChevronDown size={16} color={C.indigo} style={{flexShrink:0,transform:isOpen?"rotate(180deg)":"none",transition:"0.2s"}}/>
             </button>
             {isOpen&&(
