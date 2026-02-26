@@ -1229,6 +1229,54 @@ Only answer from this information. If unsure, direct to the coordinator listed i
               </div>
             </FadeIn>
 
+            <FadeIn delay={60}>
+              <div style={{
+                background:C.forest,borderRadius:14,padding:"32px 36px",
+                borderLeft:`4px solid ${C.brick}`,
+                boxShadow:"0 4px 20px rgba(38,84,79,0.18)",
+              }}>
+                <p style={{
+                  fontFamily:"'Montserrat',sans-serif",fontSize:16,fontWeight:500,
+                  color:C.white,lineHeight:1.75,margin:0,textAlign:"center",
+                }}>
+                  "If you're looking for work that matters, a team that uplifts you, and a company positioned to scale impact at unprecedented speed — you're in the right place."
+                </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={80}>
+              <div>
+                <h2 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:20,color:C.charcoal,margin:"0 0 16px",letterSpacing:"-0.3px"}}>What Type of Person Thrives Here?</h2>
+                <div style={{
+                  background:C.white,borderRadius:14,padding:"24px 28px",
+                  border:"1px solid rgba(15,27,31,0.07)",
+                  boxShadow:"0 2px 12px rgba(15,27,31,0.06)",
+                }}>
+                  {[
+                    ["collaborative problem-solver","You're a collaborative problem-solver who thrives in ambiguity"],
+                    ["growth mindset","You practice a growth mindset and embrace feedback"],
+                    ["mission-driven","You care deeply about mission-driven work"],
+                    ["wearing multiple hats","You're comfortable wearing multiple hats as we scale"],
+                    ["build","You want to build something that outlasts your tenure"],
+                  ].map(([bold,text],i)=>{
+                    const parts=text.split(bold);
+                    return (
+                      <div key={i} style={{
+                        display:"flex",alignItems:"flex-start",gap:12,
+                        padding:"12px 0",
+                        borderBottom:i<4?"1px solid rgba(15,27,31,0.05)":"none",
+                      }}>
+                        <ChevronRight size={16} color={C.indigo} style={{flexShrink:0,marginTop:2}}/>
+                        <span style={{fontSize:14,color:C.charcoal,lineHeight:1.65}}>
+                          {parts[0]}<strong style={{color:C.indigo,fontWeight:700}}>{bold}</strong>{parts[1]}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </FadeIn>
+
             <FadeIn delay={100}>
               <SectionHead>Compensation + Benefits</SectionHead>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10,marginBottom:12}}>
