@@ -749,6 +749,24 @@ function WhyCartwheel() {
   );
 }
 
+// ── CandidateFooter ───────────────────────────────────────────
+function CandidateFooter() {
+  return (
+    <div style={{marginTop:32,paddingTop:24,borderTop:"1px solid rgba(15,27,31,0.07)"}}>
+      <div style={{fontSize:12,color:C.taupe,lineHeight:1.6,marginBottom:8}}>Questions? Reach out to your coordinator at any time.</div>
+      <div style={{fontSize:10,color:C.taupe,lineHeight:1.7,fontStyle:"italic",opacity:0.7}}>
+        <p style={{margin:"0 0 6px"}}>Cartwheel is proud to be an equal opportunity employer. We embrace diverse backgrounds and perspectives and are committed to equal employment opportunities regardless of race, color, religion, ancestry, national origin, gender, sexual orientation, disability status, or veteran status.</p>
+        <p style={{margin:"0 0 6px"}}>Compensation is determined by a number of factors including experience, qualifications, skills, and geographic location.</p>
+        <p style={{margin:"0 0 6px"}}>The interview process outlined here represents our general approach. Not all candidates will complete every stage, and the process may be adjusted based on role requirements or scheduling needs.</p>
+        <p style={{margin:"0 0 6px"}}>We participate in E-Verify and are committed to complying with all federal employment verification requirements.</p>
+        <p style={{margin:"0 0 6px"}}>Cartwheel is committed to providing reasonable accommodations for candidates with disabilities during the interview process. If you need accommodations, please reach out to your recruiter.</p>
+        <p style={{margin:"0 0 6px"}}>Information on this page, including compensation ranges, interview stages, and team structure, is subject to change.</p>
+        <p style={{margin:0}}>Information you share during the interview process, including through this platform's AI assistant, is used solely for recruitment purposes and handled in accordance with applicable privacy laws.</p>
+      </div>
+    </div>
+  );
+}
+
 // ── HoverDiv utility ─────────────────────────────────────────
 function HoverDiv({baseStyle,hoverStyle,children,...rest}) {
   const [hov,setHov]=useState(false);
@@ -1127,10 +1145,7 @@ HANDLING DIFFICULT SITUATIONS:
               </div>
             </FadeIn>
 
-            <div style={{borderTop:"1px solid rgba(15,27,31,0.07)",paddingTop:16,display:"flex",justifyContent:"space-between"}}>
-              <div style={{fontSize:12,color:C.taupe}}>Questions? Reach out to your coordinator at any time.</div>
-              <div style={{fontSize:10,fontWeight:700,letterSpacing:"2px",textTransform:"uppercase",color:C.taupe}}>Candidate Guide</div>
-            </div>
+            <CandidateFooter/>
           </div>
         )}
 
@@ -1216,6 +1231,7 @@ HANDLING DIFFICULT SITUATIONS:
                 cursor:input.trim()&&!loading?"pointer":"default",transition:"all 0.2s",
               }}>Send</button>
             </div>
+            <CandidateFooter/>
           </div>
         )}
 
@@ -1264,10 +1280,7 @@ HANDLING DIFFICULT SITUATIONS:
               </div>
             </FadeIn>
 
-            <div style={{borderTop:"1px solid rgba(15,27,31,0.07)",paddingTop:16,display:"flex",justifyContent:"space-between"}}>
-              <div style={{fontSize:12,color:C.taupe}}>Questions? Reach out to your coordinator at any time.</div>
-              <div style={{fontSize:10,fontWeight:700,letterSpacing:"2px",textTransform:"uppercase",color:C.taupe}}>Roadmap</div>
-            </div>
+            <CandidateFooter/>
           </div>
         )}
 
@@ -1389,10 +1402,7 @@ HANDLING DIFFICULT SITUATIONS:
               </div>
             </FadeIn>
 
-            <div style={{borderTop:"1px solid rgba(15,27,31,0.07)",paddingTop:16,display:"flex",justifyContent:"space-between"}}>
-              <div style={{fontSize:12,color:C.taupe}}>Questions? Reach out to your coordinator at any time.</div>
-              <div style={{fontSize:10,fontWeight:700,letterSpacing:"2px",textTransform:"uppercase",color:C.taupe}}>Life at Cartwheel</div>
-            </div>
+            <CandidateFooter/>
           </div>
         )}
 
@@ -1404,10 +1414,7 @@ HANDLING DIFFICULT SITUATIONS:
               <p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 20px"}}>Work through each stage at your own pace. You don't need to complete everything — focus on the rounds coming up next.</p>
               <PrepChecklist role={role}/>
             </FadeIn>
-            <div style={{marginTop:28,borderTop:"1px solid rgba(15,27,31,0.07)",paddingTop:16,display:"flex",justifyContent:"space-between"}}>
-              <div style={{fontSize:12,color:C.taupe}}>Questions? Reach out to your coordinator at any time.</div>
-              <div style={{fontSize:10,fontWeight:700,letterSpacing:"2px",textTransform:"uppercase",color:C.taupe}}>Checklist</div>
-            </div>
+            <CandidateFooter/>
           </div>
         )}
 
@@ -1468,10 +1475,7 @@ HANDLING DIFFICULT SITUATIONS:
               </div>
             </FadeIn>
 
-            <div style={{borderTop:"1px solid rgba(15,27,31,0.07)",paddingTop:16,display:"flex",justifyContent:"space-between"}}>
-              <div style={{fontSize:12,color:C.taupe}}>Questions? Reach out to your coordinator at any time.</div>
-              <div style={{fontSize:10,fontWeight:700,letterSpacing:"2px",textTransform:"uppercase",color:C.taupe}}>Job Description</div>
-            </div>
+            <CandidateFooter/>
           </div>
         )}
 
