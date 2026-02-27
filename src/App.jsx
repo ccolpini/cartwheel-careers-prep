@@ -917,9 +917,10 @@ HANDLING DIFFICULT SITUATIONS:
             <p style={{fontSize:15,color:C.taupe,margin:"0 0 4px"}}>
               Reports to <span style={{color:C.charcoal,fontWeight:600}}>{role.reportsto}</span>
             </p>
-            <p style={{fontSize:15,color:C.taupe,margin:"0 0 28px"}}>
-              <span style={{color:C.forest,fontWeight:700}}>{role.comp}</span> + equity
+            <p style={{fontSize:15,color:C.taupe,margin:"0 0 4px"}}>
+              <span style={{color:C.forest,fontWeight:700}}>{role.comp}</span>
             </p>
+            <p style={{fontSize:11,color:C.taupe,fontStyle:"italic",margin:"4px 0 28px"}}>Compensation is determined by a number of factors including experience, qualifications, skills, and location.</p>
           </FadeIn>
 
           <FadeIn delay={200}>
@@ -1061,7 +1062,7 @@ HANDLING DIFFICULT SITUATIONS:
                 )},
               ]},
               {title:"The Role",items:[
-                {q:"What is the compensation?",content:<p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"12px 0 0"}}>{role.comp} plus competitive equity. You will discuss where you see yourself in that range during your recruiter screen.</p>},
+                {q:"What is the compensation?",content:<p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"12px 0 0"}}>{role.comp} plus competitive equity. You will discuss where you see yourself in that range during your recruiter screen.<span style={{fontSize:12,fontStyle:"italic",color:C.taupe}}> Compensation is determined by a number of factors including experience, qualifications, skills, and location.</span></p>},
                 {q:"What does success look like?",content:(
                   <div style={{marginTop:12,display:"flex",flexDirection:"column",gap:8}}>
                     {(role.success||[]).map(({period,desc})=>(

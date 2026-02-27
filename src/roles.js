@@ -202,14 +202,14 @@ export const CCM_ROLE = {
 export const CTRL_ROLE = {
   title:"Controller", slug:"controller",
   department:"Finance", reportsto:"Sam Bilow, VP of Finance",
-  location:"Remote", employment:"Full-Time, W2", comp:"$200,000 OTE",
+  location:"Remote", employment:"Full-Time, W2", comp:"$200,000 base + equity",
   mission:"Build Cartwheel's accounting function from the ground up — insourcing from an outsourced firm, leading ERP selection and implementation, and navigating the company's first external audit. This is a builder role, not a maintenance role.",
   stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
   team:["Sam Bilow — VP of Finance (your hiring manager)","BizOps team (cross-functional partner)","Data team (cross-functional partner)","Executive team (board reporting)","1 Staff Accountant (your first hire)"],
   stages:[
     {stage:"Recruiter Screen",time:"30m",who:"Caroline Colpini",focus:"Culture fit, motivation, compensation alignment"},
     {stage:"Hiring Manager Deep Dive",time:"45m",who:"Sam Bilow",focus:"Technical depth, leadership philosophy, strategic thinking"},
-    {stage:"Technical Dive",time:"60m",who:"Grace Yao (Advisor)",focus:"ERP implementation, audit prep, technical accounting scenarios"},
+    {stage:"Technical Dive",time:"60m",who:"Grace Yao",focus:"ERP implementation, audit prep, technical accounting scenarios"},
     {stage:"Take-Home Case Study",time:"60-90m",who:"",focus:"90-day transition plan, risk assessment, operational prioritization"},
     {stage:"Case Study Review",time:"45m",who:"Sam Bilow + Jeff Sword",focus:"Presentation of case study, Q&A, strategic discussion"},
     {stage:"Exec Review",time:"30m",who:"Dan Tartakovsky, COO",focus:"Values alignment, long-term vision, leadership presence"},
@@ -232,7 +232,7 @@ export const CTRL_ROLE = {
     {label:"Partner Across the Business",bullets:["Work with BizOps and Data to connect financial reporting to operational metrics (RCM, state P&L, revenue quality)","Collaborate with RCM and Health Plan Ops on payer dynamics, collections, and revenue integrity","Support leadership with budgeting, forecasting, and board reporting","Translate finance concepts into language that Ops, RCM, BizOps, and Data can act on"]},
   ],
   aboutRole:"We're hiring our first Controller to build a modern, scalable accounting function that will support Cartwheel's rapid growth. As our accounting leader, you'll build core processes from scratch, lead our ERP selection and implementation, and create the financial infrastructure we'll rely on for audits, fundraising, and multi-state expansion.\n\nThis is a true builder role — not inheriting a fully built function, but designing the systems, controls, and processes that will scale with the company. Reporting to our VP of Finance, you'll be a key strategic partner to teams across the company — including BizOps, Data, RCM, and Operations — as we bring high-quality mental health support to students everywhere.",
-  compBenefits:"$200,000 OTE plus competitive equity package. Full benefits: PPO medical/vision/dental/orthodontia, paid parental leave, 401K with employer match, unlimited/flexible PTO plus federal holidays, life insurance, $500 annual learning stipend, MacBook, and annual in-person retreat.",
+  compBenefits:"$200,000 base compensation plus competitive equity package. Full benefits: PPO medical/vision/dental/orthodontia, paid parental leave, 401K with employer match, unlimited/flexible PTO plus federal holidays, life insurance, $500 annual learning stipend, MacBook, and annual in-person retreat.",
   stagePrepData:[
     {stage:"Recruiter Screen",prep:["Research Cartwheel's mission, school-based model, and Series B stage","Prepare a concise summary of your accounting function-building experience","Know your comp expectations around the $200K OTE range","Think about what draws you to a builder role at an early-stage company"],questions:["What does the current accounting setup look like with Formation Financial?","What's the timeline for ERP implementation and the first audit?","What does success look like in the first 90 days?"]},
     {stage:"Hiring Manager Deep Dive",prep:["Prepare specific examples of building or redesigning a chart of accounts and revenue recognition framework","Think through how you would sequence insourcing accounting from an outsourced firm","Be ready to discuss a time revenue recognition was structurally misaligned and how you fixed it","Prepare examples of transitioning work from non-finance teams while maintaining relationships"],questions:["What are the biggest accounting risks you see as Cartwheel scales across states?","How does the BizOps team currently handle finance-adjacent work?","What does the relationship between Finance and RCM look like today?"]},
@@ -252,7 +252,7 @@ export const CTRL_ROLE = {
   interviewers:[
     {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
     {label:"Hiring Manager Deep Dive",name:"Sam Bilow",title:"VP of Finance",href:"https://www.linkedin.com/in/sam-bilow-59434150"},
-    {label:"Technical Dive",name:"Grace Yao",title:"Advisor",href:"https://www.linkedin.com/in/graceyao-compassion/"},
+    {label:"Technical Dive",name:"Grace Yao",title:"Outsourced Controller",href:"https://www.linkedin.com/in/graceyao-compassion/"},
     {label:"Take-Home Case Study",name:"",title:"",href:null},
     {label:"Case Study Review",name:"",title:"",href:null,multiHrefs:[
       {name:"Sam Bilow",href:"https://www.linkedin.com/in/sam-bilow-59434150"},
