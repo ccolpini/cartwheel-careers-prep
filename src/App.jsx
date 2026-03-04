@@ -895,8 +895,13 @@ HANDLING DIFFICULT SITUATIONS:
         {/* Heading block */}
         <div style={{maxWidth:860,margin:"0 auto",padding:"0 32px 56px"}}>
           <FadeIn delay={0}>
-            <div style={{fontSize:12,color:C.taupe,fontFamily:"'Montserrat',sans-serif",fontWeight:700,letterSpacing:"1.5px",textTransform:"uppercase",marginBottom:20}}>
-              {role.department} · {role.location}
+            <div style={{display:"flex",gap:8,marginBottom:20,flexWrap:"wrap"}}>
+              {[role.department, role.location].map((label,i)=>(
+                <span key={i} style={{display:"inline-flex",alignItems:"center",gap:7,background:"rgba(38,84,79,0.07)",border:"1px solid rgba(38,84,79,0.15)",borderRadius:99,padding:"5px 13px",fontSize:12,fontWeight:600,color:C.forest,fontFamily:"'Inter',sans-serif"}}>
+                  <span style={{width:6,height:6,borderRadius:"50%",background:C.mint,boxShadow:`0 0 0 3px rgba(167,207,153,0.35)`,display:"inline-block",animation:"dotGlow 2s ease-in-out infinite",animationDelay:`${i*0.4}s`}}/>
+                  {label}
+                </span>
+              ))}
             </div>
           </FadeIn>
 
@@ -1452,6 +1457,7 @@ HANDLING DIFFICULT SITUATIONS:
         @keyframes timelinePulse { 0%,100%{transform:scale(1);opacity:0.35} 50%{transform:scale(1.6);opacity:0} }
         @keyframes ringPulse { 0%{stroke:#394B99} 40%{stroke:#A7CF99} 100%{stroke:#394B99} }
         @keyframes chevronPulse { 0%,100%{transform:translateY(0)} 50%{transform:translateY(3px)} }
+        @keyframes dotGlow { 0%,100%{box-shadow:0 0 0 3px rgba(167,207,153,0.35)} 50%{box-shadow:0 0 0 5px rgba(167,207,153,0.6)} }
       `}</style>
     </div>
   );
