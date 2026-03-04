@@ -1341,12 +1341,12 @@ HANDLING DIFFICULT SITUATIONS:
                   {icon:<BookMarked size={14}/>,title:"Prof. Development",sub:"$500 annual stipend"},
                   {icon:<Calendar size={14}/>,title:"Generous PTO",sub:"Including company closure 12/25-1/1"},
                 ].map(({icon,title,sub})=>(
-                  <div key={title} style={{background:C.lightLavender,borderRadius:12,padding:"22px 18px"}}>
+                  <div key={title} style={{background:C.lightMint,borderRadius:12,padding:"22px 18px"}}>
                     <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:6}}>
-                      <span style={{color:C.indigo,display:"flex"}}>{icon}</span>
-                      <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:C.indigo}}>{title}</div>
+                      <span style={{color:C.forest,display:"flex"}}>{icon}</span>
+                      <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:C.forest}}>{title}</div>
                     </div>
-                    <div style={{fontSize:13,color:C.indigo,lineHeight:1.5,opacity:0.75}}>{sub}</div>
+                    <div style={{fontSize:13,color:C.forest,lineHeight:1.5,opacity:0.75}}>{sub}</div>
                   </div>
                 ))}
               </div>
