@@ -918,15 +918,15 @@ HANDLING DIFFICULT SITUATIONS:
             <div style={{display:"flex",gap:48,marginBottom:44,flexWrap:"wrap"}}>
               <div>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Reports to</div>
-                <div style={{fontSize:17,color:C.charcoal,fontWeight:600}}>{role.reportsto}</div>
+                <div style={{fontSize:17,color:C.brick,fontWeight:600}}>{role.reportsto}</div>
               </div>
               <div>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Location</div>
-                <div style={{fontSize:17,color:C.charcoal,fontWeight:600}}>{role.location}</div>
+                <div style={{fontSize:17,color:C.brick,fontWeight:600}}>{role.location}</div>
               </div>
               <div>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Compensation</div>
-                <div style={{fontSize:17,color:C.indigo,fontWeight:700}}>{role.comp}</div>
+                <div style={{fontSize:17,color:C.brick,fontWeight:700}}>{role.comp}</div>
               </div>
             </div>
           </FadeIn>
