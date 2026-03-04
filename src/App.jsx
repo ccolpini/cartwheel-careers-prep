@@ -218,12 +218,11 @@ function SectionLabel({children, light=false}) {
 
 function SectionHead({children, light=false}) {
   return (
-    <div style={{marginBottom:20}}>
+    <div style={{marginBottom:32}}>
       <h2 style={{
-        fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:20,
-        color:light?C.white:C.charcoal,margin:"0 0 10px",letterSpacing:"-0.3px",
+        fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:28,
+        color:light?C.white:C.charcoal,margin:0,letterSpacing:"-0.5px",lineHeight:1.15,
       }}>{children}</h2>
-      <div style={{height:1,background:light?"rgba(255,255,255,0.1)":"rgba(15,27,31,0.07)"}}/>
     </div>
   );
 }
@@ -522,7 +521,7 @@ function PrepChecklist({role}) {
                 <div style={{display:"flex",alignItems:"center",gap:12}}>
                   <div style={{
                     width:28,height:28,borderRadius:"50%",flexShrink:0,
-                    background:complete?C.forest:isOpen?C.indigo:"rgba(57,75,153,0.1)",
+                    background:complete?C.indigo:isOpen?C.indigo:"rgba(57,75,153,0.1)",
                     display:"flex",alignItems:"center",justifyContent:"center",
                     transition:"all 0.2s ease",
                   }}>
@@ -531,7 +530,7 @@ function PrepChecklist({role}) {
                       : <span style={{fontFamily:"'Montserrat',sans-serif",fontSize:11,fontWeight:700,color:isOpen?C.white:C.indigo}}>{si+1}</span>
                     }
                   </div>
-                  <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:14,color:complete?C.forest:C.charcoal}}>{section.stage}</span>
+                  <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:14,color:complete?C.indigo:C.charcoal}}>{section.stage}</span>
                 </div>
                 <div style={{display:"flex",alignItems:"center",gap:10}}>
                   <span style={{fontSize:12,color:C.taupe,fontWeight:500}}>{done}/{total}</span>
@@ -550,8 +549,8 @@ function PrepChecklist({role}) {
                       }}>
                         <div style={{
                           width:20,height:20,borderRadius:6,flexShrink:0,marginTop:1,
-                          border:`2px solid ${isChecked?C.forest:"rgba(15,27,31,0.2)"}`,
-                          background:isChecked?C.forest:"transparent",
+                          border:`2px solid ${isChecked?C.indigo:"rgba(15,27,31,0.2)"}`,
+                          background:isChecked?C.indigo:"transparent",
                           display:"flex",alignItems:"center",justifyContent:"center",
                           transition:"all 0.15s ease",
                         }}>
@@ -635,13 +634,13 @@ function StagePrep({role}) {
                     </div>
                   </div>
                   {!isTakeHome&&pd.questions.length>0&&(
-                    <div style={{background:C.lightMint,borderRadius:10,padding:"16px"}}>
+                    <div style={{background:C.lightLavender,borderRadius:10,padding:"16px"}}>
                       <SectionLabel>Questions to ask</SectionLabel>
                       <div style={{display:"flex",flexDirection:"column",gap:8}}>
                         {pd.questions.map((q,j)=>(
                           <div key={j} style={{display:"flex",gap:10,alignItems:"flex-start"}}>
-                            <MessageCircle size={12} color={C.forest} style={{flexShrink:0,marginTop:3}}/>
-                            <span style={{fontSize:13,color:C.forest,lineHeight:1.55,fontStyle:"italic"}}>"{q}"</span>
+                            <div style={{width:4,height:4,borderRadius:"50%",background:C.indigo,flexShrink:0,marginTop:7}}/>
+                            <span style={{fontSize:13,color:C.indigo,lineHeight:1.6,fontStyle:"italic"}}>"{q}"</span>
                           </div>
                         ))}
                       </div>
@@ -890,103 +889,82 @@ HANDLING DIFFICULT SITUATIONS:
         </div>
       </div>
 
-      {/* Hero — warm sand with forest stats accent */}
-      <div style={{
-        background:C.sand,
-        padding:"48px 28px 0",
-        position:"relative",overflow:"hidden",
-      }}>
-        {/* Decorative brand accents */}
-        <div style={{
-          position:"absolute",right:60,top:30,width:12,height:12,
-          borderRadius:"50%",background:C.lavender,opacity:0.4,pointerEvents:"none",
-        }}/>
-        <div style={{
-          position:"absolute",right:100,top:70,width:8,height:8,
-          borderRadius:"50%",background:C.lavender,opacity:0.25,pointerEvents:"none",
-        }}/>
-        <div style={{
-          position:"absolute",left:40,bottom:120,width:10,height:10,
-          borderRadius:"50%",background:C.peach,opacity:0.3,pointerEvents:"none",
-        }}/>
+      {/* Hero */}
+      <div style={{background:C.white,paddingTop:72}}>
 
-        <div style={{maxWidth:820,margin:"0 auto",position:"relative"}}>
+        {/* Heading block */}
+        <div style={{maxWidth:860,margin:"0 auto",padding:"0 32px 56px"}}>
           <FadeIn delay={0}>
-            <div style={{
-              display:"inline-flex",alignItems:"center",gap:8,
-              background:C.white,borderRadius:99,
-              padding:"5px 14px",marginBottom:16,
-              border:"1px solid rgba(15,27,31,0.08)",
-              boxShadow:"0 1px 3px rgba(15,27,31,0.04)",
-            }}>
-              <div style={{width:6,height:6,borderRadius:"50%",background:C.forest,animation:"pulse 2s infinite"}}/>
-              <span style={{fontSize:11,fontWeight:600,color:C.charcoal,fontFamily:"'Montserrat',sans-serif",letterSpacing:"0.5px"}}>{role.department} · {role.location}</span>
+            <div style={{fontSize:12,color:C.taupe,fontFamily:"'Montserrat',sans-serif",fontWeight:700,letterSpacing:"1.5px",textTransform:"uppercase",marginBottom:20}}>
+              {role.department} · {role.location}
             </div>
           </FadeIn>
 
-          <FadeIn delay={80}>
+          <FadeIn delay={60}>
             <h1 style={{
-              fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:34,
-              color:C.charcoal,margin:"0 0 10px",letterSpacing:"-0.5px",lineHeight:1.15,
+              fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:56,
+              color:C.charcoal,margin:0,letterSpacing:"-1.5px",lineHeight:1.0,
             }}>{role.title}</h1>
+            <div style={{
+              fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:44,
+              color:C.indigo,margin:"6px 0 40px",letterSpacing:"-1px",lineHeight:1.05,
+            }}>We're glad you're here.</div>
           </FadeIn>
 
-          <FadeIn delay={140}>
-            <p style={{fontSize:15,color:C.taupe,margin:"0 0 4px"}}>
-              Reports to <span style={{color:C.charcoal,fontWeight:600}}>{role.reportsto}</span>
-            </p>
-            <p style={{fontSize:15,color:C.taupe,margin:"0 0 4px"}}>
-              <span style={{color:C.forest,fontWeight:700}}>{role.comp}</span>
-            </p>
-            <p style={{fontSize:11,color:C.taupe,fontStyle:"italic",margin:"4px 0 28px"}}>Compensation is determined by a number of factors including experience, qualifications, skills, and location.</p>
+          <FadeIn delay={120}>
+            <div style={{display:"flex",gap:48,marginBottom:44,flexWrap:"wrap"}}>
+              <div>
+                <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Reports to</div>
+                <div style={{fontSize:17,color:C.charcoal,fontWeight:600}}>{role.reportsto}</div>
+              </div>
+              <div>
+                <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Compensation</div>
+                <div style={{fontSize:17,color:C.indigo,fontWeight:700}}>{role.comp}</div>
+              </div>
+            </div>
           </FadeIn>
 
-          <FadeIn delay={200}>
+          <FadeIn delay={180}>
             <p style={{
-              fontSize:14,color:"#4a5568",lineHeight:1.75,
-              maxWidth:560,margin:"0 0 32px",
-              borderLeft:`3px solid ${C.orange}`,paddingLeft:16,
+              fontSize:16,color:"#4a5568",lineHeight:1.8,
+              maxWidth:600,margin:0,
+              borderLeft:`4px solid ${C.orange}`,paddingLeft:20,fontStyle:"italic",
             }}>
               {role.mission}
             </p>
           </FadeIn>
+        </div>
 
-          {/* Stats — bold forest bar */}
-          <FadeIn delay={260}>
-            <div style={{display:"grid",gridTemplateColumns:"repeat(4,1fr)",gap:1,background:C.forest,borderRadius:14,overflow:"hidden",marginBottom:0,boxShadow:"0 4px 20px rgba(38,84,79,0.2)"}}>
+        {/* Stats — full-width indigo band */}
+        <FadeIn delay={240}>
+          <div style={{background:C.forest}}>
+            <div style={{maxWidth:860,margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(4,1fr)"}}>
               {(role.stats||[]).map(({n,label,sub},i)=>(
                 <div key={n} style={{
-                  padding:"22px 18px",
-                  background:i===0?"rgba(255,255,255,0.08)":"transparent",
-                  borderRight:i<3?"1px solid rgba(255,255,255,0.1)":"none",
+                  padding:"44px 32px",
+                  borderRight:i<3?"1px solid rgba(167,207,153,0.2)":"none",
                 }}>
-                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:24,color:C.mint,lineHeight:1}}>{n}</div>
-                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:11,color:C.mint,marginTop:6,letterSpacing:"0.3px"}}>{label}</div>
-                  <div style={{fontSize:11,color:C.mint,marginTop:3,lineHeight:1.4}}>{sub}</div>
+                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:40,color:C.lightMint,lineHeight:1,marginBottom:10}}>{n}</div>
+                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.lightMint,marginBottom:5,letterSpacing:"0.3px"}}>{label}</div>
+                  <div style={{fontSize:12,color:"rgba(167,207,153,0.6)",lineHeight:1.4}}>{sub}</div>
                 </div>
               ))}
             </div>
-          </FadeIn>
+          </div>
+        </FadeIn>
 
-          {/* Tabs — clean white bar */}
-          <div style={{
-            display:"flex",gap:2,marginTop:0,
-            background:C.white,
-            borderRadius:"0 0 12px 12px",
-            padding:"0 8px",
-            boxShadow:"0 2px 8px rgba(15,27,31,0.05)",
-            overflowX:"auto",
-          }}>
-            {TABS.map(({id,label,icon})=>(
+        {/* Tabs */}
+        <div style={{background:C.white,borderBottom:"1px solid rgba(15,27,31,0.08)"}}>
+          <div style={{maxWidth:860,margin:"0 auto",display:"flex",overflowX:"auto",padding:"0 8px"}}>
+            {TABS.map(({id,label})=>(
               <button key={id} onClick={()=>setTab(id)} style={{
-                padding:"13px 16px",border:"none",background:"none",cursor:"pointer",
-                whiteSpace:"nowrap",display:"flex",alignItems:"center",gap:6,
-                fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:12,
-                color:tab===id?C.forest:C.charcoal,
-                borderBottom:tab===id?`2px solid ${C.forest}`:"2px solid transparent",
-                transition:"all 0.15s",
+                padding:"18px 22px",border:"none",background:"none",cursor:"pointer",
+                whiteSpace:"nowrap",
+                fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,
+                color:tab===id?C.indigo:C.taupe,
+                borderBottom:tab===id?`3px solid ${C.indigo}`:"3px solid transparent",
+                transition:"color 0.15s",
               }}>
-                <span style={{opacity:tab===id?1:0.5}}>{icon}</span>
                 {label}
               </button>
             ))}
@@ -995,7 +973,7 @@ HANDLING DIFFICULT SITUATIONS:
       </div>
 
       {/* Content */}
-      <div style={{maxWidth:820,margin:"0 auto",padding:"32px 28px 64px"}}>
+      <div style={{maxWidth:860,margin:"0 auto",padding:"52px 32px 80px"}}>
 
         {/* ── OVERVIEW ── */}
         {tab==="guide"&&(
@@ -1030,7 +1008,7 @@ HANDLING DIFFICULT SITUATIONS:
                   background:C.white,borderRadius:16,padding:"24px",
                   border:"1px solid rgba(15,27,31,0.07)",
                   boxShadow:"0 2px 8px rgba(15,27,31,0.05)",
-                  borderLeft:`3px solid ${C.forest}`,
+                  borderLeft:`3px solid ${C.indigo}`,
                 }}>
                   <SectionLabel>Your contacts</SectionLabel>
                   {[
@@ -1085,7 +1063,7 @@ HANDLING DIFFICULT SITUATIONS:
                   <div style={{marginTop:12,display:"flex",flexDirection:"column",gap:8}}>
                     {(role.success||[]).map(({period,desc})=>(
                       <div key={period} style={{background:"rgba(240,236,233,0.6)",borderRadius:10,padding:"14px 16px"}}>
-                        <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:12,color:C.forest,marginBottom:5}}>{period}</div>
+                        <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:12,color:C.indigo,marginBottom:5}}>{period}</div>
                         <div style={{fontSize:13,color:"#4a5568",lineHeight:1.65}}>{desc}</div>
                       </div>
                     ))}
@@ -1247,12 +1225,12 @@ HANDLING DIFFICULT SITUATIONS:
             <FadeIn delay={160}>
               <SectionHead>Is This Role a Fit?</SectionHead>
               <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
-                <div style={{background:`linear-gradient(160deg, ${C.forest} 0%, #1d4038 100%)`,borderRadius:14,padding:"22px",boxShadow:"0 4px 20px rgba(38,84,79,0.2)"}}>
-                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:11,color:"rgba(163,207,153,0.7)",marginBottom:14,letterSpacing:"1px",textTransform:"uppercase"}}>You'll thrive if you</div>
+                <div style={{background:`linear-gradient(160deg, ${C.indigo} 0%, #2d3d85 100%)`,borderRadius:14,padding:"28px",boxShadow:"0 4px 20px rgba(57,75,153,0.25)"}}>
+                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:11,color:"rgba(177,165,247,0.7)",marginBottom:16,letterSpacing:"1px",textTransform:"uppercase"}}>You'll thrive if you</div>
                   {(role.thrive||[]).map((t,i)=>(
-                    <div key={i} style={{display:"flex",gap:10,alignItems:"flex-start",marginBottom:10}}>
-                      <Check size={13} color={C.mint} style={{flexShrink:0,marginTop:2}}/>
-                      <span style={{fontSize:13,color:"rgba(255,255,255,0.8)",lineHeight:1.55}}>{t}</span>
+                    <div key={i} style={{display:"flex",gap:10,alignItems:"flex-start",marginBottom:12}}>
+                      <Check size={13} color={C.lightLavender} style={{flexShrink:0,marginTop:2}}/>
+                      <span style={{fontSize:13,color:"rgba(255,255,255,0.85)",lineHeight:1.6}}>{t}</span>
                     </div>
                   ))}
                 </div>
@@ -1270,11 +1248,11 @@ HANDLING DIFFICULT SITUATIONS:
 
             <FadeIn delay={220}>
               <SectionHead>What Success Looks Like</SectionHead>
-              <div style={{borderRadius:14,overflow:"hidden",border:"1px solid rgba(15,27,31,0.08)",boxShadow:"0 2px 8px rgba(15,27,31,0.05)"}}>
+              <div style={{display:"flex",flexDirection:"column",gap:12}}>
                 {(role.success||[]).map(({period,desc},i)=>(
-                  <div key={i} style={{display:"grid",gridTemplateColumns:"160px 1fr",background:i%2===0?C.white:"rgba(240,236,233,0.4)",borderTop:i===0?"none":"1px solid rgba(15,27,31,0.05)"}}>
-                    <div style={{padding:"18px 16px",fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:12,color:C.forest,borderRight:"1px solid rgba(15,27,31,0.05)"}}>{period}</div>
-                    <div style={{padding:"18px 16px",fontSize:13,color:"#4a5568",lineHeight:1.7}}>{desc}</div>
+                  <div key={i} style={{display:"grid",gridTemplateColumns:"140px 1fr",gap:20,background:C.white,borderRadius:12,padding:"22px 24px"}}>
+                    <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.indigo,paddingTop:1}}>{period}</div>
+                    <div style={{fontSize:14,color:"#4a5568",lineHeight:1.75}}>{desc}</div>
                   </div>
                 ))}
               </div>
@@ -1309,15 +1287,10 @@ HANDLING DIFFICULT SITUATIONS:
                     {icon:<Shield size={16}/>,title:"Transparency is the norm",desc:"Leadership shares financials and strategic debates openly — including mistakes and uncertainties — because that's how we all get better."},
                     {icon:<Heart size={16}/>,title:"Vulnerability is strength",desc:"Founders model it first: admitting when they're wrong, asking for feedback, showing up as whole humans. That permission creates space for everyone."},
                   ].map(({icon,title,desc})=>(
-                    <HoverDiv key={title}
-                      baseStyle={{display:"flex",gap:14,alignItems:"flex-start",background:"rgba(255,255,255,0.07)",borderRadius:12,padding:"18px 20px",border:"1px solid rgba(255,255,255,0.1)",transition:"all 0.22s ease",cursor:"default"}}
-                      hoverStyle={{background:"rgba(255,255,255,0.13)",transform:"translateY(-2px)",boxShadow:"0 8px 24px rgba(0,0,0,0.18)"}}>
-                      <div style={{color:C.lightLavender,flexShrink:0,marginTop:1}}>{icon}</div>
-                      <div>
-                        <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:C.white,marginBottom:5}}>{title}</div>
-                        <div style={{fontSize:13,color:"rgba(255,255,255,0.6)",lineHeight:1.7}}>{desc}</div>
-                      </div>
-                    </HoverDiv>
+                    <div key={title} style={{background:"rgba(255,255,255,0.08)",borderRadius:12,padding:"22px 24px",borderLeft:`3px solid ${C.lavender}`}}>
+                      <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:15,color:C.white,marginBottom:8}}>{title}</div>
+                      <div style={{fontSize:14,color:"rgba(255,255,255,0.65)",lineHeight:1.75}}>{desc}</div>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -1326,12 +1299,8 @@ HANDLING DIFFICULT SITUATIONS:
             {/* What type of person thrives here */}
             <FadeIn delay={80}>
               <div>
-                <h2 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:20,color:C.charcoal,margin:"0 0 20px",letterSpacing:"-0.3px"}}>What Type of Person Thrives Here?</h2>
-                <div style={{
-                  background:C.white,borderRadius:14,overflow:"hidden",
-                  border:"1px solid rgba(15,27,31,0.07)",
-                  boxShadow:"0 2px 12px rgba(15,27,31,0.06)",
-                }}>
+                <h2 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:28,color:C.charcoal,margin:"0 0 24px",letterSpacing:"-0.5px"}}>What Type of Person Thrives Here?</h2>
+                <div style={{display:"flex",flexDirection:"column",gap:10}}>
                   {[
                     ["collaborative problem-solver","You're a collaborative problem-solver who thrives in ambiguity"],
                     ["growth mindset","You practice a growth mindset and embrace feedback"],
@@ -1341,14 +1310,11 @@ HANDLING DIFFICULT SITUATIONS:
                   ].map(([bold,text],i)=>{
                     const parts=text.split(bold);
                     return (
-                      <HoverDiv key={i}
-                        baseStyle={{display:"flex",alignItems:"flex-start",gap:14,padding:"18px 24px",borderLeft:"3px solid transparent",transition:"all 0.2s ease",cursor:"default"}}
-                        hoverStyle={{transform:"scale(1.015)",borderLeftColor:C.lavender,background:"rgba(177,165,247,0.05)"}}>
-                        <ChevronRight size={15} color={C.lavender} style={{flexShrink:0,marginTop:3}}/>
-                        <span style={{fontSize:14,color:C.charcoal,lineHeight:1.7}}>
+                      <div key={i} style={{padding:"18px 24px",borderLeft:`4px solid ${C.lavender}`,background:C.white,borderRadius:"0 10px 10px 0"}}>
+                        <span style={{fontSize:15,color:C.charcoal,lineHeight:1.7}}>
                           {parts[0]}<strong style={{color:C.indigo,fontWeight:700}}>{bold}</strong>{parts[1]}
                         </span>
-                      </HoverDiv>
+                      </div>
                     );
                   })}
                 </div>
@@ -1367,13 +1333,10 @@ HANDLING DIFFICULT SITUATIONS:
                   {icon:<BookMarked size={14}/>,title:"Prof. Development",sub:"$500 annual stipend"},
                   {icon:<Calendar size={14}/>,title:"Generous PTO",sub:"Including company closure 12/25-1/1"},
                 ].map(({icon,title,sub})=>(
-                  <HoverDiv key={title}
-                    baseStyle={{background:C.lightMint,borderRadius:12,padding:"20px 16px",border:"1px solid rgba(38,84,79,0.1)",boxShadow:"0 1px 4px rgba(15,27,31,0.04)",transition:"all 0.22s ease",cursor:"default"}}
-                    hoverStyle={{transform:"translateY(-2px)",boxShadow:"0 8px 24px rgba(38,84,79,0.13)"}}>
-                    <div style={{color:C.forest,marginBottom:10}}>{icon}</div>
-                    <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.forest,marginBottom:4}}>{title}</div>
-                    <div style={{fontSize:12,color:C.forest,lineHeight:1.5,opacity:0.8}}>{sub}</div>
-                  </HoverDiv>
+                  <div key={title} style={{background:C.lightLavender,borderRadius:12,padding:"22px 18px"}}>
+                    <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:C.indigo,marginBottom:6}}>{title}</div>
+                    <div style={{fontSize:13,color:C.indigo,lineHeight:1.5,opacity:0.75}}>{sub}</div>
+                  </div>
                 ))}
               </div>
               <div style={{fontSize:13,color:C.taupe,paddingLeft:4}}>MacBook provided &bull; Flexible remote-first</div>
@@ -1452,7 +1415,7 @@ HANDLING DIFFICULT SITUATIONS:
                   )}
                   {sec.subsections&&sec.subsections.map((sub,j)=>(
                     <div key={j} style={{marginBottom:18}}>
-                      <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:12,color:C.forest,marginBottom:8,letterSpacing:"0.3px"}}>{sub.label}</div>
+                      <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:12,color:C.indigo,marginBottom:8,letterSpacing:"0.3px"}}>{sub.label}</div>
                       <div style={{display:"flex",flexDirection:"column",gap:7}}>
                         {sub.bullets.map((b,k)=>(
                           <div key={k} style={{display:"flex",gap:10,alignItems:"flex-start"}}>
