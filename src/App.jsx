@@ -896,12 +896,10 @@ HANDLING DIFFICULT SITUATIONS:
         <div style={{maxWidth:860,margin:"0 auto",padding:"0 32px 56px"}}>
           <FadeIn delay={0}>
             <div style={{display:"flex",gap:8,marginBottom:20,flexWrap:"wrap"}}>
-              {[role.department, role.location].map((label,i)=>(
-                <span key={i} style={{display:"inline-flex",alignItems:"center",gap:7,background:"rgba(38,84,79,0.07)",border:"1px solid rgba(38,84,79,0.15)",borderRadius:99,padding:"5px 13px",fontSize:12,fontWeight:600,color:C.forest,fontFamily:"'Inter',sans-serif"}}>
-                  <span style={{width:6,height:6,borderRadius:"50%",background:C.mint,boxShadow:`0 0 0 3px rgba(167,207,153,0.35)`,display:"inline-block",animation:"dotGlow 2s ease-in-out infinite",animationDelay:`${i*0.4}s`}}/>
-                  {label}
-                </span>
-              ))}
+              <span style={{display:"inline-flex",alignItems:"center",gap:7,background:"rgba(38,84,79,0.07)",border:"1px solid rgba(38,84,79,0.15)",borderRadius:99,padding:"5px 13px",fontSize:12,fontWeight:600,color:C.forest,fontFamily:"'Inter',sans-serif"}}>
+                <span style={{width:6,height:6,borderRadius:"50%",background:C.mint,boxShadow:`0 0 0 3px rgba(167,207,153,0.35)`,display:"inline-block",animation:"dotGlow 2s ease-in-out infinite"}}/>
+                {role.department}
+              </span>
             </div>
           </FadeIn>
 
@@ -921,6 +919,10 @@ HANDLING DIFFICULT SITUATIONS:
               <div>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Reports to</div>
                 <div style={{fontSize:17,color:C.charcoal,fontWeight:600}}>{role.reportsto}</div>
+              </div>
+              <div>
+                <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Location</div>
+                <div style={{fontSize:17,color:C.charcoal,fontWeight:600}}>{role.location}</div>
               </div>
               <div>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Compensation</div>
