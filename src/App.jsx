@@ -908,25 +908,21 @@ HANDLING DIFFICULT SITUATIONS:
               fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:56,
               color:C.charcoal,margin:0,letterSpacing:"-1.5px",lineHeight:1.0,
             }}>{role.title}</h1>
-            <div style={{
-              fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:44,
-              color:C.indigo,margin:"6px 0 40px",letterSpacing:"-1px",lineHeight:1.05,
-            }}>We're glad you're here.</div>
           </FadeIn>
 
           <FadeIn delay={120}>
             <div style={{display:"flex",gap:48,marginBottom:44,flexWrap:"wrap"}}>
               <div>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Reports to</div>
-                <div style={{fontSize:17,color:C.brick,fontWeight:600}}>{role.reportsto}</div>
+                <div style={{fontSize:17,color:C.indigo,fontWeight:600}}>{role.reportsto}</div>
               </div>
               <div>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Location</div>
-                <div style={{fontSize:17,color:C.brick,fontWeight:600}}>{role.location}</div>
+                <div style={{fontSize:17,color:C.indigo,fontWeight:600}}>{role.location}</div>
               </div>
               <div>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Compensation</div>
-                <div style={{fontSize:17,color:C.brick,fontWeight:700}}>{role.comp}</div>
+                <div style={{fontSize:17,color:C.indigo,fontWeight:700}}>{role.comp}</div>
               </div>
             </div>
           </FadeIn>
