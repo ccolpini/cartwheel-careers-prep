@@ -1,4 +1,14 @@
 import { useState, useRef, useEffect } from "react";
+
+function useIsMobile() {
+  const [isMobile,setIsMobile]=useState(()=>window.innerWidth<640);
+  useEffect(()=>{
+    const h=()=>setIsMobile(window.innerWidth<640);
+    window.addEventListener("resize",h);
+    return ()=>window.removeEventListener("resize",h);
+  },[]);
+  return isMobile;
+}
 import { BUILT_IN_ROLES } from "./roles.js";
 import { BookOpen, Users, Map, Heart, CheckSquare, FileText, MessageCircle, ChevronDown, ChevronRight, ArrowLeft, LogOut, Sun, Shield, Coffee, Plane, BookMarked, Calendar, Linkedin, Globe, Star, Building2, Lock, Plus, Trash2, Eye, Copy, X, Check } from "lucide-react";
 
@@ -659,12 +669,13 @@ function StagePrep({role}) {
 
 // ── Mission Dropdown ──────────────────────────────────────────
 function MissionDropdown() {
+  const isMobile=useIsMobile();
   return (
     <Accordion q="What is Cartwheel's mission?">
       <p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"12px 0 16px"}}>
         Cartwheel partners with K-12 schools to provide accessible mental health care to students — enabling earlier intervention, higher engagement, and better-coordinated care. Instead of going around school staff, we work alongside them.
       </p>
-      <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:10}}>
+      <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr 1fr",gap:10}}>
         {[["58%","of students achieve full remission of anxiety"],["3x","reduction in moderate-to-severe depression"],["92%","of families would recommend us to a peer"]].map(([n,label])=>(
           <div key={n} style={{background:`linear-gradient(135deg, ${C.lightLavender}, #ddd8fb)`,borderRadius:10,padding:"14px 16px",border:"1px solid rgba(177,165,247,0.3)"}}>
             <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:22,color:C.indigo}}>{n}</div>
@@ -780,6 +791,7 @@ function HoverDiv({baseStyle,hoverStyle,children,...rest}) {
 // CANDIDATE VIEW
 // ══════════════════════════════════════════════════════════════
 function CandidateView({role,onBack}) {
+  const isMobile=useIsMobile();
   const [tab,setTab]=useState("guide");
   const [msgs,setMsgs]=useState([{role:"assistant",content:`Hi. I'm here to help you prepare for your ${role.title} interview at Cartwheel.\n\nAsk me anything about the process, the team, or what to expect. I'll give you honest, specific answers — not hype.`}]);
   const [input,setInput]=useState("");
@@ -897,7 +909,7 @@ HANDLING DIFFICULT SITUATIONS:
         <div style={{position:"absolute",top:160,right:"9%",width:60,height:60,background:"rgba(177,165,247,0.09)",pointerEvents:"none"}}/>
 
         {/* Heading block */}
-        <div style={{maxWidth:860,margin:"0 auto",padding:"0 32px 56px"}}>
+        <div style={{maxWidth:860,margin:"0 auto",padding:isMobile?"0 20px 40px":"0 32px 56px"}}>
           <FadeIn delay={0}>
             <div style={{display:"flex",gap:8,marginBottom:20,flexWrap:"wrap"}}>
               <span style={{display:"inline-flex",alignItems:"center",gap:7,background:"rgba(38,84,79,0.07)",border:"1px solid rgba(38,84,79,0.15)",borderRadius:99,padding:"5px 13px",fontSize:12,fontWeight:600,color:C.forest,fontFamily:"'Inter',sans-serif"}}>
@@ -909,8 +921,8 @@ HANDLING DIFFICULT SITUATIONS:
 
           <FadeIn delay={60}>
             <h1 style={{
-              fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:56,
-              color:C.charcoal,margin:0,letterSpacing:"-1.5px",lineHeight:1.0,
+              fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:isMobile?34:56,
+              color:C.charcoal,margin:0,letterSpacing:isMobile?"-0.5px":"-1.5px",lineHeight:1.05,
             }}>{role.title}</h1>
           </FadeIn>
 
@@ -945,13 +957,14 @@ HANDLING DIFFICULT SITUATIONS:
         {/* Stats — full-width indigo band */}
         <FadeIn delay={240}>
           <div style={{background:C.forest}}>
-            <div style={{maxWidth:860,margin:"0 auto",display:"grid",gridTemplateColumns:"repeat(4,1fr)"}}>
+            <div style={{maxWidth:860,margin:"0 auto",display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)"}}>
               {(role.stats||[]).map(({n,label,sub},i)=>(
                 <div key={n} style={{
-                  padding:"44px 32px",
-                  borderRight:i<3?"1px solid rgba(167,207,153,0.2)":"none",
+                  padding:isMobile?"28px 20px":"44px 32px",
+                  borderRight:isMobile?(i%2===0?"1px solid rgba(167,207,153,0.2)":"none"):(i<3?"1px solid rgba(167,207,153,0.2)":"none"),
+                  borderBottom:isMobile&&i<2?"1px solid rgba(167,207,153,0.2)":"none",
                 }}>
-                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:40,color:C.lightMint,lineHeight:1,marginBottom:10}}>{n}</div>
+                  <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:isMobile?30:40,color:C.lightMint,lineHeight:1,marginBottom:10}}>{n}</div>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.lightMint,marginBottom:5,letterSpacing:"0.3px"}}>{label}</div>
                   <div style={{fontSize:12,color:"rgba(167,207,153,0.6)",lineHeight:1.4}}>{sub}</div>
                 </div>
@@ -980,7 +993,7 @@ HANDLING DIFFICULT SITUATIONS:
       </div>
 
       {/* Content */}
-      <div style={{maxWidth:860,margin:"0 auto",padding:"52px 32px 80px"}}>
+      <div style={{maxWidth:860,margin:"0 auto",padding:isMobile?"32px 16px 60px":"52px 32px 80px"}}>
 
         {/* ── OVERVIEW ── */}
         {tab==="guide"&&(
@@ -988,7 +1001,7 @@ HANDLING DIFFICULT SITUATIONS:
 
             {/* Qualities + Contacts */}
             <FadeIn delay={0}>
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:16}}>
+              <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:16}}>
                 <div style={{
                   background:C.indigo,borderRadius:16,padding:"24px",
                   boxShadow:"0 4px 24px rgba(57,75,153,0.08)",
@@ -1231,7 +1244,7 @@ HANDLING DIFFICULT SITUATIONS:
 
             <FadeIn delay={160}>
               <SectionHead>Is This Role a Fit?</SectionHead>
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:14}}>
+              <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:14}}>
                 <div style={{background:`linear-gradient(160deg, ${C.indigo} 0%, #2d3d85 100%)`,borderRadius:14,padding:"28px",boxShadow:"0 4px 20px rgba(57,75,153,0.25)"}}>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:11,color:"rgba(177,165,247,0.7)",marginBottom:16,letterSpacing:"1px",textTransform:"uppercase"}}>You'll thrive if you</div>
                   {(role.thrive||[]).map((t,i)=>(
@@ -1257,7 +1270,7 @@ HANDLING DIFFICULT SITUATIONS:
               <SectionHead>What Success Looks Like</SectionHead>
               <div style={{display:"flex",flexDirection:"column",gap:12}}>
                 {(role.success||[]).map(({period,desc},i)=>(
-                  <div key={i} style={{display:"grid",gridTemplateColumns:"140px 1fr",gap:20,background:C.white,borderRadius:12,padding:"22px 24px"}}>
+                  <div key={i} style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"140px 1fr",gap:isMobile?6:20,background:C.white,borderRadius:12,padding:"22px 24px"}}>
                     <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.indigo,paddingTop:1}}>{period}</div>
                     <div style={{fontSize:14,color:"#4a5568",lineHeight:1.75}}>{desc}</div>
                   </div>
@@ -1334,7 +1347,7 @@ HANDLING DIFFICULT SITUATIONS:
             {/* Comp + Benefits */}
             <FadeIn delay={100}>
               <SectionHead>Compensation + Benefits</SectionHead>
-              <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gap:12,marginBottom:14}}>
+              <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr 1fr":"1fr 1fr 1fr",gap:12,marginBottom:14}}>
                 {[
                   {icon:<Coffee size={14}/>,title:"401(k) Match",sub:"2% employer contribution"},
                   {icon:<Heart size={14}/>,title:"Premium Health",sub:"Medical, dental, orthodontia, vision"},
