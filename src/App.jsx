@@ -1293,7 +1293,10 @@ HANDLING DIFFICULT SITUATIONS:
                     {icon:<Heart size={16}/>,title:"Vulnerability is strength",desc:"Founders model it first: admitting when they're wrong, asking for feedback, showing up as whole humans. That permission creates space for everyone."},
                   ].map(({icon,title,desc})=>(
                     <div key={title} style={{background:"rgba(255,255,255,0.08)",borderRadius:12,padding:"22px 24px",borderLeft:`3px solid ${C.lavender}`}}>
-                      <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:15,color:C.white,marginBottom:8}}>{title}</div>
+                      <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
+                        <span style={{color:C.lavender,display:"flex"}}>{icon}</span>
+                        <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:15,color:C.white}}>{title}</div>
+                      </div>
                       <div style={{fontSize:14,color:"rgba(255,255,255,0.65)",lineHeight:1.75}}>{desc}</div>
                     </div>
                   ))}
@@ -1339,7 +1342,10 @@ HANDLING DIFFICULT SITUATIONS:
                   {icon:<Calendar size={14}/>,title:"Generous PTO",sub:"Including company closure 12/25-1/1"},
                 ].map(({icon,title,sub})=>(
                   <div key={title} style={{background:C.lightLavender,borderRadius:12,padding:"22px 18px"}}>
-                    <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:C.indigo,marginBottom:6}}>{title}</div>
+                    <div style={{display:"flex",alignItems:"center",gap:7,marginBottom:6}}>
+                      <span style={{color:C.indigo,display:"flex"}}>{icon}</span>
+                      <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:C.indigo}}>{title}</div>
+                    </div>
                     <div style={{fontSize:13,color:C.indigo,lineHeight:1.5,opacity:0.75}}>{sub}</div>
                   </div>
                 ))}
