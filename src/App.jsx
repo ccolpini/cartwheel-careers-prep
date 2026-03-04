@@ -892,9 +892,9 @@ HANDLING DIFFICULT SITUATIONS:
       {/* Hero */}
       <div style={{background:C.white,paddingTop:72,position:"relative",overflow:"hidden"}}>
         {/* Decorative shapes */}
-        <div style={{position:"absolute",top:-40,right:"8%",width:260,height:260,borderRadius:"50%",background:"rgba(177,165,247,0.13)",pointerEvents:"none"}}/>
-        <div style={{position:"absolute",top:20,right:"22%",width:80,height:80,borderRadius:"50%",background:"rgba(57,75,153,0.08)",pointerEvents:"none"}}/>
-        <div style={{position:"absolute",top:100,right:"10%",width:110,height:110,background:"rgba(177,165,247,0.10)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",top:-20,right:"6%",width:140,height:140,borderRadius:"50%",background:"rgba(177,165,247,0.11)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",top:30,right:"28%",width:44,height:44,borderRadius:"50%",background:"rgba(57,75,153,0.07)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",top:160,right:"9%",width:60,height:60,background:"rgba(177,165,247,0.09)",pointerEvents:"none"}}/>
 
         {/* Heading block */}
         <div style={{maxWidth:860,margin:"0 auto",padding:"0 32px 56px"}}>
