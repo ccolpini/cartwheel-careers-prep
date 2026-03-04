@@ -911,7 +911,7 @@ HANDLING DIFFICULT SITUATIONS:
           </FadeIn>
 
           <FadeIn delay={120}>
-            <div style={{display:"flex",gap:48,marginBottom:44,flexWrap:"wrap"}}>
+            <div style={{display:"flex",flexDirection:"column",gap:20,marginBottom:44}}>
               <div>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Reports to</div>
                 <div style={{fontSize:17,color:C.indigo,fontWeight:600}}>{role.reportsto}</div>
