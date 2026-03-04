@@ -263,4 +263,202 @@ export const CTRL_ROLE = {
   links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
 };
 
-export const BUILT_IN_ROLES = [PDA_ROLE, SPM_ROLE, CCM_ROLE, CTRL_ROLE];
+export const GROM_ROLE = {
+  title:"Government Relations Operations Manager", slug:"government-relations-operations-manager",
+  department:"Government Affairs & Partnerships", reportsto:"Jonathan Adler, VP Government Relations",
+  location:"Flexible (Cartwheel operates remotely; travel may apply)", employment:"Full-Time, W2", comp:"Competitive — TBD",
+  mission:"Cartwheel is at an inflection point in state expansion strategy. The Government Relations team manages relationships across multiple states, but volume of workstreams has exceeded team capacity. This role builds the operational infrastructure — briefs, trackers, compliance tracking — that lets the GR team scale without losing deals to slow follow-through or administrative gaps.",
+  stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
+  team:[
+    "Jonathan Adler — VP Government Relations (your hiring manager)",
+    "GR Account Executives — 3–4 people managing state relationships and deals",
+    "GR Executives — 2 people overseeing strategy and lobbying direction",
+    "Marketing Lead — cross-functional partner for brief content and distribution",
+    "Data/Analytics Team — partner for KPI definition and reporting",
+    "Thought Leadership — partner for content in briefs and external assets",
+  ],
+  stages:[
+    {stage:"Recruiter Screen",time:"30m",who:"Caroline Colpini",focus:"Role fit, values, compensation, mission alignment"},
+    {stage:"Hiring Manager Interview",time:"45m",who:"Jonathan Adler",focus:"Strategic thinking, autonomy, startup mindset, mission alignment depth"},
+    {stage:"Functional Deep Dive",time:"60m",who:"Jonathan Adler + Operations Advisor",focus:"Hands-on operational capability, process design, tool proficiency, project management"},
+    {stage:"Cross-Functional Collaboration",time:"45m",who:"Marketing Lead + GR Team Member",focus:"Partnership building, communication clarity, receptiveness to feedback"},
+    {stage:"Executive Round",time:"30m",who:"CEO or COO",focus:"Mission alignment authenticity, judgment, growth mindset"},
+  ],
+  contacts:["Recruiter: Caroline Colpini - caroline.colpini@cartwheelcare.org","Coordinator: Avery Henry - avery.henry@cartwheelcare.org"],
+  prep:[
+    "Research Cartwheel's mission and current state expansion strategy before interviews",
+    "Come prepared with 2–3 concrete examples of systems you've built that others use",
+    "Think about a time you coordinated across teams without formal authority",
+    "Understand why student mental health access matters — beyond the talking points",
+    "Be ready to discuss your comfort with ambiguity and autonomous work",
+    "Have questions ready about the GR landscape and team structure",
+  ],
+  thrive:[
+    "Find satisfaction building systems behind the scenes — success is when the GR team closes deals and you enabled it",
+    "Thrive on breadth, not depth — context-switching across briefs, compliance, trackers, and event planning energizes you",
+    "Are startup-minded — comfortable with blank-page problems, building from scratch, documenting as you go",
+    "Are genuinely mission-driven — you understand why student mental health access matters and bring that urgency to even administrative work",
+  ],
+  notfor:[
+    "Want to own external relationships — this role supports the field team, it doesn't replace it",
+    "Struggle with ambiguity or shifting priorities — legislative calendars move fast and opportunities emerge quickly",
+    "Need a team to manage to feel senior — this role has no direct reports at launch",
+    "Are strong strategically but light on execution — this role requires both strategic thinking and hands-on building",
+    "Need frequent positive feedback to stay engaged — you'll work mostly autonomously with periodic check-ins",
+  ],
+  success:[
+    {period:"First 90 Days",desc:"Met every GR team member and key cross-functional partners. Completed comprehensive audit of existing infrastructure. Produced first round of monthly impact briefs with documented process. Lobbyist contracts and compliance fully mapped across all jurisdictions. Opportunity tracker and event calendar live and actively used by the team."},
+    {period:"First 6 Months",desc:"GR Account Executives report that pre-meeting briefings, collateral requests, and tracking are handled without them having to ask. Monthly impact briefs ship on schedule with tiered approach consistently applied. Opportunity tracker is single source of truth; team updates it automatically. Lobbyist budget tracking current within 5 days of each reporting period."},
+    {period:"First 12 Months",desc:"Lobbyist performance reviews completed for all active contracts with data-backed recommendations. VP of GR has live KPI dashboard informing state prioritization decisions. No dropped compliance deadlines, no missed briefs, no surprises. GR team can point to tangible wins where operational support was a contributing factor. Role is evolving toward strategic intelligence gathering and scaling operations as the team grows."},
+  ],
+  mustHave:[
+    "Operational discipline and attention to detail — can build and maintain accurate systems",
+    "Cross-functional coordination experience — have moved projects forward without formal authority",
+    "Project management tool proficiency (Asana, Google Sheets, CRM systems)",
+    "Strong written communication — can produce clear briefs and documentation",
+    "Bachelor's degree",
+    "Comfort with ambiguity and ability to work autonomously",
+    "Mission-driven mindset — genuine care about impact",
+  ],
+  niceToHave:[
+    "Experience in government affairs or public policy",
+    "Familiarity with compliance or regulatory frameworks",
+    "Experience with CRM systems (Salesforce, HubSpot)",
+    "Background in education policy or student mental health",
+    "Startup or high-growth environment experience",
+    "Experience managing or evaluating lobbyist relationships",
+    "Strong documentation or process design skills",
+  ],
+  whatYoullDo:[
+    {label:"Monthly Impact Briefs",bullets:[
+      "Design and produce monthly legislative briefs for active states",
+      "Establish tiered approach (personalized for key decision-makers, generic for broader distribution)",
+      "Coordinate with Marketing and Thought Leadership on content and design",
+      "Ensure consistent distribution and tracking of engagement",
+      "Maintain archive and version control",
+    ]},
+    {label:"Opportunity & Pipeline Management",bullets:[
+      "Build and maintain opportunity tracker as single source of truth",
+      "Ensure GR team updates pipeline data consistently",
+      "Pull weekly KPIs (deal count, pipeline value, conversion rates)",
+      "Surface actionable intelligence and trends to leadership",
+      "Coordinate event planning and stakeholder outreach calendars",
+    ]},
+    {label:"Lobbyist Oversight & Compliance",bullets:[
+      "Audit and map all lobbyist contracts and registrations across active jurisdictions",
+      "Track compliance deadlines (state registrations, reporting requirements)",
+      "Build ROI framework to measure contract lobbying performance",
+      "Deliver quarterly performance reviews and recommendations",
+      "Maintain budget tracking and invoice management",
+    ]},
+    {label:"Account Executive Support",bullets:[
+      "Proactively prepare pre-meeting briefings for field team",
+      "Fulfill collateral requests (templates, talking points, materials)",
+      "Track follow-up items and stakeholder interactions",
+      "Support event logistics and roadshow planning",
+      "Build and maintain internal knowledge base and onboarding materials",
+    ]},
+    {label:"Documentation & Scaling",bullets:[
+      "Document core processes and standard operating procedures",
+      "Create onboarding materials and templates for new team members",
+      "Build internal GR Operations 101 documentation",
+      "Establish checklists and workflows that scale as team grows",
+    ]},
+  ],
+  aboutRole:"Cartwheel partners with 350+ school districts to expand mental health access for students, serving 1.5M students with 300% YoY growth.\n\nThe Government Relations team manages state expansion strategy, building relationships with legislators and agency staff across multiple jurisdictions simultaneously. As we scale from 8–10 active states to 15–20, the operational demands have exceeded what the current team can absorb while executing strategy and field work.\n\nThis role owns the connective tissue: monthly legislative impact briefs that keep decision-makers engaged, opportunity trackers that serve as single source of truth for the pipeline, lobbyist performance frameworks that inform contracting decisions, and the systems and processes that let Account Executives focus on relationships instead of administration.\n\nThink of this as the infrastructure role that enables the GR team to close deals and win states at scale.",
+  compBenefits:"Competitive compensation at market rate for a mid-level operations role in a startup environment. Benefits include competitive health insurance, equity package, unlimited PTO, $500 annual professional development budget, remote-first with flexible travel requirements (1–3 times per quarter). Target start date: March 27, 2026.",
+  stagePrepData:[
+    {stage:"Recruiter Screen",prep:[
+      "Research Cartwheel's mission and school-based mental health model",
+      "Prepare a concise background summary focused on operational and coordination experience",
+      "Know your compensation expectations",
+      "Think about what draws you to a mission-driven operations role",
+    ],questions:[
+      "What does the current GR operational infrastructure look like?",
+      "How many active states is Cartwheel in today vs. the 12-month target?",
+      "What does success look like in the first 90 days?",
+    ]},
+    {stage:"Hiring Manager Interview",prep:[
+      "Prepare 2–3 examples of systems you built that others now rely on",
+      "Think about times you operated autonomously without close oversight",
+      "Be ready to articulate why you're drawn to mission-driven work specifically",
+      "Prepare questions about the GR team structure and current gaps",
+    ],questions:[
+      "What are the biggest operational gaps the GR team is experiencing right now?",
+      "How does the team currently manage pipeline and lobbyist relationships?",
+      "What does the biggest win look like in the first 6 months?",
+    ]},
+    {stage:"Functional Deep Dive",prep:[
+      "Prepare specific examples of process design — show the before and after",
+      "Be ready to walk through your project management tool experience in detail",
+      "Think about how you've handled compliance or deadline-tracking in past roles",
+      "Bring a concrete example of a system you built from scratch",
+    ],questions:[
+      "What tools does the GR team currently use for tracking and communication?",
+      "Are there existing lobbyist contracts and compliance frameworks to inherit?",
+      "How mature is the current pipeline tracking system?",
+    ]},
+    {stage:"Cross-Functional Collaboration",prep:[
+      "Prepare an example of coordinating a project across teams without direct authority",
+      "Think about how you've given and received feedback that changed your approach",
+      "Be ready to discuss how you communicate with stakeholders who have different priorities",
+      "Show genuine curiosity about the Marketing and GR team's current work",
+    ],questions:[
+      "How do Marketing and GR currently collaborate on briefs and external content?",
+      "What does effective cross-functional communication look like on this team?",
+      "How does the GR team handle competing priorities across states?",
+    ]},
+    {stage:"Executive Round",prep:[
+      "Prepare your perspective on why operational infrastructure matters at this stage of growth",
+      "Have a clear answer for why Cartwheel specifically resonates with you",
+      "Think about where you want to grow in the next 2–3 years",
+      "Prepare 2–3 strategic questions about Cartwheel's state expansion roadmap",
+    ],questions:[
+      "What is Cartwheel's state expansion strategy over the next 2 years?",
+      "How does the executive team think about the relationship between GR operations and deal velocity?",
+      "What does success for this role look like from a leadership perspective?",
+    ]},
+  ],
+  checklist:[
+    {stage:"Before Recruiter Screen",items:[
+      "Research Cartwheel's mission and school-based model",
+      "Prepare your background summary focused on operations and coordination",
+      "Know your compensation expectations",
+      "Review the job description and think about your builder examples",
+    ]},
+    {stage:"Before Hiring Manager Interview",items:[
+      "Prepare 2–3 system-building examples with clear before/after impact",
+      "Think through your experience with autonomous, ambiguous work",
+      "Prepare questions about the GR team structure and current infrastructure",
+      "Reflect on your personal connection to the mission",
+    ]},
+    {stage:"Before Functional Deep Dive",items:[
+      "Prepare detailed process design examples",
+      "Review your project management and tool proficiency examples",
+      "Think through compliance and deadline-tracking experience",
+      "Be ready to walk through a system you built from scratch",
+    ]},
+    {stage:"Before Cross-Functional Collaboration",items:[
+      "Prepare a cross-functional coordination example without direct authority",
+      "Think about how you approach feedback and adjust based on others' input",
+      "Review what you know about Cartwheel's Marketing and Data teams",
+      "Prepare thoughtful questions for each interviewer",
+    ]},
+    {stage:"Before Executive Round",items:[
+      "Prepare your perspective on scaling operations at a high-growth company",
+      "Sharpen your why Cartwheel answer",
+      "Prepare 2–3 strategic questions about state expansion",
+      "Reflect on your long-term growth goals",
+    ]},
+  ],
+  interviewers:[
+    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
+    {label:"Hiring Manager Interview",name:"Jonathan Adler",title:"VP Government Relations",href:null},
+    {label:"Functional Deep Dive",name:"Jonathan Adler",title:"VP Government Relations",href:null},
+    {label:"Cross-Functional Collaboration",name:"",title:"Marketing Lead + GR Team Member",href:null},
+    {label:"Executive Round",name:"",title:"CEO / COO",href:null},
+  ],
+  links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
+};
+
+export const BUILT_IN_ROLES = [PDA_ROLE, SPM_ROLE, CCM_ROLE, CTRL_ROLE, GROM_ROLE];
