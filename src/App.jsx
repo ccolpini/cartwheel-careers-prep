@@ -890,7 +890,11 @@ HANDLING DIFFICULT SITUATIONS:
       </div>
 
       {/* Hero */}
-      <div style={{background:C.white,paddingTop:72}}>
+      <div style={{background:C.white,paddingTop:72,position:"relative",overflow:"hidden"}}>
+        {/* Decorative shapes */}
+        <div style={{position:"absolute",top:-40,right:"8%",width:260,height:260,borderRadius:"50%",background:"rgba(177,165,247,0.13)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",top:20,right:"22%",width:80,height:80,borderRadius:"50%",background:"rgba(57,75,153,0.08)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",top:100,right:"10%",width:110,height:110,background:"rgba(177,165,247,0.10)",pointerEvents:"none"}}/>
 
         {/* Heading block */}
         <div style={{maxWidth:860,margin:"0 auto",padding:"0 32px 56px"}}>
