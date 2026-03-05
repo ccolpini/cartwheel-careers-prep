@@ -279,10 +279,11 @@ export const GROM_ROLE = {
   ],
   stages:[
     {stage:"Recruiter Screen",time:"30m",who:"Caroline Colpini",focus:"Role fit, values, compensation, mission alignment"},
-    {stage:"Hiring Manager Interview",time:"45m",who:"Jonathan Adler",focus:"Strategic thinking, autonomy, startup mindset, mission alignment depth"},
-    {stage:"Functional Deep Dive",time:"60m",who:"Jonathan Adler + Operations Advisor",focus:"Hands-on operational capability, process design, tool proficiency, project management"},
-    {stage:"Cross-Functional Collaboration",time:"45m",who:"Marketing Lead + GR Team Member",focus:"Partnership building, communication clarity, receptiveness to feedback"},
-    {stage:"Executive Round",time:"30m",who:"CEO or COO",focus:"Mission alignment authenticity, judgment, growth mindset"},
+    {stage:"Hiring Manager Interview",time:"30m",who:"Jonathan Adler",focus:"Strategic thinking, autonomy, startup mindset, mission alignment depth"},
+    {stage:"Take-Home Exercise",time:"Self-guided",who:"",focus:"Operational thinking, process design, written communication"},
+    {stage:"Functional Deep Dive",time:"30m",who:"Dan Tartakovsky, COO",focus:"Hands-on operational capability, process design, tool proficiency, cross-functional judgment"},
+    {stage:"Cross-Functional Collaboration + Partnership",time:"45-60m",who:"Emily Paisner, Head of Marketing + School Success Leader",focus:"Partnership building, communication clarity, receptiveness to feedback"},
+    {stage:"Executive Review",time:"30m",who:"Joe English, CEO",focus:"Mission alignment authenticity, judgment, growth mindset"},
   ],
   contacts:["Recruiter: Caroline Colpini - caroline.colpini@cartwheelcare.org","Coordinator: Avery Henry - avery.henry@cartwheelcare.org"],
   prep:[
@@ -388,31 +389,38 @@ export const GROM_ROLE = {
       "How does the team currently manage pipeline and lobbyist relationships?",
       "What does the biggest win look like in the first 6 months?",
     ]},
+    {stage:"Take-Home Exercise",prep:[
+      "Block focused, uninterrupted time — treat it like a real work session",
+      "Read the full prompt before starting so you can manage your time",
+      "Show your thinking and structure, not just your conclusions",
+      "Be honest about assumptions and what you'd do with more information",
+    ],questions:[]},
     {stage:"Functional Deep Dive",prep:[
       "Prepare specific examples of process design — show the before and after",
       "Be ready to walk through your project management tool experience in detail",
       "Think about how you've handled compliance or deadline-tracking in past roles",
       "Bring a concrete example of a system you built from scratch",
+      "Dan is operationally fluent — bring depth, not surface-level answers",
     ],questions:[
       "What tools does the GR team currently use for tracking and communication?",
       "Are there existing lobbyist contracts and compliance frameworks to inherit?",
-      "How mature is the current pipeline tracking system?",
+      "How does Cartwheel think about scaling operations as you enter new states?",
     ]},
-    {stage:"Cross-Functional Collaboration",prep:[
+    {stage:"Cross-Functional Collaboration + Partnership",prep:[
       "Prepare an example of coordinating a project across teams without direct authority",
       "Think about how you've given and received feedback that changed your approach",
-      "Be ready to discuss how you communicate with stakeholders who have different priorities",
-      "Show genuine curiosity about the Marketing and GR team's current work",
+      "Show genuine curiosity about how Marketing and School Success currently work",
+      "Be ready to discuss how you build trust quickly with new colleagues",
     ],questions:[
       "How do Marketing and GR currently collaborate on briefs and external content?",
-      "What does effective cross-functional communication look like on this team?",
-      "How does the GR team handle competing priorities across states?",
+      "What does the School Success team need most from a GR ops partner?",
+      "How does the team handle competing priorities across states and functions?",
     ]},
-    {stage:"Executive Round",prep:[
+    {stage:"Executive Review",prep:[
       "Prepare your perspective on why operational infrastructure matters at this stage of growth",
-      "Have a clear answer for why Cartwheel specifically resonates with you",
+      "Have a clear, genuine answer for why Cartwheel specifically resonates with you",
       "Think about where you want to grow in the next 2–3 years",
-      "Prepare 2–3 strategic questions about Cartwheel's state expansion roadmap",
+      "Prepare 2–3 strategic questions about Cartwheel's mission and expansion roadmap",
     ],questions:[
       "What is Cartwheel's state expansion strategy over the next 2 years?",
       "How does the executive team think about the relationship between GR operations and deal velocity?",
@@ -432,31 +440,41 @@ export const GROM_ROLE = {
       "Prepare questions about the GR team structure and current infrastructure",
       "Reflect on your personal connection to the mission",
     ]},
+    {stage:"Before Take-Home Exercise",items:[
+      "Block uninterrupted time before starting",
+      "Read the full prompt before writing anything",
+      "Structure your response clearly — show your thinking, not just conclusions",
+      "Submit within the requested timeframe",
+    ]},
     {stage:"Before Functional Deep Dive",items:[
-      "Prepare detailed process design examples",
+      "Prepare detailed process design examples with before/after context",
       "Review your project management and tool proficiency examples",
       "Think through compliance and deadline-tracking experience",
-      "Be ready to walk through a system you built from scratch",
+      "Prepare 2–3 questions for Dan about operational priorities",
     ]},
-    {stage:"Before Cross-Functional Collaboration",items:[
+    {stage:"Before Cross-Functional Collaboration + Partnership",items:[
       "Prepare a cross-functional coordination example without direct authority",
       "Think about how you approach feedback and adjust based on others' input",
-      "Review what you know about Cartwheel's Marketing and Data teams",
-      "Prepare thoughtful questions for each interviewer",
+      "Review what you know about Cartwheel's Marketing and School Success teams",
+      "Prepare thoughtful questions for Emily and the School Success Leader",
     ]},
-    {stage:"Before Executive Round",items:[
+    {stage:"Before Executive Review",items:[
       "Prepare your perspective on scaling operations at a high-growth company",
-      "Sharpen your why Cartwheel answer",
-      "Prepare 2–3 strategic questions about state expansion",
+      "Sharpen your why Cartwheel answer — make it specific and genuine",
+      "Prepare 2–3 strategic questions about mission and state expansion",
       "Reflect on your long-term growth goals",
     ]},
   ],
   interviewers:[
     {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
     {label:"Hiring Manager Interview",name:"Jonathan Adler",title:"VP Government Relations",href:null},
-    {label:"Functional Deep Dive",name:"Jonathan Adler",title:"VP Government Relations",href:null},
-    {label:"Cross-Functional Collaboration",name:"",title:"Marketing Lead + GR Team Member",href:null},
-    {label:"Executive Round",name:"",title:"CEO / COO",href:null},
+    {label:"Take-Home Exercise",name:"",title:"",href:null},
+    {label:"Functional Deep Dive",name:"Dan Tartakovsky",title:"COO",href:"https://www.linkedin.com/in/tartakovsky/"},
+    {label:"Cross-Functional Collaboration + Partnership",name:"Emily Paisner",title:"Head of Marketing",href:null,multiHrefs:[
+      {name:"Emily Paisner",href:null},
+      {name:"School Success Leader",href:null},
+    ]},
+    {label:"Executive Review",name:"Joe English",title:"CEO",href:null},
   ],
   links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
 };
