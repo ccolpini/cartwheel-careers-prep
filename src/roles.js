@@ -266,7 +266,7 @@ export const CTRL_ROLE = {
 export const GROM_ROLE = {
   title:"Government Relations Operations Manager", slug:"government-relations-operations-manager",
   department:"Government Affairs & Partnerships", reportsto:"Jonathan Adler, VP Government Relations",
-  location:"Flexible (Cartwheel operates remotely; travel may apply)", employment:"Full-Time, W2", comp:"Competitive Base + Meaningful Equity",
+  location:"Remote (travel required 1–2x per quarter)", employment:"Full-Time, W2", comp:"Competitive Base + Meaningful Equity",
   mission:"Cartwheel is at an inflection point in state expansion strategy. The Government Relations team manages relationships across multiple states, but volume of workstreams has exceeded team capacity. This role builds the operational infrastructure — briefs, trackers, compliance tracking — that lets the GR team scale without losing deals to slow follow-through or administrative gaps.",
   stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
   team:[
