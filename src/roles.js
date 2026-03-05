@@ -467,14 +467,14 @@ export const GROM_ROLE = {
   ],
   interviewers:[
     {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
-    {label:"Hiring Manager Interview",name:"Jonathan Adler",title:"VP Government Relations",href:null},
+    {label:"Hiring Manager Interview",name:"Jonathan Adler",title:"VP Government Relations",href:"https://www.linkedin.com/in/jonathaneadler/"},
     {label:"Take-Home Exercise",name:"",title:"",href:null},
     {label:"Functional Deep Dive",name:"Dan Tartakovsky",title:"COO",href:"https://www.linkedin.com/in/tartakovsky/"},
-    {label:"Cross-Functional Collaboration + Partnership",name:"Emily Paisner",title:"Head of Marketing",href:null,multiHrefs:[
-      {name:"Emily Paisner",href:null},
+    {label:"Cross-Functional Collaboration + Partnership",name:"Emily Paisner",title:"Head of Marketing",href:"https://www.linkedin.com/in/emilypaisner/",multiHrefs:[
+      {name:"Emily Paisner",href:"https://www.linkedin.com/in/emilypaisner/"},
       {name:"School Success Leader",href:null},
     ]},
-    {label:"Executive Review",name:"Joe English",title:"CEO",href:null},
+    {label:"Executive Review",name:"Joe English",title:"CEO",href:"https://www.linkedin.com/in/joe-m-english/"},
   ],
   links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
 };
