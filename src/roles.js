@@ -360,7 +360,7 @@ export const GROM_ROLE = {
     ]},
   ],
   aboutRole:"As a Government Relations Operations Manager, you'll be the operational backbone of Cartwheel's government relations team — the person who makes sure our GR strategy translates into impact at scale.\n\nYou'll manage the systems, workflows, and intelligence that enable our GR executives and state-based team to influence education policy and secure funding for student mental health. This is a high-leverage operations role: you won't be in the room for every negotiation, but you'll ensure everyone in the room has what they need to succeed.\n\nYou'll own the end-to-end operations of our government affairs function across 10+ states, from tracking legislative opportunities and coordinating lobbyist partnerships to producing monthly impact briefs that shape how policymakers think about student mental health.",
-  compBenefits:"Competitive compensation at market rate for a mid-level operations role in a startup environment. Benefits include competitive health insurance, equity package, unlimited PTO, $500 annual professional development budget, remote-first with flexible travel requirements (1–3 times per quarter). Target start date: March 27, 2026.",
+  compBenefits:"Competitive compensation at market rate for a mid-level operations role in a startup environment. Benefits include competitive health insurance, equity package, unlimited PTO, $500 annual professional development budget, remote-first with travel required 1–2x per quarter. Target start date: March 27, 2026.",
   stagePrepData:[
     {stage:"Recruiter Screen",prep:[
       "Research Cartwheel's mission and school-based mental health model",
