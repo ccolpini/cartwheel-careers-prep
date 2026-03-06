@@ -472,4 +472,144 @@ export const GROM_ROLE = {
   links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
 };
 
-export const BUILT_IN_ROLES = [PDA_ROLE, SPM_ROLE, CCM_ROLE, CTRL_ROLE, GROM_ROLE];
+export const FPAA_ROLE = {
+  title:"FP&A Associate", slug:"fpa-associate",
+  department:"Finance", reportsto:"Sam Bilow, VP Finance",
+  location:"Remote", employment:"Full-Time, W2", comp:"$90,000–$140,000",
+  mission:"We're hiring an FP&A Associate to own financial reporting, planning, and KPI/OKR visibility across Cartwheel — building the financial infrastructure that helps a fast-growing mental health company make smarter, faster decisions. This is a net-new role on a mission-driven team, with real scope and real impact from day one.",
+  stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
+  team:[
+    "Sam Bilow — VP Finance (your hiring manager)",
+    "April Liu — Healthcare Business Operations & Strategy",
+    "Daniel Tartakovsky — COO & Co-Founder",
+  ],
+  stages:[
+    {stage:"Recruiter Screen",time:"30m",who:"Caroline Colpini",focus:"Role fit, values, compensation alignment"},
+    {stage:"Hiring Manager Screen",time:"45m",who:"Sam Bilow",focus:"Finance background, relevant experience, motivation for Cartwheel"},
+    {stage:"Cross-Functional Panel",time:"60m",who:"April Liu",focus:"Operational partnership, cross-functional collaboration, stakeholder communication"},
+    {stage:"Executive Interview",time:"30m",who:"Daniel Tartakovsky",focus:"Strategic fit, company values, leadership presence"},
+  ],
+  contacts:["Recruiter: Caroline Colpini - caroline.colpini@cartwheelcare.org","Coordinator: Avery Henry - avery.henry@cartwheelcare.org"],
+  prep:[
+    "Cartwheel is early-stage and scrappy — show that you're comfortable with ambiguity and excited about building",
+    "The mission matters here — come ready to speak authentically about why you care about student mental health",
+    "Be concrete: specifics about your models, your impact, your process are more compelling than general claims",
+    "Candidates who do well at Cartwheel tend to be collaborative, low-ego, and self-directed",
+  ],
+  thrive:[
+    "Love turning messy data into clear decisions — and know how to communicate findings to a non-finance audience",
+    "Are energized by building infrastructure from scratch, not just maintaining what exists",
+    "Want your work to matter — you understand that better financial visibility means better outcomes for kids",
+    "Are comfortable moving fast with limited resources and a lot of ambiguity",
+    "Take pride in the quality and accuracy of your models and reports",
+  ],
+  notfor:[
+    "Prefer highly structured, well-defined roles with minimal ambiguity",
+    "Are looking for a large finance team with narrow specialization",
+    "Want a role where someone else drives the agenda and prioritization",
+    "Are not excited by the mission of supporting student mental health",
+  ],
+  success:[
+    {period:"First 90 Days",desc:"Oriented across Cartwheel's financial systems, models, and reporting cadences. Introduced yourself to key department leaders and understand their budgets and KPIs. Taken over ownership of the monthly financial reporting cycle and made at least one meaningful improvement to how it runs."},
+    {period:"First 6 Months",desc:"Rebuilt or significantly improved Cartwheel's core KPI dashboards, partnered with at least two department heads on budget-vs-actual analysis, and produced your first forward-looking forecast used in a board or investor context. Leaders across the org know you as a trusted, proactive financial partner."},
+    {period:"First 12 Months",desc:"Running the annual budgeting cycle end-to-end with systems that make financial reporting faster, more automated, and more decision-useful. Delivered at least one major ad-hoc analysis that directly influenced a strategic decision. A key voice in how Cartwheel thinks about runway, resource allocation, and financial health."},
+  ],
+  mustHave:[
+    "3–5 years of experience in FP&A, finance, banking, or consulting",
+    "Fluency in Excel — VLOOKUP, pivot tables, scenario modeling, and building clean financial models from scratch",
+    "Ability to translate financial concepts clearly for non-financial audiences",
+    "Self-directed and ownership-oriented: spots problems, proposes solutions, doesn't wait to be asked",
+    "Comfortable operating with incomplete data — can forecast with 80% information and refine from there",
+  ],
+  niceToHave:[
+    "Exposure to healthcare, EdTech, or high-growth startups",
+    "Experience with financial reporting tools (e.g., Looker, Tableau, or similar BI tools)",
+    "Prior experience supporting board or investor reporting",
+    "Familiarity with KPI/OKR frameworks",
+  ],
+  whatYoullDo:[
+    {label:"Financial Modeling & Reporting",bullets:[
+      "Maintain and improve Cartwheel's core financial model — P&L, cash burn, scenario modeling",
+      "Own monthly board slide deck, investor reporting, and SLT financial updates",
+      "Maintain and continuously improve KPI dashboards",
+    ]},
+    {label:"Budgeting & Planning",bullets:[
+      "Lead the annual budgeting cycle: templates, department kick-offs, reviews, and final consolidation",
+      "Partner with department heads on budget planning and resource allocation",
+      "Maintain budget vs. actual tracking and variance analysis",
+    ]},
+    {label:"Strategic Finance",bullets:[
+      "Build forward-looking forecasts to support runway planning and board communication",
+      "Identify opportunities to automate and scale financial reporting processes",
+      "Conduct ad-hoc analyses that help leadership make faster, better-informed decisions",
+    ]},
+  ],
+  aboutRole:"We're hiring an FP&A Associate to own financial reporting, planning, and KPI/OKR visibility across the organization. This is a net-new role — and a real opportunity to build something.\n\nRight now, our financial and operational metrics live in different systems, most reporting is backward-looking, and department leaders don't yet have the structured financial partnership they need to make confident decisions. You'll change that.\n\nReporting to Sam Bilow, VP Finance, you'll consolidate our reporting infrastructure, build forward-looking forecasts, and become a trusted cross-functional partner to leaders across Care Ops, Clinical, Product, Engineering, and beyond.\n\nIf you want to do the work that makes a growing company smarter — this is the role.",
+  compBenefits:"$90,000–$140,000 in base salary plus a meaningful equity ownership stake in Cartwheel. Benefits include generous PPO medical, vision, and dental/ortho coverage, life insurance, generous paid time off including company closure from Christmas–New Year's (12/25–1/1), paid holidays and sick leave, paid parental leave, 401K with employer match, an annual learning stipend, and a laptop. Fully remote with regular in-person retreats.",
+  stagePrepData:[
+    {stage:"Recruiter Screen",prep:[
+      "Review Cartwheel's website and be ready to speak to why the mission resonates with you personally",
+      "Come prepared to discuss your compensation expectations — we share the full range upfront",
+      "Think through your 2–3 most relevant experiences in FP&A, finance, or a related field",
+    ],questions:[
+      "What's the biggest financial challenge Cartwheel is trying to solve right now?",
+      "What does the interview process look like after this stage?",
+    ]},
+    {stage:"Hiring Manager Screen",prep:[
+      "Be ready to walk through a financial model or reporting workflow you've built end-to-end",
+      "Think about a time you had to translate complex financial data for a non-finance stakeholder",
+      "Prepare to speak to how you prioritize when you have multiple competing requests",
+    ],questions:[
+      "What's the current state of financial reporting at Cartwheel, and where do you most want this role to have impact first?",
+      "What does the relationship between Finance and other departments look like today vs. where you want it to go?",
+    ]},
+    {stage:"Cross-Functional Panel",prep:[
+      "April Liu comes from a healthcare business operations background — think about how you'd partner cross-functionally, not just report numbers",
+      "Be ready to share how you've managed competing asks from different department heads",
+      "Come with examples of times you built trust with a non-finance partner",
+    ],questions:[
+      "What does a great finance partner look like from your perspective?",
+      "Where do you feel like you most need better financial visibility to do your job well?",
+    ]},
+    {stage:"Executive Interview",prep:[
+      "Daniel Tartakovsky is the COO and Co-Founder — he'll be assessing strategic thinking and cultural fit",
+      "Be ready to talk about why you want to join a company at this stage of growth",
+      "Have a thoughtful point of view on what makes a company's financial infrastructure a competitive advantage",
+    ],questions:[
+      "How does leadership think about the relationship between financial discipline and mission-driven growth?",
+      "What's the most important thing you'd want someone in this role to accomplish in their first year?",
+    ]},
+  ],
+  checklist:[
+    {stage:"Before Recruiter Screen",items:[
+      "Read cartwheel.org and skim the Wall of Love",
+      "Research student mental health landscape — why schools are a lever point",
+      "Prepare a 2-minute 'who I am and why I'm interested' answer",
+      "Have your compensation expectations ready to share",
+    ]},
+    {stage:"Before Hiring Manager Screen",items:[
+      "Have 2–3 work samples or model examples in mind (ready to describe, not necessarily share)",
+      "Review Cartwheel's publicly available data (partnerships, growth, funding)",
+      "Prepare questions about the current state of financial infrastructure",
+    ]},
+    {stage:"Before Cross-Functional Panel",items:[
+      "Review April Liu's LinkedIn to understand her background and scope",
+      "Think about how Finance and Ops can work as partners, not separately",
+      "Prepare a story about navigating a disagreement or tension with a non-finance stakeholder",
+    ]},
+    {stage:"Before Executive Interview",items:[
+      "Review Daniel Tartakovsky's LinkedIn and any published interviews or posts",
+      "Be ready to articulate your personal connection to the mission",
+      "Prepare a thoughtful question about company strategy or financial priorities",
+    ]},
+  ],
+  interviewers:[
+    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
+    {label:"Hiring Manager Screen",name:"Sam Bilow",title:"VP Finance",href:"https://www.linkedin.com/in/sam-bilow-59434150/"},
+    {label:"Cross-Functional Panel",name:"April Liu",title:"Healthcare Business Operations & Strategy",href:"https://www.linkedin.com/in/april-liu-2020a/"},
+    {label:"Executive Interview",name:"Daniel Tartakovsky",title:"COO & Co-Founder",href:"https://www.linkedin.com/in/tartakovsky/"},
+  ],
+  links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
+};
+
+export const BUILT_IN_ROLES = [PDA_ROLE, SPM_ROLE, CCM_ROLE, CTRL_ROLE, GROM_ROLE, FPAA_ROLE];
