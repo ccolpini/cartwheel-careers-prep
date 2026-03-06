@@ -41,16 +41,15 @@ function WheelMark({ size=28 }) {
 }
 
 function Wordmark({ light=false, size="md" }) {
-  const fs = size==="sm" ? 16 : 19;
-  const imgH = size==="sm" ? 22 : 28;
+  const ws = size==="sm" ? 22 : 28;
+  const fs = size==="sm" ? 14 : 17;
   return (
     <div style={{display:"flex",alignItems:"center",gap:10}}>
-      <img
-        src="https://cdn.prod.website-files.com/652d3415e3dc44a9873b9dd5/653280def2dcb0ead80394cf_Logo.png"
-        alt="Cartwheel"
-        style={{height:imgH,width:"auto",objectFit:"contain",filter:light?"brightness(0) invert(1)":"none"}}
-      />
-      <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:400,fontSize:fs-4,color:light?"rgba(255,255,255,0.5)":C.taupe,letterSpacing:"0.5px",textTransform:"uppercase"}}>Candidate Copilot</span>
+      <WheelMark size={ws}/>
+      <div style={{display:"flex",flexDirection:"column",lineHeight:1.1}}>
+        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:fs,color:light?C.white:C.charcoal,letterSpacing:"-0.3px"}}>Cartwheel</span>
+        <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:fs-5,color:light?"rgba(255,255,255,0.45)":C.taupe,letterSpacing:"1px",textTransform:"uppercase",marginTop:2}}>Candidate Copilot</span>
+      </div>
     </div>
   );
 }
