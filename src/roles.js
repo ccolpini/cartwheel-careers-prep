@@ -649,7 +649,7 @@ export const ROA_ROLE = {
     {stage:"Take-Home Exercise",time:"Self-guided",who:"",focus:"Operational workflow, Salesforce judgment, written communication"},
     {stage:"Functional Panel",time:"60m",who:"Jeff Sword, Andi Kwon, Suzy Hall",focus:"Cross-functional collaboration, stakeholder responsiveness, documentation discipline"},
   ],
-  contacts:["Recruiter: Caroline Colpini - caroline.colpini@cartwheelcare.org","Coordinator: Avery Henry - avery.henry@cartwheelcare.org"],
+  contacts:["Recruiter + Coordinator: Avery Henry - avery.henry@cartwheelcare.org","Manager, Corporate Talent Acquisition: Caroline Colpini - caroline.colpini@cartwheelcare.org"],
   prep:[
     "Every stage probes for specificity — 'we did X' won't land here; know what YOU owned and what YOU did",
     "This role is execution-heavy by design; if that energizes you, show it with examples — don't just say you're comfortable with operational work",
