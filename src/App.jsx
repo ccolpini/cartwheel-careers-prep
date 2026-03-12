@@ -1262,6 +1262,7 @@ HANDLING DIFFICULT SITUATIONS:
                 <p key={i} style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 12px"}}>{para}</p>
               ))}
               <InterviewTimeline role={role}/>
+              <p style={{fontSize:12,color:C.taupe,lineHeight:1.7,margin:"20px 0 0",fontStyle:"italic"}}>The interview process outlined here represents our general approach. Not all candidates will complete every stage, and the process may be adjusted based on role requirements or scheduling needs.</p>
             </FadeIn>
 
             <FadeIn delay={160}>
