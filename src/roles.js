@@ -633,7 +633,7 @@ export const FPAA_ROLE = {
 export const ROA_ROLE = {
   title:"Revenue Operations Analyst", slug:"revenue-operations-analyst",
   department:"Revenue Operations", reportsto:"Jeff Sword, Director of Revenue Operations",
-  location:"Remote", employment:"Full-Time, W2", comp:"$75,000 – $90,000",
+  location:"Remote", employment:"Full-Time, W2", comp:"$75,000 – $90,000 + meaningful equity",
   mission:"The Revenue Operations Analyst owns the tactical execution layer that keeps Cartwheel's deals moving, districts going live, and GTM teams working from clean, reliable data — so the business can scale from 300 to 1,000+ school districts without operational drag.",
   stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
   team:[
