@@ -645,9 +645,9 @@ export const ROA_ROLE = {
   ],
   stages:[
     {stage:"Recruiter Screen",time:"30m",who:"Avery Henry",focus:"Role fit, Salesforce proficiency, remote self-management, comfort with tactical execution work"},
-    {stage:"Hiring Manager Interview",time:"45m",who:"Jeff Sword",focus:"Deal desk process ownership, CRM data integrity, judgment on edge cases"},
-    {stage:"Functional Deep Dive",time:"60m",who:"[AE or Sales Lead] + [Finance/AR Representative]",focus:"Stakeholder responsiveness, invoice coordination, documentation discipline"},
-    {stage:"Live Case / Operations Exercise",time:"45m",who:"Jeff Sword",focus:"Triage judgment, Salesforce action-taking, stakeholder communication under pressure"},
+    {stage:"Hiring Manager Screen",time:"45m",who:"Jeff Sword",focus:"Deal desk process ownership, CRM data integrity, judgment on edge cases"},
+    {stage:"Take-Home Exercise",time:"Self-guided",who:"",focus:"Operational workflow, Salesforce judgment, written communication"},
+    {stage:"Functional Panel",time:"60m",who:"Jeff Sword, Andi Kwon, Suzy Hall",focus:"Cross-functional collaboration, stakeholder responsiveness, documentation discipline"},
   ],
   contacts:["Recruiter: Caroline Colpini - caroline.colpini@cartwheelcare.org","Coordinator: Avery Henry - avery.henry@cartwheelcare.org"],
   prep:[
@@ -720,7 +720,7 @@ export const ROA_ROLE = {
       "What are the most common Tier 1 requests from Sales and CS?",
       "What does the ramp timeline look like for someone coming in with strong Salesforce fundamentals?",
     ]},
-    {stage:"Hiring Manager Interview",prep:[
+    {stage:"Hiring Manager Screen",prep:[
       "Prepare a specific closing workflow or deal desk process you've owned — know the steps, your role at each one, and exactly what happened when something broke",
       "Think about a time you caught a CRM data issue proactively — not when someone reported it — and what you did about it beyond fixing the record",
       "Be ready to talk about operating in an environment where the playbook wasn't written yet — how did you learn, and what documentation did you leave behind?",
@@ -730,26 +730,22 @@ export const ROA_ROLE = {
       "What's the Salesforce environment like today — dual instance, complexity level, admin support structure?",
       "At 12 months, what does it look like if this hire has gone really well?",
     ]},
-    {stage:"Functional Deep Dive",prep:[
-      "This panel includes a Sales or AE stakeholder and a Finance/AR representative — think about how you've served internal customers before, not just completed tasks for them",
-      "Prepare a story about competing priorities: a same-day AE request landing while you were mid-task on something else, and how you communicated with both parties",
-      "Have a concrete documentation example ready — something you built from scratch, not maintained; know who it was for, how you built it, and how you verified it was actually usable",
-      "Think through your experience with cross-functional invoice or payment processes where something stalled — what did you do when a step was someone else's responsibility but they weren't moving?",
+    {stage:"Take-Home Exercise",prep:[
+      "Block focused, uninterrupted time — treat it like a real work session",
+      "Read the full prompt carefully before starting so you can manage your time and scope",
+      "Be specific about Salesforce actions — not 'I'd look at the records' but what you'd actually do and why",
+      "Show your prioritization logic clearly — which issues are highest urgency and what's your reasoning",
+      "Be honest about what you'd escalate versus handle independently; the exercise is evaluating how you think, not whether you have all the answers",
+    ],questions:[]},
+    {stage:"Functional Panel",prep:[
+      "This panel includes Jeff (your HM), Andi Kwon (Marketing Operations), and Suzy Hall (Customer Success Enablement) — think about how you've served diverse internal customers before, not just completed tasks",
+      "Prepare a story about competing priorities: a same-day request landing while you were mid-task on something else, and how you communicated proactively with both parties",
+      "Have a concrete documentation example ready — something you built from scratch; know who it was for, how you built it, and how you verified it was usable",
+      "Think through how RevOps supports both Marketing and CS workflows — Andi and Suzy will be evaluating whether you'd be a reliable partner to their teams",
     ],questions:[
-      "What do Sales and CS typically need most from RevOps on a day-to-day basis?",
+      "What do Marketing Ops and CS typically need most from RevOps on a day-to-day basis?",
       "What does the current documentation setup look like — what's in Guru, what's still in people's heads?",
       "How does the team currently handle queue overflow during Q4 close?",
-    ]},
-    {stage:"Live Case / Operations Exercise",prep:[
-      "You'll receive a scenario 24–48 hours before — read it carefully and come in with a structured, prioritized plan (not a to-do list of everything you'd eventually do)",
-      "Lead with your prioritization logic — which of the three issues represents the highest business risk and why; show your reasoning, not just your conclusion",
-      "Be specific about Salesforce actions — not 'I'd look at the records' but what you'd actually do with each category of stalled opportunity, missing vendor info, and provisioning failure",
-      "Show where you'd act independently versus flag to Jeff — and be able to explain your threshold clearly",
-      "Don't try to solve everything perfectly; the exercise is evaluating how you think, not whether you have all the answers",
-    ],questions:[
-      "What access and documentation would I realistically have in my first week?",
-      "What's the existing SLA expectation for provisioning turnaround?",
-      "What's the escalation path if a vendor isn't responding on a missing registration requirement?",
     ]},
   ],
   checklist:[
@@ -759,31 +755,34 @@ export const ROA_ROLE = {
       "Think through a concrete example of owning a repeatable process end-to-end with limited oversight",
       "Know your compensation expectations, availability, and target start date",
     ]},
-    {stage:"Before Hiring Manager Interview",items:[
+    {stage:"Before Hiring Manager Screen",items:[
       "Research Jeff Sword on LinkedIn — understand his background and how he describes the RevOps function",
       "Prepare 2–3 specific stories: closing workflow you owned, CRM issue you caught proactively, undocumented environment you've navigated",
       "Review what you know about deal desk processes — opportunity validation, contract generation, invoicing, provisioning steps",
       "Prepare thoughtful questions about the current state of the RevOps function and where it's heading",
     ]},
-    {stage:"Before Functional Deep Dive",items:[
-      "Prepare stakeholder communication stories — competing priorities, a situation where your turnaround didn't meet expectations and what you did about it",
-      "Have your documentation example ready: what you built, who it was for, how you tested it was usable, how you kept it current",
-      "Review your experience with cross-functional invoice or payment workflows — especially anything with external compliance steps",
-      "Prepare questions that show you understand the Sales/CS dynamic and what they need from RevOps support",
+    {stage:"Before Take-Home Exercise",items:[
+      "Block uninterrupted time before starting — treat it like a real work session",
+      "Read the full prompt before writing anything",
+      "Show your prioritization logic and Salesforce thinking clearly — not just conclusions",
+      "Submit within the requested timeframe",
     ]},
-    {stage:"Before Live Case / Operations Exercise",items:[
-      "Read the scenario carefully and sketch your initial triage priority before the interview",
-      "Prepare your prioritization logic — which issue is highest urgency, and what's your reasoning",
-      "Think through the specific Salesforce actions you'd take on stalled Opportunity records, missing vendor registration info, and a provisioning failure",
-      "Think through how you'd communicate a RevOps-side delay to an AE and their customer — what you'd say and how you'd frame it",
-      "Identify the questions you'd need answered before taking action on each of the three issues",
+    {stage:"Before Functional Panel",items:[
+      "Research Andi Kwon (Marketing Operations) and Suzy Hall (Customer Success Enablement) on LinkedIn",
+      "Prepare stakeholder communication stories — competing priorities, proactive communication under pressure",
+      "Have your documentation example ready: what you built, who it was for, how you tested it was usable",
+      "Think about how RevOps supports Marketing and CS workflows specifically — not just Sales",
     ]},
   ],
   interviewers:[
     {label:"Recruiter Screen",name:"Avery Henry",title:"Talent Acquisition",href:"https://www.linkedin.com/in/averyhenry/"},
-    {label:"Hiring Manager Interview",name:"Jeff Sword",title:"Director of Revenue Operations",href:"https://www.linkedin.com/in/jeffrey-sword-80070a31/"},
-    {label:"Functional Deep Dive",name:"",title:"",href:null},
-    {label:"Live Case / Operations Exercise",name:"Jeff Sword",title:"Director of Revenue Operations",href:"https://www.linkedin.com/in/jeffrey-sword-80070a31/"},
+    {label:"Hiring Manager Screen",name:"Jeff Sword",title:"Director of Revenue Operations",href:"https://www.linkedin.com/in/jeffrey-sword-80070a31/"},
+    {label:"Take-Home Exercise",name:"",title:"",href:null},
+    {label:"Functional Panel",name:"",title:"",href:null,multiHrefs:[
+      {name:"Jeff Sword",href:"https://www.linkedin.com/in/jeffrey-sword-80070a31/"},
+      {name:"Andi Kwon",href:"https://www.linkedin.com/in/andikwon/"},
+      {name:"Suzy Hall",href:"https://www.linkedin.com/in/suzy-hall-a8b846101/"},
+    ]},
   ],
   links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
 };
