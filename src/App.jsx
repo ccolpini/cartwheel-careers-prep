@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import cartwheelLogo from "./logo.png";
 
 function useIsMobile() {
   const [isMobile,setIsMobile]=useState(()=>window.innerWidth<640);
@@ -45,7 +46,7 @@ function Wordmark({ light=false, size="md" }) {
   const fs = size==="sm" ? 14 : 17;
   return (
     <div style={{display:"flex",alignItems:"center",gap:10}}>
-      <WheelMark size={ws}/>
+      <img src={cartwheelLogo} alt="Cartwheel" style={{width:ws,height:ws,objectFit:"contain"}}/>
       <div style={{display:"flex",flexDirection:"column",lineHeight:1.1}}>
         <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:fs,color:light?C.white:C.charcoal,letterSpacing:"-0.3px"}}>Cartwheel</span>
         <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:600,fontSize:fs-5,color:light?"rgba(255,255,255,0.45)":C.taupe,letterSpacing:"1px",textTransform:"uppercase",marginTop:2}}>Candidate Copilot</span>
@@ -111,6 +112,7 @@ const PARSE_SYSTEM = `Extract structured data from a Cartwheel hiring package. R
     "href":"LinkedIn URL or null",
     "multiHrefs":[{"name":"Person Name","href":"LinkedIn URL"}]
   }],
+  "applyUrl":"https://job-boards.greenhouse.io/... or null if not posted",
   "links":{"cartwheel":"https://www.cartwheel.org","wallOfLove":"https://www.cartwheel.org/wall-of-love","glassdoor":null,"linkedin":"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"}
 }
 
@@ -306,6 +308,21 @@ function ProgressRing({pct}) {
 }
 
 // ── Focus tooltip wrapper ──────────────────────────────────────
+function HintBanner({storageKey,message}) {
+  const [visible,setVisible]=useState(()=>!localStorage.getItem(storageKey));
+  if(!visible) return null;
+  const dismiss=()=>{ localStorage.setItem(storageKey,"1"); setVisible(false); };
+  return (
+    <div style={{display:"flex",alignItems:"flex-start",justifyContent:"space-between",
+      background:"rgba(57,75,153,0.07)",border:"1px solid rgba(57,75,153,0.18)",
+      borderRadius:10,padding:"11px 14px",marginBottom:16,gap:10}}>
+      <span style={{fontSize:13,color:"#394B99",lineHeight:1.6}}>{message}</span>
+      <button onClick={dismiss} style={{background:"none",border:"none",cursor:"pointer",
+        color:"#394B99",fontSize:18,lineHeight:1,padding:"0 0 0 6px",flexShrink:0,opacity:0.55}}>×</button>
+    </div>
+  );
+}
+
 function FocusTip({focus,children}) {
   const [show,setShow]=useState(false);
   if(!focus) return children;
@@ -1149,7 +1166,7 @@ HANDLING DIFFICULT SITUATIONS:
 
         {/* ── CHAT ── */}
         {tab==="chat"&&(
-          <div style={{display:"flex",flexDirection:"column",height:"calc(100vh - 420px)",minHeight:420}}>
+          <div style={{display:"flex",flexDirection:"column",height:"calc(100vh - 280px)",minHeight:500}}>
             <FadeIn delay={0}>
               <div style={{
                 background:C.charcoal,borderRadius:14,padding:"16px 20px",marginBottom:20,
@@ -1229,7 +1246,6 @@ HANDLING DIFFICULT SITUATIONS:
                 cursor:input.trim()&&!loading?"pointer":"default",transition:"all 0.2s",
               }}>Send</button>
             </div>
-            <CandidateFooter/>
           </div>
         )}
 
@@ -1238,7 +1254,13 @@ HANDLING DIFFICULT SITUATIONS:
           <div style={{display:"flex",flexDirection:"column",gap:28}}>
             <FadeIn delay={0}>
               <SectionHead>Interview Roadmap</SectionHead>
-              <p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 24px"}}>This process is designed to be mutual — you are evaluating us as much as we are evaluating you. Click any stage to see prep tips and questions to ask. Hover over an interviewer name for their focus area.</p>
+              <HintBanner storageKey="hint_roadmap" message="Tap any stage below to expand prep tips and questions to ask your interviewer." />
+              {(role.roadmapNote
+                ? role.roadmapNote.split("\n\n")
+                : ["This process is designed to be mutual — you are evaluating us as much as we are evaluating you. Click any stage to see prep tips and questions to ask. Hover over an interviewer name for their focus area."]
+              ).map((para,i)=>(
+                <p key={i} style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 12px"}}>{para}</p>
+              ))}
               <InterviewTimeline role={role}/>
             </FadeIn>
 
@@ -1400,6 +1422,7 @@ HANDLING DIFFICULT SITUATIONS:
           <div>
             <FadeIn delay={0}>
               <SectionHead>Your Prep Checklist</SectionHead>
+              <HintBanner storageKey="hint_checklist" message="Tap any item to check it off — your progress saves automatically to this browser." />
               <p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 20px"}}>Work through each stage at your own pace. You don't need to complete everything — focus on the rounds coming up next.</p>
               <PrepChecklist role={role}/>
             </FadeIn>
@@ -1464,6 +1487,27 @@ HANDLING DIFFICULT SITUATIONS:
               </div>
             </FadeIn>
 
+            {role.applyUrl&&(
+              <FadeIn delay={350}>
+                <div style={{display:"flex",justifyContent:"center"}}>
+                  <a href={role.applyUrl} target="_blank" rel="noopener noreferrer" style={{
+                    display:"inline-flex",alignItems:"center",gap:8,
+                    background:`linear-gradient(135deg, ${C.indigo}, #4f63c4)`,
+                    color:C.white,borderRadius:10,padding:"14px 32px",
+                    fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:15,
+                    textDecoration:"none",letterSpacing:"-0.2px",
+                    boxShadow:"0 4px 16px rgba(57,75,153,0.3)",
+                    transition:"transform 0.15s ease, box-shadow 0.15s ease",
+                  }}
+                  onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-2px)";e.currentTarget.style.boxShadow="0 6px 20px rgba(57,75,153,0.4)";}}
+                  onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="0 4px 16px rgba(57,75,153,0.3)";}}
+                  >
+                    Apply Now
+                  </a>
+                </div>
+              </FadeIn>
+            )}
+
             <CandidateFooter/>
           </div>
         )}
@@ -1496,39 +1540,39 @@ function AdminLogin({onSuccess}) {
     else{setError(true);setPw("");setShake(true);setTimeout(()=>setShake(false),500);}
   };
   return (
-    <div style={{minHeight:"100vh",background:`linear-gradient(160deg, ${C.charcoal} 0%, #1a2f35 100%)`,display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Inter',sans-serif"}}>
+    <div style={{minHeight:"100vh",background:"#F7F8FA",display:"flex",alignItems:"center",justifyContent:"center",fontFamily:"'Inter',sans-serif"}}>
       <div style={{
-        background:"rgba(255,255,255,0.03)",backdropFilter:"blur(12px)",
-        borderRadius:20,border:"1px solid rgba(255,255,255,0.08)",
+        background:C.white,
+        borderRadius:20,border:"1px solid rgba(15,27,31,0.08)",
         padding:"48px 44px",width:"100%",maxWidth:380,textAlign:"center",
-        boxShadow:"0 24px 64px rgba(0,0,0,0.3)",
+        boxShadow:"0 8px 32px rgba(15,27,31,0.08)",
         animation:shake?"shake 0.4s ease":"none",
       }}>
-        <div style={{marginBottom:24,display:"flex",justifyContent:"center"}}><WheelMark size={48}/></div>
-        <h1 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:20,color:C.white,margin:"0 0 6px"}}>Admin Access</h1>
-        <p style={{fontSize:13,color:"rgba(255,255,255,0.35)",margin:"0 0 28px"}}>Cartwheel Copilot Platform</p>
+        <div style={{marginBottom:24,display:"flex",justifyContent:"center"}}><img src={cartwheelLogo} alt="Cartwheel" style={{width:56,height:56,objectFit:"contain"}}/></div>
+        <h1 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:20,color:C.charcoal,margin:"0 0 6px"}}>Admin Access</h1>
+        <p style={{fontSize:13,color:C.taupe,margin:"0 0 28px"}}>Candidate Copilot Platform</p>
         <div style={{position:"relative",marginBottom:error?8:20}}>
-          <Lock size={14} color="rgba(255,255,255,0.25)" style={{position:"absolute",left:14,top:"50%",transform:"translateY(-50%)"}}/>
+          <Lock size={14} color={C.taupe} style={{position:"absolute",left:14,top:"50%",transform:"translateY(-50%)"}}/>
           <input type="password" value={pw}
             onChange={e=>{setPw(e.target.value);setError(false);}}
             onKeyDown={e=>e.key==="Enter"&&attempt()}
             placeholder="Enter password"
             style={{
               width:"100%",padding:"12px 14px 12px 38px",
-              background:"rgba(255,255,255,0.06)",
-              border:`1px solid ${error?"rgba(235,168,155,0.4)":"rgba(255,255,255,0.1)"}`,
-              borderRadius:10,fontSize:14,color:C.white,
+              background:C.white,
+              border:`1px solid ${error?"rgba(235,168,155,0.6)":"rgba(15,27,31,0.12)"}`,
+              borderRadius:10,fontSize:14,color:C.charcoal,
               fontFamily:"inherit",outline:"none",boxSizing:"border-box",
               transition:"border-color 0.2s",
             }}/>
         </div>
-        {error&&<p style={{fontSize:12,color:C.peach,margin:"0 0 16px"}}>Incorrect password. Please try again.</p>}
+        {error&&<p style={{fontSize:12,color:"#c0392b",margin:"0 0 16px"}}>Incorrect password. Please try again.</p>}
         <button onClick={attempt} style={{
           width:"100%",
           background:`linear-gradient(135deg, ${C.indigo}, #2d3d85)`,
           color:C.white,border:"none",borderRadius:10,padding:"13px",
           fontSize:13,fontFamily:"'Montserrat',sans-serif",fontWeight:700,
-          cursor:"pointer",boxShadow:"0 4px 16px rgba(57,75,153,0.3)",
+          cursor:"pointer",boxShadow:"0 4px 16px rgba(57,75,153,0.25)",
           transition:"all 0.2s",
         }}>Sign In</button>
       </div>
@@ -1578,17 +1622,17 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
   };
 
   return (
-    <div style={{fontFamily:"'Inter',sans-serif",minHeight:"100vh",background:`linear-gradient(180deg, ${C.charcoal} 0%, #0d1a1d 100%)`,color:C.white}}>
+    <div style={{fontFamily:"'Inter',sans-serif",minHeight:"100vh",background:"#F7F8FA",color:C.charcoal}}>
 
       {/* Admin header */}
-      <div style={{padding:"16px 32px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"1px solid rgba(255,255,255,0.06)"}}>
-        <Wordmark light/>
+      <div style={{padding:"16px 32px",display:"flex",justifyContent:"space-between",alignItems:"center",borderBottom:"1px solid rgba(15,27,31,0.08)",background:C.white}}>
+        <Wordmark/>
         <div style={{display:"flex",alignItems:"center",gap:16}}>
-          <span style={{fontSize:12,color:"rgba(255,255,255,0.3)",fontFamily:"'Montserrat',sans-serif",letterSpacing:"0.5px"}}>Admin</span>
+          <span style={{fontSize:12,color:C.taupe,fontFamily:"'Montserrat',sans-serif",letterSpacing:"0.5px"}}>Admin</span>
           <button onClick={onLogout} style={{
             display:"flex",alignItems:"center",gap:6,
-            fontSize:12,color:"rgba(255,255,255,0.4)",background:"rgba(255,255,255,0.05)",
-            border:"1px solid rgba(255,255,255,0.08)",borderRadius:8,padding:"6px 12px",
+            fontSize:12,color:C.taupe,background:"rgba(15,27,31,0.04)",
+            border:"1px solid rgba(15,27,31,0.1)",borderRadius:8,padding:"6px 12px",
             cursor:"pointer",fontFamily:"'Montserrat',sans-serif",fontWeight:600,
             transition:"all 0.15s",
           }}>
@@ -1603,8 +1647,8 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
           <>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:32,flexWrap:"wrap",gap:12}}>
               <div>
-                <h1 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:24,color:C.white,margin:"0 0 6px",letterSpacing:"-0.4px"}}>Active Roles</h1>
-                <p style={{fontSize:14,color:"rgba(255,255,255,0.35)",margin:0}}>{allRoles.length} role{allRoles.length!==1?"s":""} published</p>
+                <h1 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:24,color:C.charcoal,margin:"0 0 6px",letterSpacing:"-0.4px"}}>Active Roles</h1>
+                <p style={{fontSize:14,color:C.taupe,margin:0}}>{allRoles.length} role{allRoles.length!==1?"s":""} published</p>
               </div>
               <button onClick={()=>setStep("paste")} style={{
                 background:`linear-gradient(135deg, ${C.indigo}, #2d3d85)`,
@@ -1620,15 +1664,16 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
             <div style={{display:"flex",flexDirection:"column",gap:12}}>
               {allRoles.map(role=>(
                 <div key={role.slug} style={{
-                  background:"rgba(255,255,255,0.04)",borderRadius:14,
-                  border:"1px solid rgba(255,255,255,0.07)",padding:"20px 24px",
+                  background:C.white,borderRadius:14,
+                  border:"1px solid rgba(15,27,31,0.08)",padding:"20px 24px",
                   display:"flex",justifyContent:"space-between",alignItems:"center",
                   flexWrap:"wrap",gap:12,
                   transition:"background 0.2s",
+                  boxShadow:"0 1px 4px rgba(15,27,31,0.04)",
                 }}>
                   <div>
-                    <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:16,color:C.white,marginBottom:4}}>{role.title}</div>
-                    <div style={{fontSize:13,color:"rgba(255,255,255,0.35)",marginBottom:8}}>{role.department} &bull; {role.location} &bull; {role.comp}</div>
+                    <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:16,color:C.charcoal,marginBottom:4}}>{role.title}</div>
+                    <div style={{fontSize:13,color:C.taupe,marginBottom:8}}>{role.department} &bull; {role.location} &bull; {role.comp}</div>
                     <div style={{
                       fontSize:11,color:C.lavender,fontFamily:"monospace",
                       background:"rgba(177,165,247,0.1)",border:"1px solid rgba(177,165,247,0.15)",
@@ -1643,9 +1688,9 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
                       display:"flex",alignItems:"center",gap:6,transition:"all 0.15s",
                     }}><Eye size={12}/> Preview</button>
                     <button onClick={()=>copyLink(role.slug)} style={{
-                      background:copied===role.slug?"rgba(38,84,79,0.3)":"rgba(255,255,255,0.05)",
-                      color:copied===role.slug?C.mint:"rgba(255,255,255,0.6)",
-                      border:`1px solid ${copied===role.slug?"rgba(163,207,153,0.3)":"rgba(255,255,255,0.1)"}`,
+                      background:copied===role.slug?"rgba(38,84,79,0.08)":"rgba(15,27,31,0.04)",
+                      color:copied===role.slug?C.forest:"rgba(15,27,31,0.5)",
+                      border:`1px solid ${copied===role.slug?"rgba(38,84,79,0.25)":"rgba(15,27,31,0.1)"}`,
                       borderRadius:8,padding:"8px 16px",fontSize:12,
                       fontFamily:"'Montserrat',sans-serif",fontWeight:700,cursor:"pointer",
                       display:"flex",alignItems:"center",gap:6,transition:"all 0.2s",
@@ -1669,21 +1714,21 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
 
         {step==="paste"&&(
           <>
-            <button onClick={()=>setStep("list")} style={{background:"none",border:"none",color:"rgba(255,255,255,0.4)",fontSize:13,fontWeight:600,cursor:"pointer",padding:"0 0 24px",fontFamily:"'Montserrat',sans-serif",display:"flex",alignItems:"center",gap:6}}>
+            <button onClick={()=>setStep("list")} style={{background:"none",border:"none",color:C.taupe,fontSize:13,fontWeight:600,cursor:"pointer",padding:"0 0 24px",fontFamily:"'Montserrat',sans-serif",display:"flex",alignItems:"center",gap:6}}>
               <ArrowLeft size={13}/> Back to roles
             </button>
-            <h1 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:22,color:C.white,margin:"0 0 8px",letterSpacing:"-0.4px"}}>Add New Role</h1>
-            <p style={{fontSize:14,color:"rgba(255,255,255,0.4)",margin:"0 0 28px",lineHeight:1.6}}>Paste your hiring package below. Claude will extract structured data and generate the candidate experience automatically.</p>
-            <div style={{background:"rgba(255,255,255,0.03)",borderRadius:14,border:"1px solid rgba(255,255,255,0.07)",overflow:"hidden",marginBottom:16}}>
-              <div style={{padding:"12px 18px",borderBottom:"1px solid rgba(255,255,255,0.06)",fontSize:11,fontWeight:700,color:"rgba(255,255,255,0.3)",letterSpacing:"1px",textTransform:"uppercase",fontFamily:"'Montserrat',sans-serif"}}>Hiring Package</div>
+            <h1 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:22,color:C.charcoal,margin:"0 0 8px",letterSpacing:"-0.4px"}}>Add New Role</h1>
+            <p style={{fontSize:14,color:C.taupe,margin:"0 0 28px",lineHeight:1.6}}>Paste your hiring package below. Claude will extract structured data and generate the candidate experience automatically.</p>
+            <div style={{background:C.white,borderRadius:14,border:"1px solid rgba(15,27,31,0.08)",overflow:"hidden",marginBottom:16,boxShadow:"0 1px 4px rgba(15,27,31,0.04)"}}>
+              <div style={{padding:"12px 18px",borderBottom:"1px solid rgba(15,27,31,0.06)",fontSize:11,fontWeight:700,color:C.taupe,letterSpacing:"1px",textTransform:"uppercase",fontFamily:"'Montserrat',sans-serif"}}>Hiring Package</div>
               <textarea value={pasteText} onChange={e=>setPasteText(e.target.value)}
                 placeholder="Paste job description, success profile, interview plan, interviewer details, compensation..."
-                style={{width:"100%",minHeight:300,padding:"18px",border:"none",outline:"none",fontSize:14,lineHeight:1.7,color:C.white,fontFamily:"inherit",resize:"vertical",boxSizing:"border-box",background:"transparent"}}/>
+                style={{width:"100%",minHeight:300,padding:"18px",border:"none",outline:"none",fontSize:14,lineHeight:1.7,color:C.charcoal,fontFamily:"inherit",resize:"vertical",boxSizing:"border-box",background:"transparent"}}/>
             </div>
-            {parseError&&<div style={{background:"rgba(92,30,55,0.2)",borderRadius:8,padding:"12px 16px",fontSize:13,color:C.peach,marginBottom:16,border:"1px solid rgba(92,30,55,0.3)"}}>{parseError}</div>}
+            {parseError&&<div style={{background:"rgba(92,30,55,0.06)",borderRadius:8,padding:"12px 16px",fontSize:13,color:C.brick,marginBottom:16,border:"1px solid rgba(92,30,55,0.2)"}}>{parseError}</div>}
             <button onClick={handleParse} disabled={!pasteText.trim()||parsing} style={{
-              background:pasteText.trim()&&!parsing?`linear-gradient(135deg, ${C.indigo}, #2d3d85)`:"rgba(255,255,255,0.06)",
-              color:pasteText.trim()&&!parsing?C.white:"rgba(255,255,255,0.3)",
+              background:pasteText.trim()&&!parsing?`linear-gradient(135deg, ${C.indigo}, #2d3d85)`:"rgba(15,27,31,0.06)",
+              color:pasteText.trim()&&!parsing?C.white:"rgba(15,27,31,0.3)",
               border:"none",borderRadius:10,padding:"13px 28px",fontSize:13,
               fontFamily:"'Montserrat',sans-serif",fontWeight:700,
               cursor:pasteText.trim()&&!parsing?"pointer":"default",
@@ -1696,13 +1741,13 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
 
         {step==="review"&&parsed&&(
           <>
-            <button onClick={()=>setStep("paste")} style={{background:"none",border:"none",color:"rgba(255,255,255,0.4)",fontSize:13,fontWeight:600,cursor:"pointer",padding:"0 0 24px",fontFamily:"'Montserrat',sans-serif",display:"flex",alignItems:"center",gap:6}}>
+            <button onClick={()=>setStep("paste")} style={{background:"none",border:"none",color:C.taupe,fontSize:13,fontWeight:600,cursor:"pointer",padding:"0 0 24px",fontFamily:"'Montserrat',sans-serif",display:"flex",alignItems:"center",gap:6}}>
               <ArrowLeft size={13}/> Back to paste
             </button>
             <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:28,flexWrap:"wrap",gap:12}}>
               <div>
-                <h1 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:22,color:C.white,margin:"0 0 6px",letterSpacing:"-0.4px"}}>Review Parsed Data</h1>
-                <p style={{fontSize:14,color:"rgba(255,255,255,0.35)",margin:0}}>Review before publishing. Click any field to edit.</p>
+                <h1 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:22,color:C.charcoal,margin:"0 0 6px",letterSpacing:"-0.4px"}}>Review Parsed Data</h1>
+                <p style={{fontSize:14,color:C.taupe,margin:0}}>Review before publishing. Click any field to edit.</p>
               </div>
               <div style={{display:"flex",gap:8}}>
                 <button onClick={()=>onPreview(parsed)} style={{
@@ -1723,41 +1768,41 @@ function AdminDashboard({allRoles,onPublish,onPreview,onDelete,onLogout}) {
 
             <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:10,marginBottom:16}}>
               {[["Title",parsed.title,"title"],["Slug (URL)",parsed.slug,"slug"],["Department",parsed.department,"department"],["Reports To",parsed.reportsto,"reportsto"],["Location",parsed.location,"location"],["Compensation",parsed.comp,"comp"]].map(([label,val,key])=>(
-                <div key={key} style={{background:"rgba(255,255,255,0.04)",borderRadius:10,border:"1px solid rgba(255,255,255,0.07)",padding:"14px 16px"}}>
-                  <div style={{fontSize:10,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:6,fontFamily:"'Montserrat',sans-serif"}}>{label}</div>
+                <div key={key} style={{background:C.white,borderRadius:10,border:"1px solid rgba(15,27,31,0.08)",padding:"14px 16px",boxShadow:"0 1px 3px rgba(15,27,31,0.04)"}}>
+                  <div style={{fontSize:10,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",color:C.taupe,marginBottom:6,fontFamily:"'Montserrat',sans-serif"}}>{label}</div>
                   {editField===key?(
                     <input autoFocus defaultValue={val}
                       onBlur={e=>{setParsed(p=>({...p,[key]:e.target.value}));setEditField(null);}}
-                      style={{width:"100%",background:"rgba(255,255,255,0.08)",border:"1px solid rgba(177,165,247,0.3)",borderRadius:6,padding:"6px 10px",fontSize:14,color:C.white,fontFamily:"inherit",outline:"none",boxSizing:"border-box"}}/>
+                      style={{width:"100%",background:C.sand,border:"1px solid rgba(57,75,153,0.3)",borderRadius:6,padding:"6px 10px",fontSize:14,color:C.charcoal,fontFamily:"inherit",outline:"none",boxSizing:"border-box"}}/>
                   ):(
                     <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",gap:8}}>
-                      <span style={{fontSize:14,color:C.white,fontWeight:500}}>{val}</span>
-                      <button onClick={()=>setEditField(key)} style={{fontSize:11,color:"rgba(177,165,247,0.6)",background:"none",border:"none",cursor:"pointer",fontWeight:600}}>Edit</button>
+                      <span style={{fontSize:14,color:C.charcoal,fontWeight:500}}>{val}</span>
+                      <button onClick={()=>setEditField(key)} style={{fontSize:11,color:C.indigo,background:"none",border:"none",cursor:"pointer",fontWeight:600}}>Edit</button>
                     </div>
                   )}
                 </div>
               ))}
             </div>
 
-            <div style={{background:"rgba(255,255,255,0.03)",borderRadius:10,border:"1px solid rgba(255,255,255,0.07)",padding:"16px",marginBottom:12}}>
-              <div style={{fontSize:10,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:10,fontFamily:"'Montserrat',sans-serif"}}>Mission</div>
-              <p style={{fontSize:14,color:"rgba(255,255,255,0.6)",lineHeight:1.7,margin:0,fontStyle:"italic"}}>{parsed.mission}</p>
+            <div style={{background:C.white,borderRadius:10,border:"1px solid rgba(15,27,31,0.08)",padding:"16px",marginBottom:12,boxShadow:"0 1px 3px rgba(15,27,31,0.04)"}}>
+              <div style={{fontSize:10,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",color:C.taupe,marginBottom:10,fontFamily:"'Montserrat',sans-serif"}}>Mission</div>
+              <p style={{fontSize:14,color:"rgba(15,27,31,0.6)",lineHeight:1.7,margin:0,fontStyle:"italic"}}>{parsed.mission}</p>
             </div>
 
-            <div style={{background:"rgba(255,255,255,0.03)",borderRadius:10,border:"1px solid rgba(255,255,255,0.07)",padding:"16px",marginBottom:20}}>
-              <div style={{fontSize:10,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",color:"rgba(255,255,255,0.3)",marginBottom:12,fontFamily:"'Montserrat',sans-serif"}}>Interview Stages ({parsed.stages?.length})</div>
+            <div style={{background:C.white,borderRadius:10,border:"1px solid rgba(15,27,31,0.08)",padding:"16px",marginBottom:20,boxShadow:"0 1px 3px rgba(15,27,31,0.04)"}}>
+              <div style={{fontSize:10,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",color:C.taupe,marginBottom:12,fontFamily:"'Montserrat',sans-serif"}}>Interview Stages ({parsed.stages?.length})</div>
               {(parsed.stages||[]).map((s,i)=>(
-                <div key={i} style={{display:"flex",gap:12,padding:"8px 0",borderBottom:i<(parsed.stages.length-1)?"1px solid rgba(255,255,255,0.04)":"none",alignItems:"center"}}>
-                  <span style={{background:"rgba(57,75,153,0.2)",color:C.lavender,borderRadius:6,padding:"2px 8px",fontSize:11,fontWeight:700,fontFamily:"'Montserrat',sans-serif",whiteSpace:"nowrap"}}>{s.time}</span>
+                <div key={i} style={{display:"flex",gap:12,padding:"8px 0",borderBottom:i<(parsed.stages.length-1)?"1px solid rgba(15,27,31,0.05)":"none",alignItems:"center"}}>
+                  <span style={{background:"rgba(57,75,153,0.08)",color:C.indigo,borderRadius:6,padding:"2px 8px",fontSize:11,fontWeight:700,fontFamily:"'Montserrat',sans-serif",whiteSpace:"nowrap"}}>{s.time}</span>
                   <div>
-                    <div style={{fontSize:13,fontWeight:600,color:C.white}}>{s.stage}</div>
-                    <div style={{fontSize:12,color:"rgba(255,255,255,0.35)"}}>{s.who} &bull; {s.focus}</div>
+                    <div style={{fontSize:13,fontWeight:600,color:C.charcoal}}>{s.stage}</div>
+                    <div style={{fontSize:12,color:C.taupe}}>{s.who} &bull; {s.focus}</div>
                   </div>
                 </div>
               ))}
             </div>
 
-            <div style={{background:"rgba(38,84,79,0.15)",borderRadius:10,padding:"14px 18px",fontSize:13,color:"rgba(163,207,153,0.8)",lineHeight:1.6,border:"1px solid rgba(38,84,79,0.3)"}}>
+            <div style={{background:"rgba(38,84,79,0.06)",borderRadius:10,padding:"14px 18px",fontSize:13,color:C.forest,lineHeight:1.6,border:"1px solid rgba(38,84,79,0.15)"}}>
               Preview the candidate experience before publishing. Changes to role data require re-parsing.
             </div>
           </>
@@ -1774,7 +1819,7 @@ export default function App() {
   const [allRoles,setAllRoles]=useState([...BUILT_IN_ROLES]);
   const [view,setView]=useState("loading");
   const [activeRole,setActiveRole]=useState(null);
-  const [adminAuthed,setAdminAuthed]=useState(false);
+  const [adminAuthed,setAdminAuthed]=useState(()=>localStorage.getItem('adminAuthed')==='1');
   const [loaded,setLoaded]=useState(false);
 
   useEffect(()=>{
@@ -1801,12 +1846,12 @@ export default function App() {
   const handleDelete=async(slug)=>{await deleteRole(slug);setAllRoles(prev=>prev.filter(r=>r.slug!==slug));};
   const handlePreview=(role)=>{setActiveRole(role);setView("candidate");window.history.pushState({},"",`?role=${role.slug}`);};
   const handleBack=()=>{setView("admin");window.history.pushState({},"",window.location.pathname);};
-  const handleLogout=()=>{setAdminAuthed(false);};
+  const handleLogout=()=>{setAdminAuthed(false);localStorage.removeItem('adminAuthed');};
 
   if(!loaded) return(
     <div style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",background:C.charcoal,fontFamily:"'Inter',sans-serif"}}>
       <div style={{textAlign:"center",animation:"fadeUp 0.5s ease both"}}>
-        <WheelMark size={52}/>
+        <img src={cartwheelLogo} alt="Cartwheel" style={{width:52,height:52,objectFit:"contain"}}/>
         <div style={{marginTop:16,fontSize:13,color:"rgba(255,255,255,0.3)",fontFamily:"'Montserrat',sans-serif",letterSpacing:"0.5px"}}>Loading</div>
       </div>
       <style>{`@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}`}</style>
@@ -1814,7 +1859,7 @@ export default function App() {
   );
 
   if(view==="candidate"&&activeRole) return <CandidateView role={activeRole} onBack={adminAuthed?handleBack:null}/>;
-  if(view==="admin"&&!adminAuthed) return <AdminLogin onSuccess={()=>setAdminAuthed(true)}/>;
+  if(view==="admin"&&!adminAuthed) return <AdminLogin onSuccess={()=>{setAdminAuthed(true);localStorage.setItem('adminAuthed','1');}}/>;
   if(view==="admin"&&adminAuthed) return <AdminDashboard allRoles={allRoles} onPublish={handlePublish} onPreview={handlePreview} onDelete={handleDelete} onLogout={handleLogout}/>;
   return null;
 }

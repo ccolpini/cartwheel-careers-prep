@@ -31,7 +31,7 @@ export const PDA_ROLE = {
     {label:"Governance",bullets:["Champion data quality through testing, monitoring, and governance","Ensure analytical workflows are reproducible, well-documented, and resilient","Contribute to data dictionaries, metric definitions, and shared documentation"]},
   ],
   aboutRole:"The Principal Data Analyst is a senior individual contributor responsible for shaping the analytics and data foundation at Cartwheel. This role emphasizes data system design, analytical architecture, and defining best practices for how data is modeled and delivered.\n\nYou will work as a staff-level technical leader on the data team — a close thought partner to the Director of Data — helping raise the bar for what good analytical work looks like.",
-  compBenefits:"$170,000-$220,000 cash compensation plus competitive equity. Full benefits: PPO medical/vision/dental/orthodontia, paid parental leave (12 weeks), 401K with 2% employer match, generous PTO including Dec 25-Jan 1 closure, $500 learning stipend, MacBook, and annual in-person retreat.",
+  compBenefits:"$170,000-$220,000 cash compensation plus competitive equity. Full benefits: PPO medical/vision/dental/orthodontia, paid parental leave (12 weeks), 401K with up to 2% employer match, generous PTO including Dec 25-Jan 1 closure, $500 learning stipend, MacBook, and annual in-person retreat.",
   stagePrepData:[
     {stage:"Recruiter Screen",prep:["Research Cartwheel's mission and school-based model","Prepare a concise background summary focused on data leadership","Know your comp expectations within the $170K-$220K range","Think about what draws you to mission-driven work"],questions:["What does success look like in the first 90 days?","How does the data team collaborate with Product and Clinical?","What is the biggest data challenge Cartwheel is working through?"]},
     {stage:"Hiring Manager",prep:["Prepare 1-2 analytics framework examples with full context","Walk through context, approach, tradeoffs, validation, and impact","This is not a deep technical test — clarity of thinking matters most","Think about how you have moved teams from ad-hoc to productized solutions"],questions:["What are the 2-3 most important things to accomplish in year one?","How do you see the analytics team evolving over the next 12-18 months?","What does great thought partnership look like day-to-day?"]},
@@ -92,7 +92,7 @@ export const SPM_ROLE = {
     {label:"Org Contribution",bullets:["Help establish lightweight product practices that enable fast learning","Collaborate with GTM teams on marketing and how product lands in market","Operate as a senior IC who shapes direction and raises the bar"]},
   ],
   aboutRole:"Cartwheel is building technology that supports how mental health care is delivered and coordinated in school settings. We are looking for a Senior Product Manager, AI Products to lead early-stage product initiatives focused on improving how complex work gets done.\n\nThis is a senior individual contributor role for someone who thrives in ambiguity, partners closely with customers, and enjoys shaping products from the earliest stages.",
-  compBenefits:"$120,000-$170,000 base compensation plus meaningful equity. Level and comp may flex for exceptional candidates. Full benefits: PPO medical/vision/dental, paid parental leave, 401K with employer match, generous PTO, $500 learning stipend, MacBook, and annual in-person retreat.",
+  compBenefits:"$120,000-$170,000 base compensation plus meaningful equity. Level and comp may flex for exceptional candidates. Full benefits: PPO medical/vision/dental, paid parental leave, 401K with up to 2% employer match, generous PTO, $500 learning stipend, MacBook, and annual in-person retreat.",
   stagePrepData:[
     {stage:"Recruiter Screen",prep:["Research Cartwheel's mission and school-based model","Prepare your background summary focused on 0-to-1 product work","Know your comp expectations within the $120K-$170K range","Think about why AI and mental health and education draws you in"],questions:["What does success look like in the first 90 days?","How does the PM team collaborate with Engineering and Design?","What AI initiatives is Cartwheel most focused on right now?"]},
     {stage:"Product Judgment",prep:["Prepare 1-2 examples of products you have personally owned end-to-end","Focus on how you think, not just what shipped","Be ready to discuss your honest perspective on AI's real-world usefulness and limits","Think out loud, ask questions, collaborate — this is a working session"],questions:["What is the most important problem to solve in year one?","How does Cartwheel think about AI safety and trust in product?","What does the product development process look like today?"]},
@@ -168,7 +168,7 @@ export const CCM_ROLE = {
     {label:"Cross-Functional Partnership",bullets:["Partner with Provider Success to ensure smooth provider matching and onboarding","Collaborate with Clinical to align care coordination workflows with clinical standards","Work with School Success to understand district-specific needs and feedback","Engage with Product (CCA Pod) to shape tooling that improves coordinator efficiency"]},
   ],
   aboutRole:"The Care Coordination Manager owns the operational excellence of Cartwheel's care coordination function — the front door for families navigating mental health support for their children. This role is central to Cartwheel's mission: ensuring every family who reaches out gets a thoughtful, timely, and high-quality experience.\n\nYou will lead a team of Care Coordinators through a dedicated Lead, set and hold SLAs, and partner deeply with Clinical, Provider Success, School Success, and Product to continuously improve how families access care.",
-  compBenefits:"$85,000-$110,000 base compensation plus meaningful equity. Full benefits: PPO medical/vision/dental, paid parental leave, 401K with employer match, generous PTO including Dec 25-Jan 1 closure, $500 learning stipend, MacBook, and annual in-person retreat in Boston.",
+  compBenefits:"$85,000-$110,000 base compensation plus meaningful equity. Full benefits: PPO medical/vision/dental, paid parental leave, 401K with up to 2% employer match, generous PTO including Dec 25-Jan 1 closure, $500 learning stipend, MacBook, and annual in-person retreat in Boston.",
   stagePrepData:[
     {stage:"Recruiter Screen",prep:["Research Cartwheel's mission, school-based model, and care coordination approach","Prepare a concise background summary focused on operational leadership","Know your comp expectations within the $85K-$110K range","Think about what draws you to care coordination and mental health access work"],questions:["What does success look like in the first 90 days?","What are the biggest operational challenges in care coordination today?","How does the care coordination team interact with clinical and school teams?"]},
     {stage:"Hiring Manager Deep Dive",prep:["Prepare 1-2 examples of operational systems or workflows you have built or improved","Walk through a situation where you held your team to a high standard under pressure","Be ready to talk about how you use data to drive decisions and accountability","Think about a time you improved a process that meaningfully changed the family or user experience"],questions:["What are the top 1-2 operational priorities for care coordination right now?","How does Allie think about the right pace of growth for the team?","What does great operational partnership between care coordination and clinical look like?"]},
@@ -232,7 +232,7 @@ export const CTRL_ROLE = {
     {label:"Partner Across the Business",bullets:["Work with BizOps and Data to connect financial reporting to operational metrics (RCM, state P&L, revenue quality)","Collaborate with RCM and Health Plan Ops on payer dynamics, collections, and revenue integrity","Support leadership with budgeting, forecasting, and board reporting","Translate finance concepts into language that Ops, RCM, BizOps, and Data can act on"]},
   ],
   aboutRole:"We're hiring our first Controller to build a modern, scalable accounting function that will support Cartwheel's rapid growth. As our accounting leader, you'll build core processes from scratch, lead our ERP selection and implementation, and create the financial infrastructure we'll rely on for audits, fundraising, and multi-state expansion.\n\nThis is a true builder role — not inheriting a fully built function, but designing the systems, controls, and processes that will scale with the company. Reporting to our VP of Finance, you'll be a key strategic partner to teams across the company — including BizOps, Data, RCM, and Operations — as we bring high-quality mental health support to students everywhere.",
-  compBenefits:"Competitive base compensation plus meaningful equity package. Full benefits: PPO medical/vision/dental/orthodontia, paid parental leave, 401K with employer match, unlimited/flexible PTO plus federal holidays, life insurance, $500 annual learning stipend, MacBook, and annual in-person retreat.",
+  compBenefits:"Competitive base compensation plus meaningful equity package. Full benefits: PPO medical/vision/dental/orthodontia, paid parental leave, 401K with up to 2% employer match, unlimited/flexible PTO plus federal holidays, life insurance, $500 annual learning stipend, MacBook, and annual in-person retreat.",
   stagePrepData:[
     {stage:"Recruiter Screen",prep:["Research Cartwheel's mission, school-based model, and Series B stage","Prepare a concise summary of your accounting function-building experience","Know your comp expectations around the $200K OTE range","Think about what draws you to a builder role at an early-stage company"],questions:["What does the current accounting setup look like with Formation Financial?","What's the timeline for ERP implementation and the first audit?","What does success look like in the first 90 days?"]},
     {stage:"Hiring Manager Deep Dive",prep:["Prepare specific examples of building or redesigning a chart of accounts and revenue recognition framework","Think through how you would sequence insourcing accounting from an outsourced firm","Be ready to discuss a time revenue recognition was structurally misaligned and how you fixed it","Prepare examples of transitioning work from non-finance teams while maintaining relationships"],questions:["What are the biggest accounting risks you see as Cartwheel scales across states?","How does the BizOps team currently handle finance-adjacent work?","What does the relationship between Finance and RCM look like today?"]},
@@ -260,6 +260,7 @@ export const CTRL_ROLE = {
     ]},
     {label:"Exec Review",name:"Dan Tartakovsky",title:"COO",href:"https://www.linkedin.com/in/tartakovsky/"},
   ],
+  applyUrl:"https://job-boards.greenhouse.io/cartwheelcare/jobs/4992170007",
   links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
 };
 
@@ -360,7 +361,7 @@ export const GROM_ROLE = {
     ]},
   ],
   aboutRole:"As a Government Relations Operations Manager, you'll be the operational backbone of Cartwheel's government relations team — the person who makes sure our GR strategy translates into impact at scale.\n\nYou'll manage the systems, workflows, and intelligence that enable our GR executives and state-based team to influence education policy and secure funding for student mental health. This is a high-leverage operations role: you won't be in the room for every negotiation, but you'll ensure everyone in the room has what they need to succeed.\n\nYou'll own the end-to-end operations of our government affairs function across 10+ states, from tracking legislative opportunities and coordinating lobbyist partnerships to producing monthly impact briefs that shape how policymakers think about student mental health.",
-  compBenefits:"Competitive compensation at market rate for a mid-level operations role in a startup environment. Benefits include competitive health insurance, equity package, unlimited PTO, $500 annual professional development budget, remote-first with travel required 1–2x per quarter. Target start date: March 27, 2026.",
+  compBenefits:"Competitive compensation at market rate for a mid-level operations role in a startup environment. Benefits include competitive health insurance, equity package, 401K with up to 2% employer match, unlimited PTO, $500 annual professional development budget, remote-first with travel required 1–2x per quarter. Target start date: March 27, 2026.",
   stagePrepData:[
     {stage:"Recruiter Screen",prep:[
       "Research Cartwheel's mission and school-based mental health model",
@@ -469,13 +470,15 @@ export const GROM_ROLE = {
     ]},
     {label:"Executive Review",name:"Joe English",title:"CEO",href:"https://www.linkedin.com/in/joe-m-english/"},
   ],
+  applyUrl:"https://job-boards.greenhouse.io/cartwheelcare/jobs/5070368007",
   links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
 };
 
 export const FPAA_ROLE = {
   title:"FP&A Associate", slug:"fpa-associate",
   department:"Finance", reportsto:"Sam Bilow, VP Finance",
-  location:"Remote", employment:"Full-Time, W2", comp:"$90,000–$140,000",
+  location:"Remote", employment:"Full-Time, W2", comp:"$90,000–$140,000 + meaningful equity",
+  roadmapNote:"Our interview process is designed to reflect the real work of this role — each conversation evaluates a different dimension of how you think, prioritize, and lead, especially in a fast-moving, mission-driven environment like ours.\n\nThe roadmap below outlines the full arc of the process. Not every candidate moves through every stage, and the order can shift — progression is based on mutual fit and alignment as we get to know each other.",
   mission:"We're hiring an FP&A Associate to own financial reporting, planning, and KPI/OKR visibility across Cartwheel — building the financial infrastructure that helps a fast-growing mental health company make smarter, faster decisions. This is a net-new role on a mission-driven team, with real scope and real impact from day one.",
   stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
   team:[
@@ -486,6 +489,7 @@ export const FPAA_ROLE = {
   stages:[
     {stage:"Recruiter Screen",time:"30m",who:"Caroline Colpini",focus:"Role fit, values, compensation alignment"},
     {stage:"Hiring Manager Screen",time:"45m",who:"Sam Bilow",focus:"Finance background, relevant experience, motivation for Cartwheel"},
+    {stage:"Take-Home Exercise",time:"Self-guided",who:"",focus:"Financial modeling, analytical thinking, written communication"},
     {stage:"Cross-Functional Panel",time:"60m",who:"April Liu",focus:"Operational partnership, cross-functional collaboration, stakeholder communication"},
     {stage:"Executive Interview",time:"30m",who:"Daniel Tartakovsky",focus:"Strategic fit, company values, leadership presence"},
   ],
@@ -545,7 +549,7 @@ export const FPAA_ROLE = {
     ]},
   ],
   aboutRole:"We're hiring an FP&A Associate to own financial reporting, planning, and KPI/OKR visibility across the organization. This is a net-new role — and a real opportunity to build something.\n\nRight now, our financial and operational metrics live in different systems, most reporting is backward-looking, and department leaders don't yet have the structured financial partnership they need to make confident decisions. You'll change that.\n\nReporting to Sam Bilow, VP Finance, you'll consolidate our reporting infrastructure, build forward-looking forecasts, and become a trusted cross-functional partner to leaders across Care Ops, Clinical, Product, Engineering, and beyond.\n\nIf you want to do the work that makes a growing company smarter — this is the role.",
-  compBenefits:"$90,000–$140,000 in base salary plus a meaningful equity ownership stake in Cartwheel. Benefits include generous PPO medical, vision, and dental/ortho coverage, life insurance, generous paid time off including company closure from Christmas–New Year's (12/25–1/1), paid holidays and sick leave, paid parental leave, 401K with employer match, an annual learning stipend, and a laptop. Fully remote with regular in-person retreats.",
+  compBenefits:"$90,000–$140,000 in base salary plus a meaningful equity ownership stake in Cartwheel. Benefits include generous PPO medical, vision, and dental/ortho coverage, life insurance, generous paid time off including company closure from Christmas–New Year's (12/25–1/1), paid holidays and sick leave, paid parental leave, 401K with up to 2% employer match, an annual learning stipend, and a laptop. Fully remote with regular in-person retreats.",
   stagePrepData:[
     {stage:"Recruiter Screen",prep:[
       "Review Cartwheel's website and be ready to speak to why the mission resonates with you personally",
@@ -563,6 +567,12 @@ export const FPAA_ROLE = {
       "What's the current state of financial reporting at Cartwheel, and where do you most want this role to have impact first?",
       "What does the relationship between Finance and other departments look like today vs. where you want it to go?",
     ]},
+    {stage:"Take-Home Exercise",prep:[
+      "Block focused, uninterrupted time — treat it like a real work session",
+      "Read the full prompt carefully before starting",
+      "Show your thinking and structure, not just your conclusions",
+      "Be honest about assumptions and what you'd do with more information",
+    ],questions:[]},
     {stage:"Cross-Functional Panel",prep:[
       "April Liu comes from a healthcare business operations background — think about how you'd partner cross-functionally, not just report numbers",
       "Be ready to share how you've managed competing asks from different department heads",
@@ -592,6 +602,12 @@ export const FPAA_ROLE = {
       "Review Cartwheel's publicly available data (partnerships, growth, funding)",
       "Prepare questions about the current state of financial infrastructure",
     ]},
+    {stage:"Before Take-Home Exercise",items:[
+      "Block uninterrupted time before starting",
+      "Read the full prompt before writing anything",
+      "Structure your work clearly — show your thinking, not just conclusions",
+      "Submit within the requested timeframe",
+    ]},
     {stage:"Before Cross-Functional Panel",items:[
       "Review April Liu's LinkedIn to understand her background and scope",
       "Think about how Finance and Ops can work as partners, not separately",
@@ -606,10 +622,170 @@ export const FPAA_ROLE = {
   interviewers:[
     {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
     {label:"Hiring Manager Screen",name:"Sam Bilow",title:"VP Finance",href:"https://www.linkedin.com/in/sam-bilow-59434150/"},
+    {label:"Take-Home Exercise",name:"",title:"",href:null},
     {label:"Cross-Functional Panel",name:"April Liu",title:"Healthcare Business Operations & Strategy",href:"https://www.linkedin.com/in/april-liu-2020a/"},
     {label:"Executive Interview",name:"Daniel Tartakovsky",title:"COO & Co-Founder",href:"https://www.linkedin.com/in/tartakovsky/"},
+  ],
+  applyUrl:"https://job-boards.greenhouse.io/cartwheelcare/jobs/5073358007",
+  links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
+};
+
+export const ROA_ROLE = {
+  title:"Revenue Operations Analyst", slug:"revenue-operations-analyst",
+  department:"Revenue Operations", reportsto:"Jeff Sword, Director of Revenue Operations",
+  location:"Remote", employment:"Full-Time, W2", comp:"$75,000 – $90,000",
+  mission:"The Revenue Operations Analyst owns the tactical execution layer that keeps Cartwheel's deals moving, districts going live, and GTM teams working from clean, reliable data — so the business can scale from 300 to 1,000+ school districts without operational drag.",
+  stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
+  team:[
+    "Jeff Sword — Director of Revenue Operations (your manager and primary day-to-day partner)",
+    "Sales Team (AEs and Sales Leadership) — primary internal customers for deal desk and CRM support",
+    "Customer Success Team — provisioning and renewal support",
+    "Finance / AR Team — invoice coordination and financial close",
+    "Marketing Operations Administrator — peer collaboration on lead-to-opportunity handoffs",
+  ],
+  stages:[
+    {stage:"Recruiter Screen",time:"30m",who:"Avery Henry",focus:"Role fit, Salesforce proficiency, remote self-management, comfort with tactical execution work"},
+    {stage:"Hiring Manager Interview",time:"45m",who:"Jeff Sword",focus:"Deal desk process ownership, CRM data integrity, judgment on edge cases"},
+    {stage:"Functional Deep Dive",time:"60m",who:"[AE or Sales Lead] + [Finance/AR Representative]",focus:"Stakeholder responsiveness, invoice coordination, documentation discipline"},
+    {stage:"Live Case / Operations Exercise",time:"45m",who:"Jeff Sword",focus:"Triage judgment, Salesforce action-taking, stakeholder communication under pressure"},
+  ],
+  contacts:["Recruiter: Caroline Colpini - caroline.colpini@cartwheelcare.org","Coordinator: Avery Henry - avery.henry@cartwheelcare.org"],
+  prep:[
+    "Every stage probes for specificity — 'we did X' won't land here; know what YOU owned and what YOU did",
+    "This role is execution-heavy by design; if that energizes you, show it with examples — don't just say you're comfortable with operational work",
+    "Interviewers are evaluating whether you'd be reliable under volume pressure, not just capable on a good day",
+    "Cartwheel serves 1.5M students across 350+ school districts — connecting your work to that mission will resonate authentically with this team",
+    "Be honest about what you know and what you'd need to learn; the team values self-awareness about ramp over overconfidence",
+  ],
+  thrive:[
+    "Take ownership without needing constant direction — you manage your own queue and communicate proactively",
+    "Find genuine satisfaction in accuracy, task completion, and a clean CRM record",
+    "Are comfortable with high-volume, fast-paced work during peak periods (Q4/Q1 sales close)",
+    "Pick up new tools and processes quickly and document as you go",
+    "Update stakeholders before they have to ask",
+  ],
+  notfor:[
+    "Need heavily structured processes already in place before you can operate independently",
+    "Prefer creative or strategic work over execution and repeatable operational tasks",
+    "Need frequent in-person interaction or structured daily oversight to stay productive",
+    "Are uncomfortable being 'in the weeds' with tactical work for sustained periods",
+    "See this role as a transitional stepping stone to something more strategic",
+  ],
+  success:[
+    {period:"First 90 Days",desc:"Completed business model onboarding (3+ customer calls listened to), built working knowledge of the full revenue tech stack (Salesforce, Gong, Outreach, Adobe Sign, DocuSign, Guru), and can execute the end-to-end opportunity closing workflow — validation, invoicing, COI requests, portal provisioning, vendor registration — with Director oversight. Understand the business model well enough to catch errors before they ship."},
+    {period:"First 6 Months",desc:"Independently handle 80% of Tier 1 deal desk and provisioning requests without escalation. Close opportunities from Closing stage to fully invoiced and provisioned within a 24-hour turnaround. Proactively reduced Lead and Opportunity records scoring below 75% health threshold by 50% through ongoing hygiene monitoring — not one-time cleanup."},
+    {period:"First 12 Months",desc:"Own 90% of the tactical RevOps workload, escalating only items requiring senior judgment or notarization. Built comprehensive Guru documentation for opportunity closing workflows and all partnership invoicing processes. The primary RevOps point of contact for GTM teams — Jeff can take a week off and deal desk doesn't stop."},
+  ],
+  mustHave:[
+    "Hands-on Salesforce proficiency — record navigation, report building, object relationships, and data issue identification (not just general familiarity)",
+    "Ability to execute multi-step operational workflows (10+ steps) accurately and consistently under high-volume conditions without shortcuts",
+    "Strong written communication with internal stakeholders and external vendors and district procurement contacts",
+    "Remote self-management — own your queue, prioritize independently, communicate proactively without being prompted",
+    "Google Sheets competency — data manipulation, VLOOKUP-level analysis, clean formatting for reporting",
+  ],
+  niceToHave:[
+    "Salesforce Certified Administrator credential",
+    "Prior experience in K–12 ed-tech or public sector procurement cycles",
+    "Familiarity with Gong, Outreach, Adobe Sign, or DocuSign (all trainable on Cartwheel's stack)",
+    "Experience in a dual Salesforce instance environment",
+    "Exposure to ESA or partnership invoicing models",
+  ],
+  whatYoullDo:[
+    {label:"Deal Desk & Provisioning",bullets:[
+      "Own end-to-end opportunity closing workflow — validation, contract generation, invoicing, COI requests, portal provisioning, and vendor registration — within a 24-hour SLA",
+      "Serve as the primary RevOps point of contact for Sales and Customer Success on deal desk requests, provisioning status, and tool support",
+      "Coordinate across Finance/AR and external vendors on invoice workflows, ESA fee schedules, and payment processing",
+    ]},
+    {label:"CRM Operations",bullets:[
+      "Maintain Lead and Opportunity record quality in Salesforce above 75% health thresholds through proactive monitoring — not reactive cleanup",
+      "Build reports and dashboards that give GTM teams reliable, current pipeline data",
+      "Manage CRM hygiene across Cartwheel's Salesforce environment as the business scales",
+    ]},
+    {label:"Documentation & Process Building",bullets:[
+      "Build and maintain Guru documentation for every repeatable RevOps workflow — opportunity closing, contract generation, partnership invoicing, ESA fee schedules",
+      "Ensure no critical process is single-threaded through institutional knowledge",
+      "Proactively identify workflow gaps and document before they become errors",
+    ]},
+  ],
+  aboutRole:"Cartwheel is the largest mental health telehealth provider for K–12 schools in the U.S., serving 350+ school districts and 1.5M students. We're scaling fast — from 300 districts to 1,000+ — and the operational infrastructure to support that growth is being built right now.\n\nThe Revenue Operations Analyst is at the center of that infrastructure. This role owns the execution layer that makes every new school district go live: deal desk processing, CRM data integrity, customer provisioning, invoice coordination, and front-line RevOps support for a 20+ person Sales and Customer Success org.\n\nThis isn't a role for someone who wants to dabble in RevOps. It's for someone who takes genuine ownership of operational excellence — who finds satisfaction in a clean Salesforce record, a same-day deal closed, and a workflow documented before anyone had to ask. If that sounds like you, we'd like to meet you.",
+  compBenefits:"Base salary $75,000–$90,000 with no variable comp. Cartwheel offers a competitive benefits package including medical, dental, and vision coverage, 401K with up to 2% employer match, generous PTO, remote flexibility, and direct impact on the mental health infrastructure serving 1.5M students across 350+ school districts. As a Series B+ company backed by Menlo Ventures, Reach Capital, and General Catalyst, you'll be joining a high-growth team at a genuinely consequential inflection point.",
+  stagePrepData:[
+    {stage:"Recruiter Screen",prep:[
+      "Know your Salesforce experience at a task level — be ready to describe exactly what you've done in Salesforce, not just that you've used it (reports, record types, object relationships, data hygiene)",
+      "Be ready with a concrete example of owning a repeatable process end-to-end, with minimal direction, and what that looked like operationally at peak volume",
+      "Be honest about your career motivations — this role is genuinely ~80% tactical and repeatable; if that energizes you, explain why with a real example from your history",
+      "Think through how you manage your queue when multiple urgent requests hit at the same time in a remote environment",
+    ],questions:[
+      "What does a typical high-volume week look like for this role right now?",
+      "What are the most common Tier 1 requests from Sales and CS?",
+      "What does the ramp timeline look like for someone coming in with strong Salesforce fundamentals?",
+    ]},
+    {stage:"Hiring Manager Interview",prep:[
+      "Prepare a specific closing workflow or deal desk process you've owned — know the steps, your role at each one, and exactly what happened when something broke",
+      "Think about a time you caught a CRM data issue proactively — not when someone reported it — and what you did about it beyond fixing the record",
+      "Be ready to talk about operating in an environment where the playbook wasn't written yet — how did you learn, and what documentation did you leave behind?",
+      "Jeff will probe your escalation threshold — know what you'd own independently versus surface, and why, with specific examples",
+    ],questions:[
+      "What does the current deal desk workflow look like end-to-end, and where are the biggest friction points?",
+      "What's the Salesforce environment like today — dual instance, complexity level, admin support structure?",
+      "At 12 months, what does it look like if this hire has gone really well?",
+    ]},
+    {stage:"Functional Deep Dive",prep:[
+      "This panel includes a Sales or AE stakeholder and a Finance/AR representative — think about how you've served internal customers before, not just completed tasks for them",
+      "Prepare a story about competing priorities: a same-day AE request landing while you were mid-task on something else, and how you communicated with both parties",
+      "Have a concrete documentation example ready — something you built from scratch, not maintained; know who it was for, how you built it, and how you verified it was actually usable",
+      "Think through your experience with cross-functional invoice or payment processes where something stalled — what did you do when a step was someone else's responsibility but they weren't moving?",
+    ],questions:[
+      "What do Sales and CS typically need most from RevOps on a day-to-day basis?",
+      "What does the current documentation setup look like — what's in Guru, what's still in people's heads?",
+      "How does the team currently handle queue overflow during Q4 close?",
+    ]},
+    {stage:"Live Case / Operations Exercise",prep:[
+      "You'll receive a scenario 24–48 hours before — read it carefully and come in with a structured, prioritized plan (not a to-do list of everything you'd eventually do)",
+      "Lead with your prioritization logic — which of the three issues represents the highest business risk and why; show your reasoning, not just your conclusion",
+      "Be specific about Salesforce actions — not 'I'd look at the records' but what you'd actually do with each category of stalled opportunity, missing vendor info, and provisioning failure",
+      "Show where you'd act independently versus flag to Jeff — and be able to explain your threshold clearly",
+      "Don't try to solve everything perfectly; the exercise is evaluating how you think, not whether you have all the answers",
+    ],questions:[
+      "What access and documentation would I realistically have in my first week?",
+      "What's the existing SLA expectation for provisioning turnaround?",
+      "What's the escalation path if a vendor isn't responding on a missing registration requirement?",
+    ]},
+  ],
+  checklist:[
+    {stage:"Before Recruiter Screen",items:[
+      "Review Cartwheel's website and understand the core product — mental health telehealth for K–12 schools",
+      "Prepare your Salesforce experience summary: specific tasks you've performed, not just platforms listed on your resume",
+      "Think through a concrete example of owning a repeatable process end-to-end with limited oversight",
+      "Know your compensation expectations, availability, and target start date",
+    ]},
+    {stage:"Before Hiring Manager Interview",items:[
+      "Research Jeff Sword on LinkedIn — understand his background and how he describes the RevOps function",
+      "Prepare 2–3 specific stories: closing workflow you owned, CRM issue you caught proactively, undocumented environment you've navigated",
+      "Review what you know about deal desk processes — opportunity validation, contract generation, invoicing, provisioning steps",
+      "Prepare thoughtful questions about the current state of the RevOps function and where it's heading",
+    ]},
+    {stage:"Before Functional Deep Dive",items:[
+      "Prepare stakeholder communication stories — competing priorities, a situation where your turnaround didn't meet expectations and what you did about it",
+      "Have your documentation example ready: what you built, who it was for, how you tested it was usable, how you kept it current",
+      "Review your experience with cross-functional invoice or payment workflows — especially anything with external compliance steps",
+      "Prepare questions that show you understand the Sales/CS dynamic and what they need from RevOps support",
+    ]},
+    {stage:"Before Live Case / Operations Exercise",items:[
+      "Read the scenario carefully and sketch your initial triage priority before the interview",
+      "Prepare your prioritization logic — which issue is highest urgency, and what's your reasoning",
+      "Think through the specific Salesforce actions you'd take on stalled Opportunity records, missing vendor registration info, and a provisioning failure",
+      "Think through how you'd communicate a RevOps-side delay to an AE and their customer — what you'd say and how you'd frame it",
+      "Identify the questions you'd need answered before taking action on each of the three issues",
+    ]},
+  ],
+  interviewers:[
+    {label:"Recruiter Screen",name:"Avery Henry",title:"Talent Acquisition",href:"https://www.linkedin.com/in/averyhenry/"},
+    {label:"Hiring Manager Interview",name:"Jeff Sword",title:"Director of Revenue Operations",href:"https://www.linkedin.com/in/jeffrey-sword-80070a31/"},
+    {label:"Functional Deep Dive",name:"",title:"",href:null},
+    {label:"Live Case / Operations Exercise",name:"Jeff Sword",title:"Director of Revenue Operations",href:"https://www.linkedin.com/in/jeffrey-sword-80070a31/"},
   ],
   links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
 };
 
-export const BUILT_IN_ROLES = [PDA_ROLE, SPM_ROLE, CCM_ROLE, CTRL_ROLE, GROM_ROLE, FPAA_ROLE];
+export const BUILT_IN_ROLES = [PDA_ROLE, SPM_ROLE, CCM_ROLE, CTRL_ROLE, GROM_ROLE, FPAA_ROLE, ROA_ROLE];
