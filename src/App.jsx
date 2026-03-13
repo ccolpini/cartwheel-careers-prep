@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { track } from "@vercel/analytics";
 import cartwheelLogo from "./logo.png";
 
 function useIsMobile() {
@@ -814,7 +815,14 @@ function CandidateView({role,onBack}) {
   const [input,setInput]=useState("");
   const [loading,setLoading]=useState(false);
   const endRef=useRef(null);
+  const chatTrackedRef=useRef(false);
   useEffect(()=>{endRef.current?.scrollIntoView({behavior:"smooth"});},[msgs,loading]);
+  useEffect(()=>{
+    if(tab==="chat"&&!chatTrackedRef.current){
+      chatTrackedRef.current=true;
+      track("chat_opened",{role_page:role.slug});
+    }
+  },[tab]);
 
   const CHAT_SYSTEM=`You are a calm, honest, and helpful interview preparation assistant for Cartwheel — a K-12 mental health telehealth company. You are helping a candidate prepare for their ${role.title} interview.
 
@@ -867,6 +875,9 @@ HANDLING DIFFICULT SITUATIONS:
   const send=async(text)=>{
     const q=(text||input).trim();if(!q)return;
     setInput("");
+    if(msgs.length===1){
+      track("chat_message_sent",{role_page:role.slug,message_preview:q.slice(0,100)});
+    }
     const updated=[...msgs,{role:"user",content:q}];
     setMsgs(updated);setLoading(true);
     try{
@@ -1491,7 +1502,7 @@ HANDLING DIFFICULT SITUATIONS:
             {role.applyUrl&&(
               <FadeIn delay={350}>
                 <div style={{display:"flex",justifyContent:"center"}}>
-                  <a href={role.applyUrl} target="_blank" rel="noopener noreferrer" style={{
+                  <a href={role.applyUrl} target="_blank" rel="noopener noreferrer" onClick={()=>track("apply_clicked",{role_page:role.slug})} style={{
                     display:"inline-flex",alignItems:"center",gap:8,
                     background:`linear-gradient(135deg, ${C.indigo}, #4f63c4)`,
                     color:C.white,borderRadius:10,padding:"14px 32px",
