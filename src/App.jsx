@@ -820,7 +820,7 @@ function CandidateView({role,onBack}) {
   useEffect(()=>{
     if(tab==="chat"&&!chatTrackedRef.current){
       chatTrackedRef.current=true;
-      track("chat_opened",{role_page:role.slug});
+      track("chat_opened",{role_page:role.slug,role_family:role.department});
     }
   },[tab]);
 
@@ -876,7 +876,7 @@ HANDLING DIFFICULT SITUATIONS:
     const q=(text||input).trim();if(!q)return;
     setInput("");
     if(msgs.length===1){
-      track("chat_message_sent",{role_page:role.slug,message_preview:q.slice(0,100)});
+      track("chat_message_sent",{role_page:role.slug,role_family:role.department,message_preview:q.slice(0,100)});
     }
     const updated=[...msgs,{role:"user",content:q}];
     setMsgs(updated);setLoading(true);
@@ -1502,7 +1502,7 @@ HANDLING DIFFICULT SITUATIONS:
             {role.applyUrl&&(
               <FadeIn delay={350}>
                 <div style={{display:"flex",justifyContent:"center"}}>
-                  <a href={role.applyUrl} target="_blank" rel="noopener noreferrer" onClick={()=>track("apply_clicked",{role_page:role.slug})} style={{
+                  <a href={role.applyUrl} target="_blank" rel="noopener noreferrer" onClick={()=>track("apply_clicked",{role_page:role.slug,role_family:role.department})} style={{
                     display:"inline-flex",alignItems:"center",gap:8,
                     background:`linear-gradient(135deg, ${C.indigo}, #4f63c4)`,
                     color:C.white,borderRadius:10,padding:"14px 32px",
