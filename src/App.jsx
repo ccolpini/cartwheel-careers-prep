@@ -12,6 +12,7 @@ function useIsMobile() {
   return isMobile;
 }
 import { BUILT_IN_ROLES } from "./roles.js";
+import { useCopilotTracking } from "../hooks/useCopilotTracking";
 import { BookOpen, Users, Map, Heart, CheckSquare, FileText, MessageCircle, ChevronDown, ChevronRight, ArrowLeft, LogOut, Sun, Shield, Coffee, Plane, BookMarked, Calendar, Linkedin, Globe, Star, Building2, Lock, Plus, Trash2, Eye, Copy, X, Check } from "lucide-react";
 
 const C = {
@@ -413,14 +414,14 @@ function InterviewTimeline({role}) {
               border:`1.5px solid #394B99`,opacity:0.35,
               animation:"timelinePulse 1.8s ease infinite",zIndex:1}}/>}
             <div style={{marginLeft:6,marginBottom:i<stages.length-1?0:0}}>
-              <button onClick={()=>setExp(isExp?null:i)} style={{
-                width:"100%",background:"none",border:"none",cursor:"pointer",textAlign:"left",padding:0,
+              <div style={{
+                background:isExp?"#FFFFFF":"#F0ECE9",borderRadius:12,
+                border:`1px solid ${isExp?"rgba(57,75,153,0.2)":"rgba(15,27,31,0.08)"}`,
+                transition:"all 0.2s ease",
+                boxShadow:isExp?"0 4px 20px rgba(57,75,153,0.08)":"0 1px 3px rgba(15,27,31,0.04)",
               }}>
-                <div style={{
-                  background:isExp?"#FFFFFF":"#F0ECE9",borderRadius:12,
-                  border:`1px solid ${isExp?"rgba(57,75,153,0.2)":"rgba(15,27,31,0.08)"}`,
-                  padding:"14px 16px",transition:"all 0.2s ease",
-                  boxShadow:isExp?"0 4px 20px rgba(57,75,153,0.08)":"0 1px 3px rgba(15,27,31,0.04)",
+                <button onClick={()=>setExp(isExp?null:i)} style={{
+                  width:"100%",background:"none",border:"none",cursor:"pointer",textAlign:"left",padding:"14px 16px",
                 }}>
                   <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",gap:10}}>
                     <div style={{flex:1}}>
@@ -440,47 +441,47 @@ function InterviewTimeline({role}) {
                     </div>
                     <ChevronDown size={14} color="#394B99" style={{flexShrink:0,marginTop:3,transform:isExp?"rotate(180deg)":"none",transition:"0.2s"}}/>
                   </div>
-                  {isExp&&(
-                    <div style={{marginTop:14,paddingTop:14,borderTop:"1px solid rgba(57,75,153,0.08)"}}>
-                      <div style={{
-                        background:"linear-gradient(135deg, rgba(57,75,153,0.05), rgba(177,165,247,0.08))",
-                        borderRadius:8,padding:"9px 12px",marginBottom:14,
-                        border:"1px solid rgba(57,75,153,0.1)",
-                      }}>
-                        <span style={{fontSize:11,fontWeight:600,color:"#394B99",fontFamily:"'Montserrat',sans-serif"}}>Focus: </span>
-                        <span style={{fontSize:13,color:"#0F1B1F"}}>{stage.focus}</span>
-                      </div>
-                      {pd.prep.length>0&&(
-                        <div style={{marginBottom:isTH||pd.questions.length===0?0:14}}>
-                          <div style={{fontSize:10,fontWeight:700,color:"#9C9283",letterSpacing:"1px",textTransform:"uppercase",marginBottom:8,fontFamily:"'Montserrat',sans-serif"}}>How to prepare</div>
-                          <div style={{display:"flex",flexDirection:"column",gap:6}}>
-                            {pd.prep.map((tip,j)=>(
-                              <div key={j} style={{display:"flex",gap:8,alignItems:"flex-start"}}>
-                                <div style={{width:4,height:4,borderRadius:"50%",background:"#B1A5F7",flexShrink:0,marginTop:7}}/>
-                                <span style={{fontSize:13,color:"#4a5568",lineHeight:1.6}}>{tip}</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      {!isTH&&pd.questions.length>0&&(
-                        <div style={{background:"#D3E7CC",borderRadius:10,padding:"16px",marginTop:pd.prep.length>0?0:0}}>
-                          <div style={{fontSize:10,fontWeight:700,color:"#26544F",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10,fontFamily:"'Montserrat',sans-serif"}}>Questions to ask</div>
-                          <div style={{display:"flex",flexDirection:"column",gap:8}}>
-                            {pd.questions.map((q,j)=>(
-                              <div key={j} style={{display:"flex",gap:10,alignItems:"flex-start"}}>
-                                <MessageCircle size={12} color="#26544F" style={{flexShrink:0,marginTop:2}}/>
-                                <span style={{fontSize:13,color:"#0F1B1F",fontStyle:"italic",lineHeight:1.6}}>"{q}"</span>
-                              </div>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      <PrepNotes slug={role.slug} stageIndex={i}/>
+                </button>
+                {isExp&&(
+                  <div style={{padding:"0 16px 14px",borderTop:"1px solid rgba(57,75,153,0.08)"}}>
+                    <div style={{
+                      background:"linear-gradient(135deg, rgba(57,75,153,0.05), rgba(177,165,247,0.08))",
+                      borderRadius:8,padding:"9px 12px",marginBottom:14,marginTop:14,
+                      border:"1px solid rgba(57,75,153,0.1)",
+                    }}>
+                      <span style={{fontSize:11,fontWeight:600,color:"#394B99",fontFamily:"'Montserrat',sans-serif"}}>Focus: </span>
+                      <span style={{fontSize:13,color:"#0F1B1F"}}>{stage.focus}</span>
                     </div>
-                  )}
-                </div>
-              </button>
+                    {pd.prep.length>0&&(
+                      <div style={{marginBottom:isTH||pd.questions.length===0?0:14}}>
+                        <div style={{fontSize:10,fontWeight:700,color:"#9C9283",letterSpacing:"1px",textTransform:"uppercase",marginBottom:8,fontFamily:"'Montserrat',sans-serif"}}>How to prepare</div>
+                        <div style={{display:"flex",flexDirection:"column",gap:6}}>
+                          {pd.prep.map((tip,j)=>(
+                            <div key={j} style={{display:"flex",gap:8,alignItems:"flex-start"}}>
+                              <div style={{width:4,height:4,borderRadius:"50%",background:"#B1A5F7",flexShrink:0,marginTop:7}}/>
+                              <span style={{fontSize:13,color:"#4a5568",lineHeight:1.6}}>{tip}</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    {!isTH&&pd.questions.length>0&&(
+                      <div style={{background:"#D3E7CC",borderRadius:10,padding:"16px",marginTop:pd.prep.length>0?0:0}}>
+                        <div style={{fontSize:10,fontWeight:700,color:"#26544F",letterSpacing:"1px",textTransform:"uppercase",marginBottom:10,fontFamily:"'Montserrat',sans-serif"}}>Questions to ask</div>
+                        <div style={{display:"flex",flexDirection:"column",gap:8}}>
+                          {pd.questions.map((q,j)=>(
+                            <div key={j} style={{display:"flex",gap:10,alignItems:"flex-start"}}>
+                              <MessageCircle size={12} color="#26544F" style={{flexShrink:0,marginTop:2}}/>
+                              <span style={{fontSize:13,color:"#0F1B1F",fontStyle:"italic",lineHeight:1.6}}>"{q}"</span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                    <PrepNotes slug={role.slug} stageIndex={i}/>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         );
@@ -816,6 +817,7 @@ function CandidateView({role,onBack}) {
   const [loading,setLoading]=useState(false);
   const endRef=useRef(null);
   const chatTrackedRef=useRef(false);
+  const { trackChatOpened, trackMessageSent, trackChatEnded, trackApplyClicked } = useCopilotTracking({ roleId: role.slug, roleTitle: role.title, roleFamily: role.department });
   useEffect(()=>{endRef.current?.scrollIntoView({behavior:"smooth"});},[msgs,loading]);
   useEffect(()=>{
     if(tab==="chat"&&!chatTrackedRef.current){
