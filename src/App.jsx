@@ -881,8 +881,8 @@ HANDLING DIFFICULT SITUATIONS:
     setInput("");
     if(msgs.length===1){
       track("chat_message_sent",{role_page:role.slug,role_family:role.department,message_preview:q.slice(0,100)});
-      trackMessageSent();
     }
+    trackMessageSent();
     const updated=[...msgs,{role:"user",content:q}];
     setMsgs(updated);setLoading(true);
     try{
