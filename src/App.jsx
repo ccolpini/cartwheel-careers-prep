@@ -1012,7 +1012,12 @@ HANDLING DIFFICULT SITUATIONS:
         <FadeIn delay={240}>
           <div style={{background:C.forest}}>
             <div style={{maxWidth:860,margin:"0 auto",display:"grid",gridTemplateColumns:isMobile?"repeat(2,1fr)":"repeat(4,1fr)"}}>
-              {(role.stats||[]).map(({n,label,sub},i)=>(
+              {[
+                {n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},
+                {n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},
+                {n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},
+                {n:"1.5M",label:"Students",sub:"Enrolled across districts"},
+              ].map(({n,label,sub},i)=>(
                 <div key={n} style={{
                   padding:isMobile?"28px 20px":"44px 32px",
                   borderRight:isMobile?(i%2===0?"1px solid rgba(167,207,153,0.2)":"none"):(i<3?"1px solid rgba(167,207,153,0.2)":"none"),
