@@ -385,8 +385,9 @@ function PrepNotes({slug,stageIndex}) {
 }
 
 // ── Interview Timeline ────────────────────────────────────────
-function InterviewTimeline({role}) {
-  const [exp,setExp]=useState(null);
+function InterviewTimeline({role, activeStage=null}) {
+  const [exp,setExp]=useState(activeStage);
+  useEffect(()=>{ setExp(activeStage); },[activeStage]);
   const stages=role.stages||[];
   const prepData=role.stagePrepData||[];
   const ivs=role.interviewers||[];
@@ -434,7 +435,12 @@ function InterviewTimeline({role}) {
                         }}>{stage.time}</span>
                         <span style={{fontSize:10,color:"#9C9283",fontFamily:"'Montserrat',sans-serif"}}>Stage {i+1}</span>
                       </div>
-                      <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:"#0F1B1F",marginBottom:3}}>{stage.stage}</div>
+                      <div style={{display:"flex",alignItems:"center",gap:6}}>
+                        <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:14,color:"#0F1B1F",marginBottom:3}}>{stage.stage}</div>
+                        {(()=>{try{return localStorage.getItem(`notes-${role.slug}-${i}`);}catch{return null;}})()&&(
+                          <div style={{width:6,height:6,borderRadius:"50%",background:C.indigo,flexShrink:0,marginBottom:3}}/>
+                        )}
+                      </div>
                       <div style={{fontSize:12,color:"#9C9283"}}>
                         {iv?<FocusTip focus={stage.focus}><InterviewerDisplay interviewer={iv}/></FocusTip>:<span style={{fontStyle:"italic"}}>Self-directed</span>}
                       </div>
@@ -491,9 +497,10 @@ function InterviewTimeline({role}) {
 }
 
 // ── Checklist ─────────────────────────────────────────────────
-function PrepChecklist({role}) {
+function PrepChecklist({role, activeStage=null}) {
   const [checked,setChecked]=useState({});
-  const [openStage,setOpenStage]=useState(0);
+  const [openStage,setOpenStage]=useState(activeStage??0);
+  useEffect(()=>{ if(activeStage!==null) setOpenStage(activeStage); },[activeStage]);
   const [confetti,setConfetti]=useState(0);
   const prev=useRef(0);
   const toggle=(si,ii)=>{const k=`${si}-${ii}`;setChecked(p=>({...p,[k]:!p[k]}));};
@@ -806,18 +813,147 @@ function HoverDiv({baseStyle,hoverStyle,children,...rest}) {
   );
 }
 
+// ── Stage-aware greeting ──────────────────────────────────────
+function makeGreeting(role,stageIdx) {
+  if(stageIdx!==null&&stageIdx!==undefined){
+    const s=(role.stages||[])[stageIdx];
+    if(s) return `Hi. I see you're preparing for your **${s.stage}** with ${s.who}.\n\nTheir focus is: ${s.focus}.\n\nAsk me anything specific to this stage — I can help you prep your stories, anticipate what they'll probe, and figure out what questions to ask them.`;
+  }
+  return `Hi. I'm here to help you prepare for your ${role.title} interview at Cartwheel.\n\nAsk me anything about the process, the team, or what to expect. I'll give you honest, specific answers — not hype.`;
+}
+
+// ── Stage Picker ──────────────────────────────────────────────
+function StagePicker({stages,activeStage,onSelect,onBrief,isMobile}) {
+  return (
+    <div style={{background:C.white,borderBottom:"1px solid rgba(15,27,31,0.06)",overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none"}}>
+      <style>{`.sp-row::-webkit-scrollbar{display:none}`}</style>
+      <div className="sp-row" style={{maxWidth:860,margin:"0 auto",display:"flex",alignItems:"center",gap:6,padding:isMobile?"10px 16px":"10px 32px",overflowX:"auto",WebkitOverflowScrolling:"touch"}}>
+        <span style={{fontSize:10,fontWeight:700,color:C.taupe,letterSpacing:"0.8px",textTransform:"uppercase",whiteSpace:"nowrap",marginRight:4,flexShrink:0}}>Preparing for:</span>
+        {stages.map((s,i)=>(
+          <button key={i} onClick={()=>onSelect(i===activeStage?null:i)} style={{
+            padding:isMobile?"5px 10px":"5px 12px",borderRadius:99,flexShrink:0,
+            border:`1.5px solid ${activeStage===i?C.indigo:"rgba(15,27,31,0.14)"}`,
+            background:activeStage===i?C.indigo:"transparent",
+            color:activeStage===i?C.white:C.charcoal,
+            fontSize:isMobile?11:12,fontWeight:600,fontFamily:"'Montserrat',sans-serif",
+            cursor:"pointer",whiteSpace:"nowrap",transition:"all 0.15s",
+          }}>{s.stage}</button>
+        ))}
+        {activeStage!==null&&(
+          <button onClick={onBrief} style={{
+            marginLeft:"auto",flexShrink:0,
+            display:"flex",alignItems:"center",gap:6,
+            padding:isMobile?"5px 12px":"5px 14px",borderRadius:99,
+            background:`linear-gradient(135deg,${C.indigo},#2d3d85)`,
+            border:"none",color:C.white,
+            fontSize:isMobile?11:12,fontWeight:700,fontFamily:"'Montserrat',sans-serif",
+            cursor:"pointer",boxShadow:"0 2px 8px rgba(57,75,153,0.3)",
+            whiteSpace:"nowrap",
+          }}>
+            <BookMarked size={12}/> Get my brief
+          </button>
+        )}
+      </div>
+    </div>
+  );
+}
+
+// ── Pre-Interview Brief Modal ─────────────────────────────────
+function BriefModal({role,stageIndex,onClose,isMobile}) {
+  const stage=(role.stages||[])[stageIndex];
+  const pd=(role.stagePrepData||[])[stageIndex]||{prep:[],questions:[]};
+  const iv=(role.interviewers||[])[stageIndex];
+  const notes=(()=>{try{return localStorage.getItem(`notes-${role.slug}-${stageIndex}`)||"";}catch{return "";}})();
+  if(!stage) return null;
+  return (
+    <div style={{position:"fixed",inset:0,zIndex:1000,background:"rgba(15,27,31,0.55)",backdropFilter:"blur(4px)",display:"flex",alignItems:isMobile?"flex-end":"center",justifyContent:"center",padding:isMobile?0:24}} onClick={onClose}>
+      <div onClick={e=>e.stopPropagation()} style={{background:C.white,borderRadius:isMobile?"20px 20px 0 0":16,width:"100%",maxWidth:isMobile?"100%":560,maxHeight:isMobile?"92vh":"85vh",overflowY:"auto",padding:"28px 28px 36px",position:"relative"}}>
+        <button onClick={onClose} style={{position:"absolute",top:16,right:16,background:"rgba(15,27,31,0.06)",border:"none",borderRadius:8,width:32,height:32,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <X size={14} color={C.charcoal}/>
+        </button>
+        <div style={{marginBottom:20}}>
+          <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
+            <span style={{background:C.indigo,color:C.white,borderRadius:6,padding:"3px 10px",fontSize:11,fontWeight:700,fontFamily:"'Montserrat',sans-serif"}}>{stage.time}</span>
+            <span style={{fontSize:11,color:C.taupe,fontFamily:"'Montserrat',sans-serif"}}>Stage {stageIndex+1}</span>
+          </div>
+          <h2 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:22,color:C.charcoal,margin:"0 0 8px",letterSpacing:"-0.3px"}}>{stage.stage}</h2>
+          <div style={{fontSize:13,color:"#4a5568",marginBottom:iv?6:0}}><span style={{fontWeight:600,color:C.indigo}}>Focus: </span>{stage.focus}</div>
+          {iv&&<div style={{fontSize:13,color:C.taupe}}>With: <InterviewerDisplay interviewer={iv}/></div>}
+        </div>
+        {pd.prep.length>0&&(
+          <div style={{marginBottom:20}}>
+            <div style={{fontSize:10,fontWeight:700,color:C.taupe,letterSpacing:"1px",textTransform:"uppercase",marginBottom:10,fontFamily:"'Montserrat',sans-serif"}}>How to prepare</div>
+            <div style={{display:"flex",flexDirection:"column",gap:8}}>
+              {pd.prep.map((tip,i)=>(
+                <div key={i} style={{display:"flex",gap:10,alignItems:"flex-start"}}>
+                  <div style={{width:5,height:5,borderRadius:"50%",background:C.lavender,flexShrink:0,marginTop:7}}/>
+                  <span style={{fontSize:13,color:"#4a5568",lineHeight:1.65}}>{tip}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+        {pd.questions.length>0&&(
+          <div style={{marginBottom:20}}>
+            <div style={{background:C.lightMint,borderRadius:10,padding:16}}>
+              <div style={{fontSize:10,fontWeight:700,color:C.forest,letterSpacing:"1px",textTransform:"uppercase",marginBottom:10,fontFamily:"'Montserrat',sans-serif"}}>Questions to ask</div>
+              <div style={{display:"flex",flexDirection:"column",gap:8}}>
+                {pd.questions.map((q,i)=>(
+                  <div key={i} style={{display:"flex",gap:10,alignItems:"flex-start"}}>
+                    <MessageCircle size={12} color={C.forest} style={{flexShrink:0,marginTop:2}}/>
+                    <span style={{fontSize:13,color:C.charcoal,fontStyle:"italic",lineHeight:1.6}}>"{q}"</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+        <div>
+          <div style={{fontSize:10,fontWeight:700,color:C.taupe,letterSpacing:"1px",textTransform:"uppercase",marginBottom:8,fontFamily:"'Montserrat',sans-serif"}}>My Notes</div>
+          {notes
+            ? <div style={{background:"#F0ECE9",borderRadius:8,padding:"12px 14px",fontSize:13,color:C.charcoal,lineHeight:1.65,whiteSpace:"pre-wrap"}}>{notes}</div>
+            : <div style={{fontSize:12,color:C.taupe,fontStyle:"italic"}}>No notes yet — expand this stage in the Roadmap tab to add some.</div>
+          }
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ══════════════════════════════════════════════════════════════
 // CANDIDATE VIEW
 // ══════════════════════════════════════════════════════════════
 function CandidateView({role,onBack}) {
   const isMobile=useIsMobile();
   const [tab,setTab]=useState("guide");
-  const [msgs,setMsgs]=useState([{role:"assistant",content:`Hi. I'm here to help you prepare for your ${role.title} interview at Cartwheel.\n\nAsk me anything about the process, the team, or what to expect. I'll give you honest, specific answers — not hype.`}]);
+  const [activeStage,setActiveStage]=useState(()=>{
+    try{const v=localStorage.getItem(`activeStage-${role.slug}`);return v!==null?parseInt(v,10):null;}catch{return null;}
+  });
+  const [showBrief,setShowBrief]=useState(false);
+  const [msgs,setMsgs]=useState(()=>{
+    try{const v=localStorage.getItem(`activeStage-${role.slug}`);const idx=v!==null?parseInt(v,10):null;return [{role:"assistant",content:makeGreeting(role,idx)}];}
+    catch{return [{role:"assistant",content:makeGreeting(role,null)}];}
+  });
   const [input,setInput]=useState("");
   const [loading,setLoading]=useState(false);
   const endRef=useRef(null);
   const chatTrackedRef=useRef(false);
   const { trackChatOpened, trackMessageSent, trackChatEnded, trackApplyClicked } = useCopilotTracking({ roleId: role.slug, roleTitle: role.title, roleFamily: role.department });
+
+  const handleStageSelect=(idx)=>{
+    setActiveStage(idx);
+    try{
+      if(idx===null) localStorage.removeItem(`activeStage-${role.slug}`);
+      else localStorage.setItem(`activeStage-${role.slug}`,String(idx));
+    }catch{}
+  };
+
+  // Reset chat when stage changes
+  useEffect(()=>{
+    setMsgs([{role:"assistant",content:makeGreeting(role,activeStage)}]);
+    chatTrackedRef.current=false;
+  },[activeStage]);
+
   useEffect(()=>{endRef.current?.scrollIntoView({behavior:"smooth"});},[msgs,loading]);
   useEffect(()=>{
     if(tab==="chat"&&!chatTrackedRef.current){
@@ -828,7 +964,21 @@ function CandidateView({role,onBack}) {
     return ()=>{ if(tab==="chat") trackChatEnded(); };
   },[tab]);
 
-  const CHAT_SYSTEM=`You are a calm, honest, and helpful interview preparation assistant for Cartwheel — a K-12 mental health telehealth company. You are helping a candidate prepare for their ${role.title} interview.
+  const _activeStageData=activeStage!==null?(role.stages||[])[activeStage]:null;
+  const _activePrepData=activeStage!==null?(role.stagePrepData||[])[activeStage]:null;
+  const stageContext=_activeStageData
+    ?`ACTIVE STAGE: The candidate is preparing for Stage ${activeStage+1}: "${_activeStageData.stage}" (${_activeStageData.time}, focus: ${_activeStageData.focus}). Prioritize guidance for this stage.
+
+STAGE PREP:
+${(_activePrepData?.prep||[]).map(t=>`- ${t}`).join('\n')}
+
+QUESTIONS TO ASK IN THIS STAGE:
+${(_activePrepData?.questions||[]).map(q=>`- "${q}"`).join('\n')}
+
+`
+    :"";
+
+  const CHAT_SYSTEM=`${stageContext}You are a calm, honest, and helpful interview preparation assistant for Cartwheel — a K-12 mental health telehealth company. You are helping a candidate prepare for their ${role.title} interview.
 
 Tone: calm, human, reassuring but honest. Never hypey. Don't say things like "you'll crush it" or "amazing opportunity." Be specific and practical.
 
@@ -915,13 +1065,13 @@ HANDLING DIFFICULT SITUATIONS:
     setLoading(false);
   };
 
-    const TABS=[
-    {id:"guide",label:"Overview",icon:<BookOpen size={14}/>},
-    {id:"chat",label:"Ask",icon:<MessageCircle size={14}/>},
-    {id:"roadmap",label:"Roadmap",icon:<Map size={14}/>},
-    {id:"culture",label:"Life at Cartwheel",icon:<Heart size={14}/>},
-    {id:"checklist",label:"Checklist",icon:<CheckSquare size={14}/>},
-    {id:"jd",label:"Job Description",icon:<FileText size={14}/>},
+  const TABS=[
+    {id:"guide",label:"Overview",shortLabel:"Overview",icon:<BookOpen size={14}/>},
+    {id:"chat",label:"Ask",shortLabel:"Ask",icon:<MessageCircle size={14}/>},
+    {id:"roadmap",label:"Roadmap",shortLabel:"Roadmap",icon:<Map size={14}/>},
+    {id:"culture",label:"Life at Cartwheel",shortLabel:"Culture",icon:<Heart size={14}/>},
+    {id:"checklist",label:"Checklist",shortLabel:"Checklist",icon:<CheckSquare size={14}/>},
+    {id:"jd",label:"Job Description",shortLabel:"JD",icon:<FileText size={14}/>},
   ];
 
   const links=role.links||{};
@@ -1032,19 +1182,30 @@ HANDLING DIFFICULT SITUATIONS:
           </div>
         </FadeIn>
 
+        {/* Stage Picker */}
+        {(role.stages||[]).length>0&&(
+          <StagePicker
+            stages={role.stages||[]}
+            activeStage={activeStage}
+            onSelect={handleStageSelect}
+            onBrief={()=>setShowBrief(true)}
+            isMobile={isMobile}
+          />
+        )}
+
         {/* Tabs */}
         <div style={{background:C.white,borderBottom:"1px solid rgba(15,27,31,0.08)"}}>
           <div style={{maxWidth:860,margin:"0 auto",display:"flex",overflowX:"auto",padding:"0 8px"}}>
-            {TABS.map(({id,label})=>(
+            {TABS.map(({id,label,shortLabel})=>(
               <button key={id} onClick={()=>setTab(id)} style={{
-                padding:"18px 22px",border:"none",background:"none",cursor:"pointer",
+                padding:isMobile?"18px 14px":"18px 22px",border:"none",background:"none",cursor:"pointer",
                 whiteSpace:"nowrap",
                 fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,
                 color:tab===id?C.indigo:C.taupe,
                 borderBottom:tab===id?`3px solid ${C.indigo}`:"3px solid transparent",
                 transition:"color 0.15s",
               }}>
-                {label}
+                {isMobile?shortLabel:label}
               </button>
             ))}
           </div>
@@ -1261,7 +1422,15 @@ HANDLING DIFFICULT SITUATIONS:
               <div style={{marginBottom:14}}>
                 <div style={{fontSize:11,color:C.taupe,marginBottom:10,fontWeight:600,letterSpacing:"0.5px",textTransform:"uppercase"}}>Try asking</div>
                 <div style={{display:"flex",flexWrap:"wrap",gap:8}}>
-                  {["What should I prepare for my first interview?","Who will I meet, and what do they focus on?","What does success look like in 90 days?","What's Cartwheel's culture actually like?"].map((q,i)=>(
+                  {(activeStage!==null&&_activeStageData
+                    ? [
+                        `What will ${_activeStageData.who} focus on in this stage?`,
+                        `What stories should I prepare for my ${_activeStageData.stage}?`,
+                        `What questions should I ask in this stage?`,
+                        `What makes a strong answer in a ${_activeStageData.stage}?`,
+                      ]
+                    : ["What should I prepare for my first interview?","Who will I meet, and what do they focus on?","What does success look like in 90 days?","What's Cartwheel's culture actually like?"]
+                  ).map((q,i)=>(
                     <button key={i} onClick={()=>send(q)} style={{
                       background:C.white,border:"1px solid rgba(15,27,31,0.1)",
                       borderRadius:20,padding:"8px 14px",fontSize:13,color:C.charcoal,
@@ -1303,7 +1472,7 @@ HANDLING DIFFICULT SITUATIONS:
               ).map((para,i)=>(
                 <p key={i} style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 12px"}}>{para}</p>
               ))}
-              <InterviewTimeline role={role}/>
+              <InterviewTimeline role={role} activeStage={activeStage}/>
               <p style={{fontSize:12,color:C.taupe,lineHeight:1.7,margin:"20px 0 0",fontStyle:"italic"}}>The interview process outlined here represents our general approach. Not all candidates will complete every stage, and the process may be adjusted based on role requirements or scheduling needs.</p>
             </FadeIn>
 
@@ -1362,6 +1531,28 @@ HANDLING DIFFICULT SITUATIONS:
                 ))}
               </div>
             </FadeIn>
+
+            {/* My Notes Aggregator */}
+            {(()=>{
+              const allNotes=(role.stages||[]).map((s,i)=>({
+                stage:s.stage,
+                text:(()=>{try{return localStorage.getItem(`notes-${role.slug}-${i}`)||"";}catch{return "";}})(),
+              })).filter(n=>n.text);
+              if(allNotes.length===0) return null;
+              return (
+                <FadeIn delay={280}>
+                  <SectionHead>My Notes</SectionHead>
+                  <div style={{display:"flex",flexDirection:"column",gap:12}}>
+                    {allNotes.map(({stage,text},i)=>(
+                      <div key={i} style={{background:C.white,borderRadius:12,padding:"18px 20px",border:"1px solid rgba(15,27,31,0.07)"}}>
+                        <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:11,color:C.taupe,letterSpacing:"0.5px",textTransform:"uppercase",marginBottom:8}}>{stage}</div>
+                        <div style={{fontSize:14,color:C.charcoal,lineHeight:1.65,whiteSpace:"pre-wrap"}}>{text}</div>
+                      </div>
+                    ))}
+                  </div>
+                </FadeIn>
+              );
+            })()}
 
             <CandidateFooter/>
           </div>
@@ -1487,7 +1678,7 @@ HANDLING DIFFICULT SITUATIONS:
               <SectionHead>Your Prep Checklist</SectionHead>
               <HintBanner storageKey="hint_checklist" message="Tap any item to check it off — your progress saves automatically to this browser." />
               <p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 20px"}}>Work through each stage at your own pace. You don't need to complete everything — focus on the rounds coming up next.</p>
-              <PrepChecklist role={role}/>
+              <PrepChecklist role={role} activeStage={activeStage}/>
             </FadeIn>
             <CandidateFooter/>
           </div>
@@ -1576,6 +1767,10 @@ HANDLING DIFFICULT SITUATIONS:
         )}
 
       </div>
+      {showBrief&&activeStage!==null&&(
+        <BriefModal role={role} stageIndex={activeStage} onClose={()=>setShowBrief(false)} isMobile={isMobile}/>
+      )}
+
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap');
         @keyframes fadeUp { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
