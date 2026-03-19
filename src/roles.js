@@ -787,4 +787,201 @@ export const ROA_ROLE = {
   links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
 };
 
-export const BUILT_IN_ROLES = [PDA_ROLE, SPM_ROLE, CCM_ROLE, CTRL_ROLE, GROM_ROLE, FPAA_ROLE, ROA_ROLE];
+export const CSM_ROLE = {
+  title:"Customer Success Manager", slug:"customer-success-manager",
+  department:"School Success", reportsto:"CSM Manager",
+  location:"Remote", employment:"Full-Time, W2", comp:"$90,000 – $105,000 + 10% variable",
+  mission:"The Customer Success Manager owns the district relationship layer that turns a Cartwheel partnership into a lasting, expanding one — connecting utilization data to each district's strategic goals, building trusted relationships with school leadership, and ensuring every district in their book sees Cartwheel as their mental health partner, not just their vendor.",
+  stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"1,000+",label:"Districts by 2026",sub:"Scaling fast"},{n:"40%",label:"Forecasted Visit Growth",sub:"Year over year"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
+  team:[
+    "CSM Manager — your direct manager and primary day-to-day partner (new in role)",
+    "Sarah Shoff — context and continuity on existing accounts and team history during transition",
+    "Account Managers — critical coordination on renewals, expansions, and procurement (1 on team now; 2 more joining soon)",
+    "Care Managers and Coordinators — in-school trends and student-level issues",
+    "Sales Team — understanding the pilot-to-success handoff process",
+    "Product Team — receiving district feedback and serving as a thought partner on program improvement",
+  ],
+  stages:[
+    {stage:"Recruiter Screen",time:"30m",who:"Caro Colpini or Avery Henry",focus:"Account model fit, K-12 proximity, mission alignment, comp and logistics"},
+    {stage:"Hiring Manager Interview",time:"45-60m",who:"Jeanine Avjean",focus:"Revenue ownership depth, account health instincts, proactive risk management"},
+    {stage:"Functional Deep Dive",time:"60m",who:"CSM Panel",focus:"Strategic data narrative, utilization turnaround, cross-functional navigation"},
+    {stage:"Domain & User-Centered Screen",time:"60m",who:"Senior CSM or Clinical Lead",focus:"District leadership navigation, startup adaptability, clinical boundary clarity"},
+    {stage:"Case Study & Review",time:"60-90m",who:"Jeanine Avjean + Sarah Shoff",focus:"Live case presentation, strategic communication quality, executive calibration"},
+  ],
+  contacts:["Recruiter: Caro Colpini","Coordinator: Avery Henry"],
+  prep:[
+    "Every stage probes for specificity — 'we worked with districts to improve utilization' won't land; know what YOU owned, what YOU did, and what changed as a result",
+    "This role is genuinely high-touch and relationship-first by design; if that energizes you, show it with examples — don't just say you're comfortable with it",
+    "Interviewers are evaluating whether you'd be reliable and proactive under a full book, not just capable with one great district",
+    "Cartwheel serves 1.5M students across 350+ school districts — connecting your work to what that means for families and kids will resonate authentically with this team",
+    "Be honest about what you know and what you'd need to learn; the team values self-awareness about ramp over overconfidence",
+  ],
+  thrive:[
+    "Are energized by building real relationships with school and district leadership — not just hitting touchpoints",
+    "Naturally tie your work to outcomes, not activity (utilization trends, renewal signals, strategic plan alignment)",
+    "Are comfortable in a startup environment: some ambiguity, less polish, high agility required",
+    "Instinctively structure complex situations into clear, manageable components",
+    "See clinical nuance as a tool to deploy thoughtfully — not a reason to own the clinical function",
+    "Are genuinely passionate about Cartwheel's mission to serve overlooked communities in the mental health system",
+  ],
+  notfor:[
+    "Are coming from a 300+ account, primarily reactive CS model and aren't prepared to unlearn that mindset",
+    "Need heavily defined processes and playbooks already in place before you can operate independently",
+    "Expect clean handoffs and polished infrastructure — Cartwheel's CS motion is still being built and you'll help shape it",
+    "Want to serve as the clinical lead rather than a strategic partner who happens to have clinical knowledge",
+    "Need frequent structured oversight to stay productive and proactive",
+  ],
+  success:[
+    {period:"First 90 Days",desc:"You've completed onboarding onto your assigned book of business. You've finished intro calls with all district contacts, reviewed each district's strategic plan, and can explain how Cartwheel's impact maps to their stated goals. You've established a proactive communication cadence with every account and built strong working relationships with your CSM Manager, Account Managers, and Care Managers. No accounts are dark."},
+    {period:"First 6 Months",desc:"Utilization is trending positively across your owned accounts. You're independently running QBRs that connect Cartwheel data to district strategic goals — without needing your manager to frame the narrative. You're providing structured district health updates to leadership (strengths, risks, opportunities), and you've begun absorbing new expansion accounts as Cartwheel grows into new states. Your product feedback loop is active."},
+    {period:"First 12 Months",desc:"You own 40–60 accounts independently with a healthy renewals and expansion pipeline. District leadership across your book sees you as a trusted advisor — they call you when something is wrong, not just when you schedule time. You're operating as a proactive thought partner on Cartwheel's care model, not just an account owner. Your CSM Manager uses your accounts as a model for the rest of the team."},
+  ],
+  mustHave:[
+    "5+ years of Customer Success experience implementing and supporting education, edtech, or school-based mental health programs",
+    "2+ years of experience working in or around K-12 school systems (school-based clinician, administrator, special education teacher, or adjacent role)",
+    "Experience managing 40–60 accounts simultaneously in a high-touch CS model — not a scaled/reactive 200+ account model",
+    "Direct ownership of revenue outcomes — renewal rate, expansion revenue, or book-of-business retention; CSAT-only backgrounds are insufficient",
+    "Proactive communicator who reaches out before districts ask, structures information clearly, and writes and presents well",
+    "Project management skills across multiple stakeholders and competing priorities",
+    "Genuine commitment to serving under-resourced communities — uninsured and underinsured families, youth in foster care, English learners",
+    "Proficiency in Google Suite; demonstrated ability to learn new tools quickly (Salesforce, Asana, Zoom)",
+  ],
+  niceToHave:[
+    "Active clinical license (LCSW, LICSW, LMHC, LCPC, PhD/PsyD)",
+    "Clinical experience in outpatient settings with comfort managing clinical complexity and safety/risk",
+    "Prior startup experience — a strong plus given the ambiguity and agility required",
+    "Familiarity with MTSS frameworks or special education systems",
+    "Experience with immigrant populations, rural communities, or military-connected families",
+    "Experience working with states through braided funding models (district/state + insurance billing)",
+  ],
+  whatYoullDo:[
+    {label:"District Relationship Management",bullets:[
+      "Serve as the single point of contact and trusted mental health partner for 40–60 school districts, owning the full customer journey post-pilot handoff from Sales",
+      "Build and sustain relationships with district leadership — Superintendents, Directors of Student Services, school-level staff — not just operational contacts",
+      "Deliver clinical guidance and coaching to school staff on student referral fit, in-building mental health situations, and MTSS strategy as questions arise",
+      "Travel flexibly to districts requiring targeted support or in-person attention",
+    ]},
+    {label:"Utilization & Strategic Plan Alignment",bullets:[
+      "Drive active utilization of Cartwheel services across your book — proactively creating the conditions for districts to refer, engage, and sustain participation",
+      "Connect Cartwheel's utilization data to each district's published strategic plan in QBRs and check-ins, making the ROI case for renewal clear and earned",
+      "Monitor account health actively — flag risks before they surface from leadership; no account should go dark",
+    ]},
+    {label:"Account Health & Expansion",bullets:[
+      "Provide Cartwheel leadership with a structured, ongoing view of each district: strengths, risks, and expansion opportunities",
+      "Support renewals and expansion conversations by maintaining trusted advisor status with district decision-makers",
+      "Absorb new expansion accounts as Cartwheel's footprint grows into new states and territories",
+    ]},
+    {label:"Internal Collaboration & Feedback",bullets:[
+      "Partner closely with Account Managers on renewals, expansions, and procurement relationships",
+      "Coordinate with Care Managers and Coordinators on in-school trends and student-level issues",
+      "Channel district feedback to the Product and Care teams consistently — serve as a thought partner on care model and program improvement, not just a messenger",
+    ]},
+  ],
+  aboutRole:"Cartwheel is the largest mental health telehealth provider for K–12 schools in the U.S., serving 350+ school districts and 1.5M students. We're scaling fast — from 300 districts to 1,000+ — and the Customer Success team is at the center of that growth.\n\nThe Customer Success Manager is the face of Cartwheel for every district in their book. This role is responsible for driving utilization, aligning Cartwheel's impact to each district's published strategic goals, and building the kind of trusted relationships with district leadership that make renewals and expansions inevitable — not anxious.\n\nOur CS model is 100% human-driven. There's no automation running these relationships. That means this role requires someone who is genuinely energized by high-touch, relationship-first work — who reads a district's strategic plan before the first QBR, who flags an at-risk account before a leader asks, and who treats every district as a long-term partner, not a ticket to close.",
+  compBenefits:"$90,000–$105,000 base salary with 10% variable compensation tied to revenue outcomes. Full benefits: PPO medical, dental, and vision coverage, generous PTO, remote flexibility, MacBook, equity, and direct impact on the mental health infrastructure serving 1.5M students across 350+ school districts. Backed by Menlo Ventures, Reach Capital, and General Catalyst.",
+  stagePrepData:[
+    {stage:"Recruiter Screen",prep:[
+      "Know your account model at a concrete level — be ready to describe how many accounts you've managed, how much revenue you've owned, and what your day-to-day engagement looked like",
+      "Have a real example ready of owning a revenue outcome — a renewal you personally secured, an expansion you initiated, or a book-of-business metric you moved",
+      "Be ready to speak specifically to your K-12 exposure — if you've worked in or adjacent to school systems, know what you learned about how districts make decisions",
+      "Be honest about what draws you to mission-driven work — a specific moment or career decision that reflects your commitment to under-resourced communities will land better than a generic answer",
+      "Know your comp expectations, geography, and timeline; the role includes flexible travel to districts as needed",
+    ],questions:[
+      "What does the account handoff from the current team look like for an incoming CSM?",
+      "What does the onboarding timeline look like, and how much ramp time is built in before I'm expected to be independent on my accounts?",
+      "What's the biggest challenge facing the CS team right now as the team transitions to a new management structure?",
+    ]},
+    {stage:"Hiring Manager Interview",prep:[
+      "Prepare a specific book of business story — what you inherited, what you built, and what the numbers looked like at each stage; Jeanine will probe for specifics, not direction",
+      "Think through a time an account was at risk and how you knew before anyone told you — what was the signal, and what did you do before it became a problem?",
+      "Be ready to talk about a renewal or expansion you had to earn — who was the decision-maker, what did you do, and what would have happened if you hadn't acted?",
+      "Be ready to articulate what you need from a manager to do your best work and what a strong CSM-to-manager relationship looks like to you",
+    ],questions:[
+      "What does the current account health look like across the book — are there accounts that are already at risk that I'd be inheriting?",
+      "How does success get measured for this role at 6 and 12 months — and what does the reporting cadence to leadership look like?",
+      "What's your vision for how the CS function evolves as Cartwheel scales to 1,000+ districts?",
+    ]},
+    {stage:"Functional Deep Dive",prep:[
+      "This panel includes two CSMs — think peer-level calibration; they're evaluating whether you'd raise the bar on the team, not just meet it",
+      "Prepare a specific utilization turnaround story — not 'I worked with the district to improve things' but what you actually did, what levers you pulled, who you needed buy-in from, and how long it took",
+      "Be ready to build a QBR narrative out loud: the panelists may give you a scenario with utilization data and ask you to frame it for a district contact — have your thinking organized before you walk in",
+      "Prepare a cross-functional navigation story with real tension — not a smooth collaboration, but a situation where priorities or ownership were unclear and you had to work through it",
+      "Think about how you've contributed feedback to a product or operations team — what you surfaced, how you packaged it, and whether anything actually changed",
+    ],questions:[
+      "What does a strong QBR look like at Cartwheel right now — and where does the team feel like there's room to improve?",
+      "How does the CS team currently collaborate with Account Managers on renewal conversations — who owns what?",
+      "What's the most common reason a district's utilization stalls, and what's worked to turn it around?",
+    ]},
+    {stage:"Domain & User-Centered Screen",prep:[
+      "This stage evaluates how you operate at the district leadership level — have a specific story ready that names real dynamics with Superintendents or Directors of Student Services, not just 'great relationships'",
+      "The clinical boundary question is intentional — be prepared to articulate where the line is between being a useful thought partner and overstepping; both overclaiming and underclaiming are red flags",
+      "Think through a moment when you joined a role where the playbook wasn't written — what did you do first, what did you choose not to fix, and what's your honest assessment of how you performed?",
+      "Have a relationship repair story ready — a moment when trust with a district stakeholder was damaged and how you rebuilt it; interviewers are looking for real friction, not universal positivity",
+    ],questions:[
+      "How does the CS team currently navigate conversations with district leaders who want clinical guidance that goes beyond the CSM's scope?",
+      "What does the most successful CSM on the current team do that others don't?",
+      "How does Cartwheel support CSMs who are navigating a particularly high-complexity district relationship?",
+    ]},
+    {stage:"Case Study & Review",prep:[
+      "You'll receive the take-home exercise before this session — read it carefully and prioritize your 60–90 minutes across all three parts; the exercise is designed to be completable in that window without perfectionism",
+      "Part A (project plan): lead with your prioritization logic, not just a task list; explain what was obvious, what was hard, and what you'd add or cut and why",
+      "Part B (data slides): your goal is to tell a story that drives action — make clear what the problem is, what the opportunity is, and what you're asking the district to do next",
+      "Part C (email): deliver a difficult message with warmth and clarity — don't over-apologize, don't bury the key information, and don't give clinical detail that isn't appropriate in a written channel",
+      "Jeanine and Sarah are evaluating whether you could walk into a Superintendent's office tomorrow and represent Cartwheel credibly — let your thinking be visible, not just your conclusions",
+    ],questions:[
+      "What does the Jingle Public Schools account look like today — is it a district type I'd be likely to encounter in my book?",
+      "What does the typical relationship between a CSM and a Director of Student Services look like in Cartwheel's strongest district partnerships?",
+      "What's the most common mistake CSMs make in their first QBR with a new district?",
+    ]},
+  ],
+  checklist:[
+    {stage:"Before Recruiter Screen",items:[
+      "Review Cartwheel's website and understand the core product — mental health telehealth for K–12 schools",
+      "Prepare your account model summary: how many accounts, how much revenue, what your engagement cadence looked like",
+      "Have one concrete revenue outcome ready — a renewal, expansion, or retention metric you personally influenced",
+      "Think through your K-12 exposure and what you learned about how districts operate",
+      "Know your compensation expectations, availability, and target start date; confirm comfort with occasional district travel",
+    ]},
+    {stage:"Before Hiring Manager Interview",items:[
+      "Research Jeanine Avjean on LinkedIn — understand her background and how she describes the CS function",
+      "Prepare 2–3 specific stories: book-of-business ownership, at-risk account you caught proactively, renewal or expansion you earned",
+      "Think through what you need from a manager to do your best work — this is a team in transition and Jeanine will want to understand your working style",
+      "Prepare thoughtful questions about where the CS team is headed and how success is measured",
+    ]},
+    {stage:"Before Functional Deep Dive",items:[
+      "Prepare your utilization turnaround story with specifics: what you did, who you needed, how long it took, what changed",
+      "Practice building a QBR narrative out loud — what data points you'd lead with, how you'd connect them to a district's goals, how you'd frame an ask",
+      "Have a cross-functional navigation story ready that involves real tension — not smooth collaboration",
+      "Think through what feedback you've contributed to a product or operations team and what happened as a result",
+    ]},
+    {stage:"Before Domain Screen",items:[
+      "Prepare a district stakeholder story with real complexity — competing priorities, named dynamics, specific moves you made",
+      "Think through your clinical boundary position — where is the line between thought partner and overstepping?",
+      "Prepare your ambiguity story: a role you joined where the playbook didn't exist and what you did first",
+      "Have a relationship repair story ready — something went wrong with a district contact and you rebuilt trust",
+    ]},
+    {stage:"Before Case Study & Review",items:[
+      "Read the take-home exercise carefully and allocate your 60–90 minutes across all three parts before you start",
+      "Part A: build a project plan that shows judgment about what matters, not exhaustiveness",
+      "Part B: build slides that tell a story about Jingle Public Schools and drive a clear action — not a data report",
+      "Part C: draft an email that is warm, direct, and clinical-boundary-appropriate — no over-apologizing, no buried key information",
+      "Be ready to walk Jeanine and Sarah through your thinking, not just your output — they'll probe your trade-offs and assumptions",
+    ]},
+  ],
+  interviewers:[
+    {label:"Recruiter Screen",name:"",title:"",href:null,multiHrefs:[
+      {name:"Caro Colpini",href:null},
+      {name:"Avery Henry",href:null},
+    ]},
+    {label:"Hiring Manager Interview",name:"Jeanine Avjean",title:"Hiring Manager",href:"https://www.linkedin.com/in/jeanine-avjean-1200a01a3/"},
+    {label:"Functional Deep Dive",name:"",title:"",href:null},
+    {label:"Domain & User-Centered Screen",name:"",title:"",href:null},
+    {label:"Case Study & Review",name:"",title:"",href:null,multiHrefs:[
+      {name:"Jeanine Avjean",href:"https://www.linkedin.com/in/jeanine-avjean-1200a01a3/"},
+      {name:"Sarah Shoff",href:null},
+    ]},
+  ],
+  links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
+};
+
+export const BUILT_IN_ROLES = [PDA_ROLE, SPM_ROLE, CCM_ROLE, CTRL_ROLE, GROM_ROLE, FPAA_ROLE, ROA_ROLE, CSM_ROLE];
