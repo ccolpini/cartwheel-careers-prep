@@ -822,7 +822,38 @@ function makeGreeting(role,stageIdx) {
   return `Hi. I'm here to help you prepare for your ${role.title} interview at Cartwheel.\n\nAsk me anything about the process, the team, or what to expect. I'll give you honest, specific answers — not hype.`;
 }
 
-// ── Stage Picker ──────────────────────────────────────────────
+// ── Stage Picker Modal ────────────────────────────────────────
+function StagePickerModal({role,activeStage,onSelect,onClose}) {
+  const stages=role.stages||[];
+  return (
+    <div style={{position:"fixed",inset:0,zIndex:1000,background:"rgba(15,27,31,0.5)",backdropFilter:"blur(4px)",display:"flex",alignItems:"center",justifyContent:"center",padding:24}} onClick={onClose}>
+      <div onClick={e=>e.stopPropagation()} style={{background:C.white,borderRadius:16,padding:"28px 24px",maxWidth:480,width:"100%",position:"relative",maxHeight:"90vh",overflowY:"auto"}}>
+        <button onClick={onClose} style={{position:"absolute",top:14,right:14,background:"rgba(15,27,31,0.06)",border:"none",borderRadius:8,width:30,height:30,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
+          <X size={13} color={C.charcoal}/>
+        </button>
+        <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:19,color:C.charcoal,marginBottom:6,paddingRight:32}}>Which stage are you preparing for?</div>
+        <div style={{fontSize:13,color:C.taupe,marginBottom:20,lineHeight:1.55}}>Select a stage to get focused prep tips, auto-expand that section, and tune the AI to your current round.</div>
+        <div style={{display:"flex",flexDirection:"column",gap:8}}>
+          {stages.map((s,i)=>(
+            <button key={i} onClick={()=>{onSelect(i===activeStage?null:i);onClose();}} style={{
+              padding:"12px 16px",borderRadius:10,textAlign:"left",border:`1.5px solid ${activeStage===i?C.indigo:"rgba(15,27,31,0.12)"}`,
+              background:activeStage===i?`linear-gradient(135deg,${C.indigo},#2d3d85)`:C.white,
+              color:activeStage===i?C.white:C.charcoal,cursor:"pointer",transition:"all 0.15s",width:"100%",
+            }}>
+              <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13}}>{s.stage}</div>
+              <div style={{fontSize:11,marginTop:2,opacity:activeStage===i?0.7:0.5}}>{s.time}{s.who&&s.who!=="Self"?` · ${s.who}`:""}</div>
+            </button>
+          ))}
+        </div>
+        <button onClick={onClose} style={{marginTop:14,width:"100%",background:"none",border:"1px solid rgba(15,27,31,0.1)",borderRadius:10,padding:"10px",color:C.taupe,fontSize:13,cursor:"pointer",fontFamily:"'Montserrat',sans-serif",fontWeight:500}}>
+          See all stages
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// ── Stage Picker (inline strip) ───────────────────────────────
 function StagePicker({stages,activeStage,onSelect,onBrief,isMobile}) {
   return (
     <div style={{background:C.white,borderBottom:"1px solid rgba(15,27,31,0.06)",overflowX:"auto",WebkitOverflowScrolling:"touch",scrollbarWidth:"none"}}>
@@ -930,6 +961,7 @@ function CandidateView({role,onBack}) {
     try{const v=localStorage.getItem(`activeStage-${role.slug}`);return v!==null?parseInt(v,10):null;}catch{return null;}
   });
   const [showBrief,setShowBrief]=useState(false);
+  const [showStagePicker,setShowStagePicker]=useState(false);
   const [msgs,setMsgs]=useState(()=>{
     try{const v=localStorage.getItem(`activeStage-${role.slug}`);const idx=v!==null?parseInt(v,10):null;return [{role:"assistant",content:makeGreeting(role,idx)}];}
     catch{return [{role:"assistant",content:makeGreeting(role,null)}];}
@@ -953,6 +985,9 @@ function CandidateView({role,onBack}) {
     setMsgs([{role:"assistant",content:makeGreeting(role,activeStage)}]);
     chatTrackedRef.current=false;
   },[activeStage]);
+
+  // Show stage picker when entering roadmap tab
+  useEffect(()=>{ if(tab==="roadmap") setShowStagePicker(true); },[tab]);
 
   useEffect(()=>{endRef.current?.scrollIntoView({behavior:"smooth"});},[msgs,loading]);
   useEffect(()=>{
@@ -1181,17 +1216,6 @@ HANDLING DIFFICULT SITUATIONS:
             </div>
           </div>
         </FadeIn>
-
-        {/* Stage Picker */}
-        {(role.stages||[]).length>0&&(
-          <StagePicker
-            stages={role.stages||[]}
-            activeStage={activeStage}
-            onSelect={handleStageSelect}
-            onBrief={()=>setShowBrief(true)}
-            isMobile={isMobile}
-          />
-        )}
 
         {/* Tabs */}
         <div style={{background:C.white,borderBottom:"1px solid rgba(15,27,31,0.08)"}}>
@@ -1463,6 +1487,20 @@ HANDLING DIFFICULT SITUATIONS:
         {/* ── ROADMAP ── */}
         {tab==="roadmap"&&(
           <div style={{display:"flex",flexDirection:"column",gap:28}}>
+            {activeStage!==null&&(role.stages||[])[activeStage]&&(
+              <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",background:"rgba(57,75,153,0.06)",border:"1px solid rgba(57,75,153,0.18)",borderRadius:10,padding:"10px 14px",gap:10}}>
+                <div style={{display:"flex",alignItems:"center",gap:8}}>
+                  <BookMarked size={13} color={C.indigo}/>
+                  <span style={{fontSize:13,color:C.indigo,fontWeight:600}}>Preparing for: {(role.stages||[])[activeStage].stage}</span>
+                </div>
+                <div style={{display:"flex",gap:8,flexShrink:0}}>
+                  <button onClick={()=>setShowStagePicker(true)} style={{background:"none",border:"1px solid rgba(57,75,153,0.25)",borderRadius:8,padding:"5px 12px",fontSize:12,color:C.indigo,cursor:"pointer",fontFamily:"'Montserrat',sans-serif",fontWeight:600}}>Change</button>
+                  <button onClick={()=>setShowBrief(true)} style={{background:`linear-gradient(135deg,${C.indigo},#2d3d85)`,border:"none",borderRadius:8,padding:"5px 12px",fontSize:12,color:C.white,cursor:"pointer",fontFamily:"'Montserrat',sans-serif",fontWeight:700,display:"flex",alignItems:"center",gap:5}}>
+                    <BookMarked size={11}/> Get my brief
+                  </button>
+                </div>
+              </div>
+            )}
             <FadeIn delay={0}>
               <SectionHead>Interview Roadmap</SectionHead>
               <HintBanner storageKey="hint_roadmap" message="Tap any stage below to expand prep tips and questions to ask your interviewer." />
@@ -1517,18 +1555,6 @@ HANDLING DIFFICULT SITUATIONS:
                     </div>
                   ))}
                 </div>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={220}>
-              <SectionHead>What Success Looks Like</SectionHead>
-              <div style={{display:"flex",flexDirection:"column",gap:12}}>
-                {(role.success||[]).map(({period,desc},i)=>(
-                  <div key={i} style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"140px 1fr",gap:isMobile?6:20,background:C.white,borderRadius:12,padding:"22px 24px"}}>
-                    <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.indigo,paddingTop:1}}>{period}</div>
-                    <div style={{fontSize:14,color:"#4a5568",lineHeight:1.75}}>{desc}</div>
-                  </div>
-                ))}
               </div>
             </FadeIn>
 
@@ -1767,6 +1793,9 @@ HANDLING DIFFICULT SITUATIONS:
         )}
 
       </div>
+      {showStagePicker&&(
+        <StagePickerModal role={role} activeStage={activeStage} onSelect={handleStageSelect} onClose={()=>setShowStagePicker(false)}/>
+      )}
       {showBrief&&activeStage!==null&&(
         <BriefModal role={role} stageIndex={activeStage} onClose={()=>setShowBrief(false)} isMobile={isMobile}/>
       )}
