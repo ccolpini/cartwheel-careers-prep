@@ -1302,6 +1302,26 @@ HANDLING DIFFICULT SITUATIONS:
               <p style={{fontSize:12,color:C.taupe,lineHeight:1.7,margin:"20px 0 0",fontStyle:"italic"}}>The interview process outlined here represents our general approach. Not all candidates will complete every stage, and the process may be adjusted based on role requirements or scheduling needs.</p>
             </FadeIn>
 
+            <FadeIn delay={120}>
+              <SectionHead>Set Yourself Up for Success</SectionHead>
+              <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:12}}>
+                {[
+                  {icon:<Shield size={15} color="#394B99"/>, title:"Test Your Setup", body:"Most interviews are on Zoom. Before your interview, test the meeting link, audio, video, and internet connection. If joining by phone, make sure you have a strong cell connection."},
+                  {icon:<Coffee size={15} color="#394B99"/>, title:"Choose Your Space", body:"Plan to join from a quiet, distraction-free environment. A computer or tablet is ideal. If you'd prefer not to show your surroundings, feel free to blur or use a Zoom background."},
+                  {icon:<BookOpen size={15} color="#394B99"/>, title:"Do a Little Homework", body:"Review the job description and think of a few stories from your past work that highlight your skills. Look up your interviewer on LinkedIn and bring questions — this is your chance to interview us too."},
+                  {icon:<Star size={15} color="#394B99"/>, title:"Dress Your Way", body:"We value authenticity and want you to feel like yourself. Wear whatever makes you feel your best and ready to engage."},
+                ].map(({icon,title,body},i)=>(
+                  <div key={i} style={{background:C.white,borderRadius:12,padding:"18px 20px",border:"1px solid rgba(15,27,31,0.07)",boxShadow:"0 1px 4px rgba(15,27,31,0.05)"}}>
+                    <div style={{display:"flex",alignItems:"center",gap:8,marginBottom:8}}>
+                      <div style={{width:28,height:28,borderRadius:8,background:"rgba(57,75,153,0.08)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>{icon}</div>
+                      <span style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.charcoal}}>{title}</span>
+                    </div>
+                    <p style={{fontSize:13,color:"#4a5568",lineHeight:1.65,margin:0}}>{body}</p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+
             <FadeIn delay={160}>
               <SectionHead>Is This Role a Fit?</SectionHead>
               <div style={{display:"grid",gridTemplateColumns:isMobile?"1fr":"1fr 1fr",gap:14}}>
