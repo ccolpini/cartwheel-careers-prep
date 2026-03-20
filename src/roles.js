@@ -475,11 +475,11 @@ export const GROM_ROLE = {
 };
 
 export const FPAA_ROLE = {
-  title:"FP&A Associate", slug:"fpa-associate",
+  title:"Finance Associate", slug:"fpa-associate",
   department:"Finance", reportsto:"Sam Bilow, VP Finance",
   location:"Remote", employment:"Full-Time, W2", comp:"$90,000–$140,000 + meaningful equity",
   roadmapNote:"Our interview process is designed to reflect the real work of this role — each conversation evaluates a different dimension of how you think, prioritize, and lead, especially in a fast-moving, mission-driven environment like ours.\n\nThe roadmap below outlines the full arc of the process. Not every candidate moves through every stage, and the order can shift — progression is based on mutual fit and alignment as we get to know each other.",
-  mission:"We're hiring an FP&A Associate to own financial reporting, planning, and KPI/OKR visibility across Cartwheel — building the financial infrastructure that helps a fast-growing mental health company make smarter, faster decisions. This is a net-new role on a mission-driven team, with real scope and real impact from day one.",
+  mission:"We're hiring a Finance Associate to own financial reporting, planning, and KPI/OKR visibility across Cartwheel — building the financial infrastructure that helps a fast-growing mental health company make smarter, faster decisions. This is a net-new role on a mission-driven team, with real scope and real impact from day one.",
   stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
   team:[
     "Sam Bilow — VP Finance (your hiring manager)",
@@ -519,11 +519,12 @@ export const FPAA_ROLE = {
     {period:"First 12 Months",desc:"Running the annual budgeting cycle end-to-end with systems that make financial reporting faster, more automated, and more decision-useful. Delivered at least one major ad-hoc analysis that directly influenced a strategic decision. A key voice in how Cartwheel thinks about runway, resource allocation, and financial health."},
   ],
   mustHave:[
-    "3–5 years of experience in FP&A, finance, banking, or consulting",
-    "Fluency in Excel — VLOOKUP, pivot tables, scenario modeling, and building clean financial models from scratch",
-    "Ability to translate financial concepts clearly for non-financial audiences",
+    "2–4 years of experience from investment banking, management consulting (MBB, Big 4, or similar), or a high-rigor FP&A role — startup or high-growth experience is a strong plus",
+    "Fluency in Excel — VLOOKUP, pivot tables, scenario modeling, and building clean, well-structured financial models from scratch",
+    "Ability to translate financial concepts clearly for non-financial audiences — you know when to simplify and when precision matters; can build a clean board slide or exec summary from scratch",
     "Self-directed and ownership-oriented: spots problems, proposes solutions, doesn't wait to be asked",
     "Comfortable operating with incomplete data — can forecast with 80% information and refine from there",
+    "Care about the mission — understands that finance is in service of student mental health, not the other way around",
   ],
   niceToHave:[
     "Exposure to healthcare, EdTech, or high-growth startups",
@@ -532,6 +533,11 @@ export const FPAA_ROLE = {
     "Familiarity with KPI/OKR frameworks",
   ],
   whatYoullDo:[
+    {label:"Strategic Finance",bullets:[
+      "Build forward-looking forecasts to support runway planning and board communication",
+      "Identify opportunities to automate and scale financial reporting processes",
+      "Conduct ad-hoc analyses that help leadership make faster, better-informed decisions",
+    ]},
     {label:"Financial Modeling & Reporting",bullets:[
       "Maintain and improve Cartwheel's core financial model — P&L, cash burn, scenario modeling",
       "Own monthly board slide deck, investor reporting, and SLT financial updates",
@@ -542,13 +548,8 @@ export const FPAA_ROLE = {
       "Partner with department heads on budget planning and resource allocation",
       "Maintain budget vs. actual tracking and variance analysis",
     ]},
-    {label:"Strategic Finance",bullets:[
-      "Build forward-looking forecasts to support runway planning and board communication",
-      "Identify opportunities to automate and scale financial reporting processes",
-      "Conduct ad-hoc analyses that help leadership make faster, better-informed decisions",
-    ]},
   ],
-  aboutRole:"We're hiring an FP&A Associate to own financial reporting, planning, and KPI/OKR visibility across the organization. This is a net-new role — and a real opportunity to build something.\n\nRight now, our financial and operational metrics live in different systems, most reporting is backward-looking, and department leaders don't yet have the structured financial partnership they need to make confident decisions. You'll change that.\n\nReporting to Sam Bilow, VP Finance, you'll consolidate our reporting infrastructure, build forward-looking forecasts, and become a trusted cross-functional partner to leaders across Care Ops, Clinical, Product, Engineering, and beyond.\n\nIf you want to do the work that makes a growing company smarter — this is the role.",
+  aboutRole:"We're hiring a Finance Associate to own financial reporting, planning, and KPI/OKR visibility across the organization. This is a net-new role — and a real opportunity to build something. Right now, our financial and operational metrics live in different systems, most reporting is backward-looking, and department leaders don't yet have the structured financial partnership they need to make confident decisions.\n\nReporting to Sam Bilow, VP Finance, you'll consolidate our reporting infrastructure, build forward-looking forecasts, and become a trusted cross-functional partner to leaders across Care Ops, Clinical, Product, Engineering, and beyond. If you thrive in high-rigor, fast-paced environments — think Investment Banking or Big 4 Consulting — and want to apply that edge to growing a company with a mission that matters, this role is for you.",
   compBenefits:"$90,000–$140,000 in base salary plus a meaningful equity ownership stake in Cartwheel. Benefits include generous PPO medical, vision, and dental/ortho coverage, life insurance, generous paid time off including company closure from Christmas–New Year's (12/25–1/1), paid holidays and sick leave, paid parental leave, 401K with up to 2% employer match, an annual learning stipend, and a laptop. Fully remote with regular in-person retreats.",
   stagePrepData:[
     {stage:"Recruiter Screen",prep:[
