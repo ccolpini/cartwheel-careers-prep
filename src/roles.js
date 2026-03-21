@@ -49,7 +49,7 @@ export const PDA_ROLE = {
     {stage:"Before Exec Review",items:["Prepare your long-term vision for data at Cartwheel","Sharpen your why Cartwheel answer","Prepare 2-3 strategic questions for Daniel","Reflect on what excites you most about the mission"]},
   ],
   interviewers:[
-    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
+    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Manager, Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
     {label:"Hiring Manager",name:"Jacob Savos",title:"Director of Data",href:"https://www.linkedin.com/in/jacob-savos/"},
     {label:"Take-Home Exercise",name:"",title:"",href:null},
     {label:"Case Study Review",name:"Nicholas Franchetti",title:"",href:"https://www.linkedin.com/in/nfranchetti/"},
@@ -110,7 +110,7 @@ export const SPM_ROLE = {
     {stage:"Before Executive Review",items:["Sharpen your why Cartwheel answer","Prepare how you reflect on a past mistake and what you learned","Prepare 2-3 strategic questions for Joe","Reflect on your long-term motivations and values alignment"]},
   ],
   interviewers:[
-    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
+    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Manager, Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
     {label:"Product Judgment",name:"Sarah Turrin",title:"CPO",href:"https://www.linkedin.com/in/sarahturrin/"},
     {label:"Technical Design",name:"",title:"",href:null,multiHrefs:[
       {name:"Danielle Hawthorne",href:"https://www.linkedin.com/in/daniellemhawthorne/"},
@@ -186,7 +186,7 @@ export const CCM_ROLE = {
     {stage:"Before Exec Review",items:["Sharpen your why Cartwheel answer","Prepare your view on operational excellence and strategic growth","Prepare 2-3 strategic questions for Dan","Reflect on what excites you most about the mission"]},
   ],
   interviewers:[
-    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
+    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Manager, Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
     {label:"Hiring Manager Deep Dive",name:"Allie Pashi",title:"Director of Care Operations",href:"https://www.linkedin.com/in/allie-pashi/"},
     {label:"Take-Home Exercise",name:"",title:"",href:null},
     {label:"Cross-Functional Interview",name:"",title:"",href:null,multiHrefs:[
@@ -250,7 +250,7 @@ export const CTRL_ROLE = {
     {stage:"Before Exec Review",items:["Prepare 3 due diligence questions about Cartwheel","Prepare an example of principled decision-making over short-term optimization","Think about 12-month foundational investments","Prepare 2-3 strategic questions for Dan"]},
   ],
   interviewers:[
-    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
+    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Manager, Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
     {label:"Hiring Manager Deep Dive",name:"Sam Bilow",title:"VP of Finance",href:"https://www.linkedin.com/in/sam-bilow-59434150"},
     {label:"Technical Dive",name:"Grace Yao",title:"Outsourced Controller",href:"https://www.linkedin.com/in/graceyao-compassion/"},
     {label:"Take-Home Case Study",name:"",title:"",href:null},
@@ -460,7 +460,7 @@ export const GROM_ROLE = {
     ]},
   ],
   interviewers:[
-    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
+    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Manager, Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
     {label:"Hiring Manager Interview",name:"Jonathan Adler",title:"VP Government Relations",href:"https://www.linkedin.com/in/jonathaneadler/"},
     {label:"Take-Home Exercise",name:"",title:"",href:null},
     {label:"Functional Deep Dive",name:"Dan Tartakovsky",title:"COO",href:"https://www.linkedin.com/in/tartakovsky/"},
@@ -621,7 +621,7 @@ export const FPAA_ROLE = {
     ]},
   ],
   interviewers:[
-    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
+    {label:"Recruiter Screen",name:"Caroline Colpini",title:"Manager, Talent Acquisition",href:"https://www.linkedin.com/in/caroline-colpini-154b27b4/"},
     {label:"Hiring Manager Screen",name:"Sam Bilow",title:"VP Finance",href:"https://www.linkedin.com/in/sam-bilow-59434150/"},
     {label:"Take-Home Exercise",name:"",title:"",href:null},
     {label:"Cross-Functional Panel",name:"April Liu",title:"Healthcare Business Operations & Strategy",href:"https://www.linkedin.com/in/april-liu-2020a/"},
@@ -650,7 +650,7 @@ export const ROA_ROLE = {
     {stage:"Take-Home Exercise",time:"Self-guided",who:"",focus:"Operational workflow, Salesforce judgment, written communication"},
     {stage:"Functional Panel",time:"60m",who:"Jeff Sword, Andi Kwon, Suzy Hall",focus:"Cross-functional collaboration, stakeholder responsiveness, documentation discipline"},
   ],
-  contacts:["Recruiter + Coordinator: Avery Henry - avery.henry@cartwheelcare.org","Manager, Corporate Talent Acquisition: Caroline Colpini - caroline.colpini@cartwheelcare.org"],
+  contacts:["Recruiter + Coordinator: Avery Henry - avery.henry@cartwheelcare.org","Manager, Talent Acquisition: Caroline Colpini - caroline.colpini@cartwheelcare.org"],
   prep:[
     "Every stage probes for specificity — 'we did X' won't land here; know what YOU owned and what YOU did",
     "This role is execution-heavy by design; if that energizes you, show it with examples — don't just say you're comfortable with operational work",

@@ -384,6 +384,38 @@ function PrepNotes({slug,stageIndex}) {
   );
 }
 
+// ── General Notes (localStorage) ──────────────────────────────
+function GeneralNotes({noteKey}) {
+  const [text,setText]=useState(()=>{try{return localStorage.getItem(noteKey)||"";}catch{return "";}});
+  const [saved,setSaved]=useState(false);
+  const timer=useRef(null);
+  const onChange=(e)=>{
+    const v=e.target.value; setText(v);
+    try{localStorage.setItem(noteKey,v);}catch{}
+    setSaved(true); clearTimeout(timer.current);
+    timer.current=setTimeout(()=>setSaved(false),2000);
+  };
+  return (
+    <div>
+      <div style={{display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:8}}>
+        <div style={{fontSize:11,fontWeight:600,color:"#9C9283",letterSpacing:"0.5px",textTransform:"uppercase",fontFamily:"'Montserrat',sans-serif"}}>General Notes</div>
+        {saved&&<span style={{fontSize:10,color:"#26544F",display:"flex",alignItems:"center",gap:3}}><Check size={9}/>Saved</span>}
+      </div>
+      <textarea value={text} onChange={onChange}
+        placeholder="Write anything here — questions you want to ask, things to research before your next conversation, impressions so far..."
+        style={{width:"100%",minHeight:180,padding:"14px 16px",
+          border:"1px solid rgba(15,27,31,0.12)",borderRadius:10,
+          fontSize:14,color:"#0F1B1F",background:"#F0ECE9",
+          fontFamily:"'Inter',sans-serif",resize:"vertical",
+          outline:"none",boxSizing:"border-box",lineHeight:1.7,
+          transition:"border-color 0.2s"}}
+        onFocus={e=>e.target.style.borderColor="rgba(57,75,153,0.4)"}
+        onBlur={e=>e.target.style.borderColor="rgba(15,27,31,0.12)"}
+      />
+    </div>
+  );
+}
+
 // ── Interview Timeline ────────────────────────────────────────
 function InterviewTimeline({role, activeStage=null}) {
   const [exp,setExp]=useState(activeStage);
@@ -1102,11 +1134,12 @@ HANDLING DIFFICULT SITUATIONS:
 
   const TABS=[
     {id:"guide",label:"Overview",shortLabel:"Overview",icon:<BookOpen size={14}/>},
+    {id:"jd",label:"Job Description",shortLabel:"JD",icon:<FileText size={14}/>},
     {id:"chat",label:"Ask",shortLabel:"Ask",icon:<MessageCircle size={14}/>},
     {id:"roadmap",label:"Roadmap",shortLabel:"Roadmap",icon:<Map size={14}/>},
     {id:"culture",label:"Life at Cartwheel",shortLabel:"Culture",icon:<Heart size={14}/>},
     {id:"checklist",label:"Checklist",shortLabel:"Checklist",icon:<CheckSquare size={14}/>},
-    {id:"jd",label:"Job Description",shortLabel:"JD",icon:<FileText size={14}/>},
+    {id:"notes",label:"My Notes",shortLabel:"Notes",icon:<BookMarked size={14}/>},
   ];
 
   const links=role.links||{};
@@ -1142,15 +1175,15 @@ HANDLING DIFFICULT SITUATIONS:
 
       {/* Hero */}
       <div style={{background:C.white,paddingTop:72,position:"relative",overflow:"hidden"}}>
-        {/* Decorative shapes */}
-        <div style={{position:"absolute",top:-20,right:"6%",width:140,height:140,borderRadius:"50%",background:"rgba(177,165,247,0.11)",pointerEvents:"none"}}/>
-        <div style={{position:"absolute",top:30,right:"28%",width:44,height:44,borderRadius:"50%",background:"rgba(57,75,153,0.07)",pointerEvents:"none"}}/>
-        <div style={{position:"absolute",top:160,right:"9%",width:60,height:60,background:"rgba(177,165,247,0.09)",pointerEvents:"none"}}/>
+        {/* Decorative shapes — fully contained */}
+        <div style={{position:"absolute",top:20,right:"4%",width:120,height:120,borderRadius:"50%",background:"rgba(177,165,247,0.09)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",top:40,right:"26%",width:36,height:36,borderRadius:"50%",background:"rgba(57,75,153,0.06)",pointerEvents:"none"}}/>
+        <div style={{position:"absolute",top:180,right:"7%",width:52,height:52,borderRadius:"50%",background:"rgba(177,165,247,0.07)",pointerEvents:"none"}}/>
 
         {/* Heading block */}
-        <div style={{maxWidth:860,margin:"0 auto",padding:isMobile?"0 20px 40px":"0 32px 56px"}}>
+        <div style={{maxWidth:860,margin:"0 auto",padding:isMobile?"0 20px 40px":"0 32px 52px"}}>
           <FadeIn delay={0}>
-            <div style={{display:"flex",gap:8,marginBottom:20,flexWrap:"wrap"}}>
+            <div style={{display:"flex",gap:8,marginBottom:16,flexWrap:"wrap"}}>
               <span style={{display:"inline-flex",alignItems:"center",gap:7,background:"rgba(38,84,79,0.07)",border:"1px solid rgba(38,84,79,0.15)",borderRadius:99,padding:"5px 13px",fontSize:12,fontWeight:600,color:C.forest,fontFamily:"'Inter',sans-serif"}}>
                 <span style={{width:6,height:6,borderRadius:"50%",background:C.mint,boxShadow:`0 0 0 3px rgba(167,207,153,0.35)`,display:"inline-block",animation:"dotGlow 2s ease-in-out infinite"}}/>
                 {role.department}
@@ -1161,35 +1194,43 @@ HANDLING DIFFICULT SITUATIONS:
           <FadeIn delay={60}>
             <h1 style={{
               fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:isMobile?34:56,
-              color:C.charcoal,margin:0,letterSpacing:isMobile?"-0.5px":"-1.5px",lineHeight:1.05,
+              color:C.charcoal,margin:"0 0 14px",letterSpacing:isMobile?"-0.5px":"-1.5px",lineHeight:1.05,
             }}>{role.title}</h1>
           </FadeIn>
 
-          <FadeIn delay={120}>
-            <div style={{display:"flex",flexDirection:"column",gap:20,marginBottom:44}}>
-              <div>
-                <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Reports to</div>
-                <div style={{fontSize:17,color:C.indigo,fontWeight:600}}>{role.reportsto}</div>
-              </div>
-              <div>
-                <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Location</div>
-                <div style={{fontSize:17,color:C.indigo,fontWeight:600}}>{role.location}</div>
-              </div>
-              <div>
-                <div style={{fontSize:11,color:C.taupe,fontWeight:700,letterSpacing:"1px",textTransform:"uppercase",marginBottom:6}}>Compensation</div>
-                <div style={{fontSize:17,color:C.indigo,fontWeight:700}}>{role.comp}</div>
-              </div>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={180}>
+          <FadeIn delay={100}>
             <p style={{
-              fontSize:16,color:"#4a5568",lineHeight:1.8,
-              maxWidth:600,margin:0,
-              borderLeft:`4px solid ${C.orange}`,paddingLeft:20,fontStyle:"italic",
+              fontSize:15,color:"#4B5563",lineHeight:1.65,
+              maxWidth:580,margin:"0 0 28px",fontWeight:400,
             }}>
               {role.mission}
             </p>
+          </FadeIn>
+
+          <FadeIn delay={160}>
+            <div style={{
+              display:"flex",flexDirection:"row",flexWrap:"wrap",
+              gap:0,marginBottom:44,
+              borderTop:"1px solid rgba(15,27,31,0.07)",paddingTop:20,
+            }}>
+              <div style={{paddingRight:isMobile?0:36,marginRight:isMobile?0:36,borderRight:isMobile?"none":"1px solid rgba(15,27,31,0.08)",marginBottom:isMobile?20:0}}>
+                <div style={{fontSize:11,color:C.taupe,fontWeight:600,letterSpacing:"0.4px",marginBottom:5}}>Reports to</div>
+                <div style={{fontSize:15,color:C.charcoal,fontWeight:600}}>{role.reportsto}</div>
+              </div>
+              <div style={{paddingRight:isMobile?0:36,marginRight:isMobile?0:36,borderRight:isMobile?"none":"1px solid rgba(15,27,31,0.08)",marginBottom:isMobile?20:0}}>
+                <div style={{fontSize:11,color:C.taupe,fontWeight:600,letterSpacing:"0.4px",marginBottom:5}}>Location</div>
+                <div style={{fontSize:15,color:C.charcoal,fontWeight:600}}>{role.location}</div>
+              </div>
+              <div>
+                <div style={{fontSize:11,color:C.taupe,fontWeight:600,letterSpacing:"0.4px",marginBottom:5}}>Compensation</div>
+                <div style={{
+                  display:"inline-block",
+                  background:"rgba(38,84,79,0.08)",borderRadius:8,
+                  padding:"5px 12px",
+                  fontSize:15,color:C.forest,fontWeight:700,
+                }}>{role.comp}</div>
+              </div>
+            </div>
           </FadeIn>
         </div>
 
@@ -1399,8 +1440,8 @@ HANDLING DIFFICULT SITUATIONS:
                 background:C.charcoal,borderRadius:14,padding:"16px 20px",marginBottom:20,
                 display:"flex",alignItems:"center",gap:12,
               }}>
-                <div style={{width:36,height:36,borderRadius:10,background:"rgba(177,165,247,0.15)",border:"1px solid rgba(177,165,247,0.2)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                  <WheelMark size={22}/>
+                <div style={{width:36,height:36,borderRadius:10,background:"rgba(255,255,255,0.08)",border:"1px solid rgba(255,255,255,0.12)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                  <img src={cartwheelLogo} alt="Cartwheel" style={{width:22,height:22,objectFit:"contain"}}/>
                 </div>
                 <div>
                   <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:13,color:C.white}}>Cartwheel Copilot</div>
@@ -1413,8 +1454,8 @@ HANDLING DIFFICULT SITUATIONS:
               {msgs.map((m,i)=>(
                 <div key={i} style={{display:"flex",justifyContent:m.role==="user"?"flex-end":"flex-start",alignItems:"flex-end",gap:10,animation:`fadeUp 0.3s ease both`,animationDelay:`${i*30}ms`}}>
                   {m.role==="assistant"&&(
-                    <div style={{width:32,height:32,borderRadius:9,background:C.charcoal,border:"1px solid rgba(177,165,247,0.2)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
-                      <WheelMark size={19}/>
+                    <div style={{width:32,height:32,borderRadius:9,background:C.charcoal,border:"1px solid rgba(255,255,255,0.1)",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0}}>
+                      <img src={cartwheelLogo} alt="Cartwheel" style={{width:19,height:19,objectFit:"contain"}}/>
                     </div>
                   )}
                   <div style={{
@@ -1433,7 +1474,7 @@ HANDLING DIFFICULT SITUATIONS:
               ))}
               {loading&&(
                 <div style={{display:"flex",alignItems:"flex-end",gap:10}}>
-                  <div style={{width:32,height:32,borderRadius:9,background:C.charcoal,border:"1px solid rgba(177,165,247,0.2)",display:"flex",alignItems:"center",justifyContent:"center"}}><WheelMark size={19}/></div>
+                  <div style={{width:32,height:32,borderRadius:9,background:C.charcoal,border:"1px solid rgba(255,255,255,0.1)",display:"flex",alignItems:"center",justifyContent:"center"}}><img src={cartwheelLogo} alt="Cartwheel" style={{width:19,height:19,objectFit:"contain"}}/></div>
                   <div style={{background:C.white,border:"1px solid rgba(15,27,31,0.08)",borderRadius:"14px 14px 14px 4px",padding:"14px 18px",display:"flex",gap:5,boxShadow:"0 1px 4px rgba(15,27,31,0.06)"}}>
                     {[0,1,2].map(d=><span key={d} style={{width:7,height:7,borderRadius:"50%",background:C.lavender,display:"inline-block",animation:`blink 1.4s infinite`,animationDelay:`${d*0.2}s`}}/>)}
                   </div>
@@ -1788,6 +1829,37 @@ HANDLING DIFFICULT SITUATIONS:
               </FadeIn>
             )}
 
+            <CandidateFooter/>
+          </div>
+        )}
+
+        {/* ── MY NOTES ── */}
+        {tab==="notes"&&(
+          <div style={{display:"flex",flexDirection:"column",gap:24}}>
+            <FadeIn delay={0}>
+              <SectionHead>My Notes</SectionHead>
+              <p style={{fontSize:14,color:"#4a5568",lineHeight:1.75,margin:"0 0 24px"}}>Your notes are saved automatically to this browser. Use this space however works for you — questions to ask, things to research, thoughts after each conversation.</p>
+              {(()=>{
+                const generalKey=`notes-${role.slug}-general`;
+                return <GeneralNotes noteKey={generalKey}/>;
+              })()}
+            </FadeIn>
+            {(role.stages||[]).length>0&&(
+              <FadeIn delay={60}>
+                <div style={{marginTop:8}}>
+                  <div style={{fontSize:11,fontWeight:700,color:C.taupe,letterSpacing:"1px",textTransform:"uppercase",marginBottom:16,fontFamily:"'Montserrat',sans-serif"}}>Notes by Interview Stage</div>
+                  <div style={{display:"flex",flexDirection:"column",gap:16}}>
+                    {(role.stages||[]).map((s,i)=>(
+                      <div key={i} style={{background:C.white,borderRadius:12,border:"1px solid rgba(15,27,31,0.08)",padding:"18px 20px"}}>
+                        <div style={{fontSize:13,fontWeight:700,color:C.charcoal,marginBottom:2,fontFamily:"'Montserrat',sans-serif"}}>{s.stage}</div>
+                        {s.who&&<div style={{fontSize:12,color:C.taupe,marginBottom:8}}>{s.who}</div>}
+                        <PrepNotes slug={role.slug} stageIndex={i}/>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </FadeIn>
+            )}
             <CandidateFooter/>
           </div>
         )}
