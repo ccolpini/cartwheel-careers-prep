@@ -1317,7 +1317,7 @@ HANDLING DIFFICULT SITUATIONS:
                 }}>
                   <SectionLabel>Your contacts</SectionLabel>
                   {[
-                    {label:"Recruiter",name:"Caroline Colpini",href:"mailto:caroline.colpini@cartwheelcare.org"},
+                    {label:"Manager, Talent Acquisition",name:"Caroline Colpini",href:"mailto:caroline.colpini@cartwheelcare.org"},
                     {label:"Coordinator",name:"Avery Henry",href:"mailto:avery.henry@cartwheelcare.org"},
                     ...(role.contacts?.find(c=>c.includes("Take-home"))
                       ? [{label:"Take-home Qs",name:"Jacob Savos"}]
