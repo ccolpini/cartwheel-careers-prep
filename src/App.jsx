@@ -1209,15 +1209,27 @@ HANDLING DIFFICULT SITUATIONS:
 
           <FadeIn delay={160}>
             <div style={{
-              display:"flex",flexDirection:"row",flexWrap:"wrap",
-              gap:0,marginBottom:44,
+              display:"flex",
+              flexDirection:isMobile?"column":"row",
+              gap:isMobile?0:0,
+              marginBottom:44,
               borderTop:"1px solid rgba(15,27,31,0.07)",paddingTop:20,
             }}>
-              <div style={{paddingRight:isMobile?0:36,marginRight:isMobile?0:36,borderRight:isMobile?"none":"1px solid rgba(15,27,31,0.08)",marginBottom:isMobile?20:0}}>
+              <div style={{
+                paddingRight:isMobile?0:36,marginRight:isMobile?0:36,
+                borderRight:isMobile?"none":"1px solid rgba(15,27,31,0.08)",
+                paddingBottom:isMobile?16:0,marginBottom:isMobile?16:0,
+                borderBottom:isMobile?"1px solid rgba(15,27,31,0.07)":"none",
+              }}>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:600,letterSpacing:"0.4px",marginBottom:5}}>Reports to</div>
                 <div style={{fontSize:15,color:C.charcoal,fontWeight:600}}>{role.reportsto}</div>
               </div>
-              <div style={{paddingRight:isMobile?0:36,marginRight:isMobile?0:36,borderRight:isMobile?"none":"1px solid rgba(15,27,31,0.08)",marginBottom:isMobile?20:0}}>
+              <div style={{
+                paddingRight:isMobile?0:36,marginRight:isMobile?0:36,
+                borderRight:isMobile?"none":"1px solid rgba(15,27,31,0.08)",
+                paddingBottom:isMobile?16:0,marginBottom:isMobile?16:0,
+                borderBottom:isMobile?"1px solid rgba(15,27,31,0.07)":"none",
+              }}>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:600,letterSpacing:"0.4px",marginBottom:5}}>Location</div>
                 <div style={{fontSize:15,color:C.charcoal,fontWeight:600}}>{role.location}</div>
               </div>
