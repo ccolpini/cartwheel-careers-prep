@@ -1222,7 +1222,11 @@ HANDLING DIFFICULT SITUATIONS:
                 borderBottom:isMobile?"1px solid rgba(15,27,31,0.07)":"none",
               }}>
                 <div style={{fontSize:11,color:C.taupe,fontWeight:600,letterSpacing:"0.4px",marginBottom:5}}>Reports to</div>
-                <div style={{fontSize:15,color:C.charcoal,fontWeight:600}}>{role.reportsto}</div>
+                <div style={{fontSize:15,color:C.charcoal,fontWeight:600}}>
+                  {role.reportstoHref
+                    ? <ExtLink href={role.reportstoHref}>{role.reportsto}</ExtLink>
+                    : role.reportsto}
+                </div>
               </div>
               <div style={{
                 paddingRight:isMobile?0:36,marginRight:isMobile?0:36,
@@ -1237,7 +1241,7 @@ HANDLING DIFFICULT SITUATIONS:
                 <div style={{fontSize:11,color:C.taupe,fontWeight:600,letterSpacing:"0.4px",marginBottom:5}}>Compensation</div>
                 <div style={{
                   display:"inline-block",
-                  background:"rgba(38,84,79,0.08)",borderRadius:8,
+                  background:C.lightMint,borderRadius:8,
                   padding:"5px 12px",
                   fontSize:15,color:C.forest,fontWeight:700,
                 }}>{role.comp}</div>

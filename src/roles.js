@@ -790,7 +790,7 @@ export const ROA_ROLE = {
 
 export const CSM_ROLE = {
   title:"Customer Success Manager", slug:"customer-success-manager-southeast",
-  department:"School Success", reportsto:"Jeanine Avjean, Sr. Manager of Customer Success",
+  department:"School Success", reportsto:"Jeanine Avjean, Sr. Manager of Customer Success", reportstoHref:"https://linkedin.com/in/jeanine-avjean-1200a01a3/",
   location:"Remote — East Coast preferred; EST/CST hours required; ability to travel to Georgia required", employment:"Full-Time, W2", comp:"$95,000–$110,000 + 10% variable compensation",
   mission:"Cartwheel's Customer Success Managers are the single human thread connecting our clinical model to district outcomes. This role owns a multi-state book of 40–60 school districts — building trusted relationships with district leadership, connecting Cartwheel's utilization data to each district's published strategic plan, and driving the renewals and expansions that fund our mission.",
   stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"1,000+",label:"Districts by 2026",sub:"Scaling fast"},{n:"40%",label:"Forecasted Visit Growth",sub:"Year over year"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
@@ -803,7 +803,7 @@ export const CSM_ROLE = {
   stages:[
     {stage:"Recruiter Screen",time:"30m",who:"Avery Henry",focus:"Role fit, K-12 context, mission alignment, logistics"},
     {stage:"Hiring Manager Interview",time:"45–60m",who:"Jeanine Avjean",focus:"Revenue ownership, account health instincts"},
-    {stage:"Functional Deep Dive",time:"60m",who:"[NAME TBD], Emily Boyce",focus:"Strategic data narrative, cross-functional navigation"},
+    {stage:"Functional Deep Dive",time:"60m",who:"Customer Success Manager, Emily Boyce",focus:"Strategic data narrative, cross-functional navigation"},
     {stage:"Domain & Stakeholder Screen",time:"60m",who:"Suzy Hall",focus:"District leadership navigation, startup fit, clinical boundary clarity"},
     {stage:"Case Study Presentation",time:"60–90m",who:"Jeanine Avjean, Sarah Shoff",focus:"Take-home debrief, strategic communication, executive calibration"},
   ],
@@ -969,7 +969,7 @@ export const CSM_ROLE = {
     {label:"Recruiter Screen",name:"Avery Henry",title:"Recruiter",href:"https://www.linkedin.com/in/averyhenry/"},
     {label:"Hiring Manager Interview",name:"Jeanine Avjean",title:"Sr. Manager of Customer Success",href:"https://linkedin.com/in/jeanine-avjean-1200a01a3/"},
     {label:"Functional Deep Dive",name:"",title:"",href:null,multiHrefs:[
-      {name:"[NAME TBD]",href:null},
+      {name:"Customer Success Manager",href:null},
       {name:"Emily Boyce",href:"https://www.linkedin.com/in/emilyboyce/"},
     ]},
     {label:"Domain & Stakeholder Screen",name:"Suzy Hall",title:"Customer Success Enablement Manager",href:"https://www.linkedin.com/in/suzy-hall-a8b846101/"},
