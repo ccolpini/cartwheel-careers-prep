@@ -1786,7 +1786,10 @@ HANDLING DIFFICULT SITUATIONS:
               {heading:"Compensation and Benefits",content:role.compBenefits},
             ].map((sec,i)=>(
               <FadeIn key={i} delay={i*50}>
-                <div style={{background:C.white,borderRadius:12,boxShadow:"0 1px 4px rgba(0,0,0,0.08)",padding:"28px 32px"}}>
+                <div style={{background:C.white,borderRadius:12,boxShadow:"0 1px 4px rgba(0,0,0,0.08)",padding:"28px 32px",border:"1px solid transparent",transition:"border-color 0.15s ease"}}
+                  onMouseEnter={e=>e.currentTarget.style.borderColor=C.lightLavender}
+                  onMouseLeave={e=>e.currentTarget.style.borderColor="transparent"}
+                >
                   <h3 style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:15,color:C.charcoal,margin:"0 0 12px",paddingBottom:10,borderBottom:"1px solid rgba(15,27,31,0.07)"}}>{sec.heading}</h3>
                   {sec.content&&<p style={{fontSize:14,color:"#4a5568",lineHeight:1.8,margin:0,whiteSpace:"pre-line"}}>{sec.content}</p>}
                   {sec.bullets&&(
