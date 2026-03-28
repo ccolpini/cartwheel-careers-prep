@@ -20,7 +20,7 @@ Cartwheel Career Prep — an AI-powered interview preparation portal for Cartwhe
 src/
   App.jsx         # Main component (~2200 lines) — all UI components and views
   main.jsx        # React entry point + Vercel Analytics
-  roles.js        # Built-in job role data (structured interview stages, prep tips, etc.)
+  roles.js        # Built-in job role data; shared constants (CARTWHEEL_STATS, CARTWHEEL_LINKS)
   logo.png        # Cartwheel logo
 api/
   chat.js         # Vercel serverless: proxies to Anthropic Claude API
@@ -57,6 +57,6 @@ npm run preview   # Preview production build
 - Single-file component architecture (App.jsx contains all UI components)
 - Inline styles with shared color palette object (`C`)
 - localStorage for client-side persistence (notes, stages, custom roles)
-- No TypeScript in frontend (JSX only); TypeScript used in API routes and hooks
+- No TypeScript in frontend (JSX only); TypeScript used in hooks
 - No test framework configured
 - No linter/formatter configured
