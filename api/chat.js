@@ -4,6 +4,7 @@ export default async function handler(req, res) {
   }
 
   try {
+    const { model, system, messages, max_tokens } = req.body;
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
@@ -11,11 +12,11 @@ export default async function handler(req, res) {
         'x-api-key': process.env.VITE_ANTHROPIC_API_KEY,
         'anthropic-version': '2023-06-01',
       },
-      body: JSON.stringify(req.body),
+      body: JSON.stringify({ model, system, messages, max_tokens }),
     });
 
     const data = await response.json();
-    res.status(200).json(data);
+    res.status(response.status).json(data);
   } catch (error) {
     res.status(500).json({ error: 'API call failed' });
   }

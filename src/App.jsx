@@ -59,12 +59,22 @@ function Wordmark({ light=false, size="md" }) {
 
 // ── API ───────────────────────────────────────────────────────
 async function callClaude(system, messages, maxTokens=8000) {
-  const res = await fetch("/api/chat", {
-    method:"POST", headers:{"Content-Type":"application/json"},
-    body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:maxTokens,system,messages}),
-  });
-  const d = await res.json();
-  return d.content?.[0]?.text || "";
+  try {
+    const res = await fetch("/api/chat", {
+      method:"POST", headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:maxTokens,system,messages}),
+    });
+    if(!res.ok){
+      const err = await res.json().catch(()=>({}));
+      console.error("Chat API error:", res.status, err);
+      return "Sorry, something went wrong. Please try again in a moment.";
+    }
+    const d = await res.json();
+    return d.content?.[0]?.text || "";
+  } catch(e) {
+    console.error("Chat API network error:", e);
+    return "Sorry, something went wrong. Please check your connection and try again.";
+  }
 }
 
 // ── Storage ───────────────────────────────────────────────────
@@ -356,6 +366,7 @@ function PrepNotes({slug,stageIndex}) {
   const [text,setText]=useState(()=>{try{return localStorage.getItem(key)||"";}catch{return "";}});
   const [saved,setSaved]=useState(false);
   const timer=useRef(null);
+  useEffect(()=>()=>clearTimeout(timer.current),[]);
   const onChange=(e)=>{
     const v=e.target.value; setText(v);
     try{localStorage.setItem(key,v);}catch{}
