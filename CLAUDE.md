@@ -25,10 +25,8 @@ src/
 api/
   chat.js         # Vercel serverless: proxies to Anthropic Claude API
   track.js        # Vercel serverless: logs engagement events to Google Sheets
-app/api/track/
-  route.ts        # Next.js API route (TypeScript version of track endpoint)
 hooks/
-  useCopilotTracking.ts  # React hook for firing engagement events
+  useCopilotTracking.ts  # React hook for firing engagement events (includes event type definitions)
 ```
 
 ## Commands

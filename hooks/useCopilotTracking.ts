@@ -3,7 +3,26 @@
 // Fires events to /api/track — failures are swallowed silently.
 
 import { useCallback, useEffect, useRef } from "react";
-import type { CopilotEvent, CopilotEventName } from "@/app/api/track/route";
+
+export type CopilotEventName =
+  | "role_page_viewed"
+  | "chat_opened"
+  | "chat_message_sent"
+  | "chat_session_ended"
+  | "apply_clicked"
+  | "role_page_exited";
+
+export interface CopilotEvent {
+  event: CopilotEventName;
+  roleId: string;
+  roleTitle: string;
+  roleFamily: string;
+  sessionId: string;
+  durationSeconds?: number;
+  messageCount?: number;
+  source?: string;
+  timestamp?: string;
+}
 
 // ─── Tiny session ID generator ────────────────────────────────────────────────
 function generateSessionId(): string {

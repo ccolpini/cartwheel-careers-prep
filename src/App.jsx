@@ -190,6 +190,7 @@ function FadeIn({children, delay=0, style={}}) {
 // ── Accordion ─────────────────────────────────────────────────
 function Accordion({q, children, defaultOpen=false}) {
   const [open,setOpen] = useState(defaultOpen);
+  const panelId = useRef(`acc-${Math.random().toString(36).slice(2,8)}`).current;
   return (
     <div style={{
       border:`1px solid ${open?"rgba(57,75,153,0.3)":"rgba(15,27,31,0.08)"}`,
@@ -199,7 +200,7 @@ function Accordion({q, children, defaultOpen=false}) {
       transition:"all 0.25s ease",
       boxShadow:open?"0 4px 20px rgba(57,75,153,0.08)":"0 1px 3px rgba(15,27,31,0.04)",
     }}>
-      <button onClick={()=>setOpen(!open)} style={{
+      <button onClick={()=>setOpen(!open)} aria-expanded={open} aria-controls={panelId} style={{
         width:"100%",padding:"15px 18px",background:"none",border:"none",
         display:"flex",justifyContent:"space-between",alignItems:"center",
         cursor:"pointer",textAlign:"left",gap:14,
@@ -214,7 +215,7 @@ function Accordion({q, children, defaultOpen=false}) {
           <ChevronDown size={14} color={open?C.white:C.indigo} style={{transform:open?"rotate(180deg)":"none",transition:"transform 0.2s ease"}}/>
         </div>
       </button>
-      <div style={{
+      <div id={panelId} role="region" aria-hidden={!open} style={{
         maxHeight:open?"800px":"0",overflow:"hidden",
         transition:"max-height 0.35s ease",
       }}>
@@ -869,9 +870,9 @@ function makeGreeting(role,stageIdx) {
 function StagePickerModal({role,activeStage,onSelect,onClose}) {
   const stages=role.stages||[];
   return (
-    <div style={{position:"fixed",inset:0,zIndex:1000,background:"rgba(15,27,31,0.5)",backdropFilter:"blur(4px)",display:"flex",alignItems:"center",justifyContent:"center",padding:24}} onClick={onClose}>
+    <div role="dialog" aria-modal="true" aria-label="Stage picker" style={{position:"fixed",inset:0,zIndex:1000,background:"rgba(15,27,31,0.5)",backdropFilter:"blur(4px)",display:"flex",alignItems:"center",justifyContent:"center",padding:24}} onClick={onClose}>
       <div onClick={e=>e.stopPropagation()} style={{background:C.white,borderRadius:16,padding:"28px 24px",maxWidth:480,width:"100%",position:"relative",maxHeight:"90vh",overflowY:"auto"}}>
-        <button onClick={onClose} style={{position:"absolute",top:14,right:14,background:"rgba(15,27,31,0.06)",border:"none",borderRadius:8,width:30,height:30,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
+        <button onClick={onClose} aria-label="Close" style={{position:"absolute",top:14,right:14,background:"rgba(15,27,31,0.06)",border:"none",borderRadius:8,width:30,height:30,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
           <X size={13} color={C.charcoal}/>
         </button>
         <div style={{fontFamily:"'Montserrat',sans-serif",fontWeight:700,fontSize:19,color:C.charcoal,marginBottom:6,paddingRight:32}}>Which stage are you preparing for?</div>
@@ -940,9 +941,9 @@ function BriefModal({role,stageIndex,onClose,isMobile}) {
   const notes=(()=>{try{return localStorage.getItem(`notes-${role.slug}-${stageIndex}`)||"";}catch{return "";}})();
   if(!stage) return null;
   return (
-    <div style={{position:"fixed",inset:0,zIndex:1000,background:"rgba(15,27,31,0.55)",backdropFilter:"blur(4px)",display:"flex",alignItems:isMobile?"flex-end":"center",justifyContent:"center",padding:isMobile?0:24}} onClick={onClose}>
+    <div role="dialog" aria-modal="true" aria-label="Pre-interview brief" style={{position:"fixed",inset:0,zIndex:1000,background:"rgba(15,27,31,0.55)",backdropFilter:"blur(4px)",display:"flex",alignItems:isMobile?"flex-end":"center",justifyContent:"center",padding:isMobile?0:24}} onClick={onClose}>
       <div onClick={e=>e.stopPropagation()} style={{background:C.white,borderRadius:isMobile?"20px 20px 0 0":16,width:"100%",maxWidth:isMobile?"100%":560,maxHeight:isMobile?"92vh":"85vh",overflowY:"auto",padding:"28px 28px 36px",position:"relative"}}>
-        <button onClick={onClose} style={{position:"absolute",top:16,right:16,background:"rgba(15,27,31,0.06)",border:"none",borderRadius:8,width:32,height:32,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
+        <button onClick={onClose} aria-label="Close" style={{position:"absolute",top:16,right:16,background:"rgba(15,27,31,0.06)",border:"none",borderRadius:8,width:32,height:32,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>
           <X size={14} color={C.charcoal}/>
         </button>
         <div style={{marginBottom:20}}>
