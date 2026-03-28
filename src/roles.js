@@ -1,9 +1,23 @@
+const CARTWHEEL_STATS = [
+  {n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},
+  {n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},
+  {n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},
+  {n:"1.5M",label:"Students",sub:"Enrolled across districts"},
+];
+
+const CARTWHEEL_LINKS = {
+  cartwheel:"https://www.cartwheel.org",
+  wallOfLove:"https://www.cartwheel.org/wall-of-love",
+  glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",
+  linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all",
+};
+
 export const PDA_ROLE = {
   title:"Principal Data Analyst", slug:"principal-data-analyst",
   department:"Data", reportsto:"Jacob Savos, Director of Data",
   location:"Remote", employment:"Full-Time, W2", comp:"$170,000 - $220,000",
   mission:"Shape the analytics foundation that helps Cartwheel understand and improve how mental health care reaches students. Your work connects data decisions to real outcomes for kids.",
-  stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
+  stats:CARTWHEEL_STATS,
   team:["Jacob Savos — Director of Data (your hiring manager)","1 Analytics Manager","1 Senior Data Analyst","1 Staff Data Engineer","You — senior IC thought partner to Jacob"],
   stages:[
     {stage:"Recruiter Screen",time:"30m",who:"Caroline Colpini",focus:"Role fit, values, compensation"},
@@ -56,7 +70,7 @@ export const PDA_ROLE = {
     {label:"Business Acumen",name:"Sam Blumpkin + Sam Bilow",title:"",href:null,hrefs:["https://www.linkedin.com/in/samblumkin/","https://www.linkedin.com/in/sam-bilow-59434150/"]},
     {label:"Exec Review",name:"Daniel Ilkovich",title:"CTO",href:"https://www.linkedin.com/in/ilkovich/"},
   ],
-  links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
+  links:CARTWHEEL_LINKS,
 };
 
 export const CTRL_ROLE = {
@@ -64,7 +78,7 @@ export const CTRL_ROLE = {
   department:"Finance", reportsto:"Sam Bilow, VP of Finance",
   location:"Remote", employment:"Full-Time, W2", comp:"Competitive Base Compensation + Equity",
   mission:"Build Cartwheel's accounting function from the ground up — insourcing from an outsourced firm, leading ERP selection and implementation, and navigating the company's first external audit. This is a builder role, not a maintenance role.",
-  stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
+  stats:CARTWHEEL_STATS,
   team:["Sam Bilow — VP of Finance (your hiring manager)","BizOps team (cross-functional partner)","Data team (cross-functional partner)","Executive team (board reporting)","1 Staff Accountant (your first hire)"],
   stages:[
     {stage:"Recruiter Screen",time:"30m",who:"Caroline Colpini",focus:"Culture fit, motivation, compensation alignment"},
@@ -121,7 +135,7 @@ export const CTRL_ROLE = {
     {label:"Exec Review",name:"Dan Tartakovsky",title:"COO",href:"https://www.linkedin.com/in/tartakovsky/"},
   ],
   applyUrl:"https://job-boards.greenhouse.io/cartwheelcare/jobs/4992170007",
-  links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
+  links:CARTWHEEL_LINKS,
 };
 
 export const GROM_ROLE = {
@@ -129,7 +143,7 @@ export const GROM_ROLE = {
   department:"Government Affairs & Partnerships", reportsto:"Jonathan Adler, VP Government Relations",
   location:"Remote (travel required 1–2x per quarter)", employment:"Full-Time, W2", comp:"Competitive Base + Meaningful Equity",
   mission:"Cartwheel is at an inflection point in state expansion strategy. The Government Relations team manages relationships across multiple states, but volume of workstreams has exceeded team capacity. This role builds the operational infrastructure — briefs, trackers, compliance tracking — that lets the GR team scale without losing deals to slow follow-through or administrative gaps.",
-  stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
+  stats:CARTWHEEL_STATS,
   team:[
     "Jonathan Adler — VP Government Relations (your hiring manager)",
     "GR Account Executives — 3–4 people managing state relationships and deals",
@@ -331,7 +345,7 @@ export const GROM_ROLE = {
     {label:"Executive Review",name:"Joe English",title:"CEO",href:"https://www.linkedin.com/in/joe-m-english/"},
   ],
   applyUrl:"https://job-boards.greenhouse.io/cartwheelcare/jobs/5070368007",
-  links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
+  links:CARTWHEEL_LINKS,
 };
 
 export const FPAA_ROLE = {
@@ -340,7 +354,7 @@ export const FPAA_ROLE = {
   location:"Remote", employment:"Full-Time, W2", comp:"$90,000–$140,000 + meaningful equity",
   roadmapNote:"Our interview process is designed to reflect the real work of this role — each conversation evaluates a different dimension of how you think, prioritize, and lead, especially in a fast-moving, mission-driven environment like ours.\n\nThe roadmap below outlines the full arc of the process. Not every candidate moves through every stage, and the order can shift — progression is based on mutual fit and alignment as we get to know each other.",
   mission:"We're hiring a Finance Associate to own financial reporting, planning, and KPI/OKR visibility across Cartwheel — building the financial infrastructure that helps a fast-growing mental health company make smarter, faster decisions. This is a net-new role on a mission-driven team, with real scope and real impact from day one.",
-  stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
+  stats:CARTWHEEL_STATS,
   team:[
     "Sam Bilow — VP Finance (your hiring manager)",
     "April Liu — Healthcare Business Operations & Strategy",
@@ -488,7 +502,7 @@ export const FPAA_ROLE = {
     {label:"Executive Interview",name:"Daniel Tartakovsky",title:"COO & Co-Founder",href:"https://www.linkedin.com/in/tartakovsky/"},
   ],
   applyUrl:"https://job-boards.greenhouse.io/cartwheelcare/jobs/5073358007",
-  links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
+  links:CARTWHEEL_LINKS,
 };
 
 export const ROA_ROLE = {
@@ -496,7 +510,7 @@ export const ROA_ROLE = {
   department:"Revenue Operations", reportsto:"Jeff Sword, Director of Revenue Operations",
   location:"Remote", employment:"Full-Time, W2", comp:"$75,000 – $90,000 + meaningful equity",
   mission:"The Revenue Operations Analyst owns the tactical execution layer that keeps Cartwheel's deals moving, districts going live, and GTM teams working from clean, reliable data — so the business can scale from 300 to 1,000+ school districts without operational drag.",
-  stats:[{n:"350+",label:"School Districts",sub:"Serving 2.5% of U.S. districts"},{n:"$20M",label:"in ARR",sub:"Achieved in just 3 years"},{n:"300%",label:"YoY Growth",sub:"Capital-efficient scale"},{n:"1.5M",label:"Students",sub:"Enrolled across districts"}],
+  stats:CARTWHEEL_STATS,
   team:[
     "Jeff Sword — Director of Revenue Operations (your manager and primary day-to-day partner)",
     "Sales Team (AEs and Sales Leadership) — primary internal customers for deal desk and CRM support",
@@ -645,7 +659,7 @@ export const ROA_ROLE = {
       {name:"Suzy Hall",href:"https://www.linkedin.com/in/suzy-hall-a8b846101/"},
     ]},
   ],
-  links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
+  links:CARTWHEEL_LINKS,
 };
 
 export const CSM_ROLE = {
@@ -838,7 +852,7 @@ export const CSM_ROLE = {
       {name:"Sarah Shoff",href:"https://www.linkedin.com/in/sarah-shoff-she-her-1330a54/"},
     ]},
   ],
-  links:{cartwheel:"https://www.cartwheel.org",wallOfLove:"https://www.cartwheel.org/wall-of-love",glassdoor:"https://www.glassdoor.com/Overview/Working-at-Cartwheel-MA-EI_IE9563214.11,23.htm",linkedin:"https://www.linkedin.com/company/cartwheelcare/posts/?feedView=all"},
+  links:CARTWHEEL_LINKS,
 };
 
 export const BUILT_IN_ROLES = [PDA_ROLE, CTRL_ROLE, GROM_ROLE, FPAA_ROLE, ROA_ROLE, CSM_ROLE];
